@@ -241,3 +241,13 @@ function MyComp(props) {
 JS expression inside JSX must be placed in the `{}`. For example: `<PI value={22/7} />`
 
 Now you should see all sorts of kittens (or other images) on your page! In this last chapter, we'll build out this page a bit more to give it some finesse.
+
+# Now Commit
+
+>[action]
+>
+```bash
+$ git add .
+$ git commit -m 'content component built'
+$ git push
+```
