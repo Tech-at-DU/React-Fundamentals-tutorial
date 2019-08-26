@@ -3,7 +3,11 @@ title: "Setting Up React"
 slug: setting-up-react
 ---
 
-The goal of this tutorial is to learn the foundational concepts of React by building a web site using React. This tutorial will keep things simple and focus on only a few core concepts. Future lessons will build on these concepts
+The goal of this tutorial is to learn the foundational concepts of React by building a web site using React. This tutorial will keep things simple and focus on only a few core concepts. Future lessons will build on these concepts.
+
+By the end of this tutorial, you'll have a react site that looks similar to the following (replacing the adorable kittens with images of your choosing):
+
+![final-product](assets/final-product.png)
 
 Besides using this tutorial to create a Website with React, you can use this as a guide to get started with future React projects.
 
