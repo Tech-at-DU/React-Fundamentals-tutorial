@@ -156,7 +156,9 @@ function PageHeader() {
 }
 ```
 
-Great work! You should now have a header for your page!
+Great work! You should now have a header for your page:
+
+![header](assets/header.png)
 
 # Now Commit
 
