@@ -52,6 +52,133 @@ import { Link } from 'react-router-dom'
   <Link to={props.link}>Link to project</Link>
 </div>
 ```
- 
 
- 
+Now lets go back over to the `PageContent.js` file, and change the `link` attribute on the `Project` components to be something like `/home` and `/signup` but these can be whatever you want as long as they start with a backslash.
+
+When we go back to look at the page, and click the links, we see it updates the url, but nothing on the page changes.
+
+Before we fix that though, we should dry up or code a little bit. notice in the `PageContent.js` file, we repeat basicly the same line of code many times. So lets get the computer to do that for us.
+
+First things first, here are the images we will be using  
+[images](https://drive.google.com/drive/folders/1x7vuBrK7riYPJaKCotfG9kF91vCcSlxv?usp=sharing)
+These go in the public folder of the react app, outside of the src folder.  
+They should all be in a folder called `images`, which is inside the `public` folder
+
+Now we are going to create a new file in our `src` folder called `data.js`  
+this will be where we get the data for our projects.  
+inside of this file, we are going to export an array that contains our data.
+```js
+// Theres a lot here, feel free to copy paste
+const data = [
+  {
+    title: '50 california',
+    image: '/images/50-california-st.png',
+    desc: 'A small plaza with groomed bushes and trees',
+  },
+  {
+    title: '100 pine',
+    image: '/images/100-pine.jpg',
+    desc: 'beautiful water fountain',
+  },
+  {
+    title: '101 california',
+    image: '/images/101-california.jpg',
+    desc: 'nice sitting area with plants',
+  },
+  {
+    title: '343 sansome roof garden',
+    image: '/images/343-sansome-roof-garden.jpg',
+    desc: 'unique roof garden',
+  },
+  {
+    title: '525 market street plaza',
+    image: '/images/525-market-street-plaza.jpg',
+    desc: 'large indoor plaza with a fountain',
+  },
+  {
+    title: 'citigroup center',
+    image: '/images/citigroup-center.jpg',
+    desc: 'neat sitting area with a fountain',
+  },
+  {
+    title: 'empire park',
+    image: '/images/empire-park.jpg',
+    desc: 'a green shady sitting area',
+  },
+  {
+    title: '150 california garden terrace',
+    image: 'images/garden-terrace-at-150-california.jpg',
+    desc: 'garden terrace with a sitting area',
+  },
+  {
+    title: 'transamerica redwood park',
+    image: '/images/transamerica-redwood-park.jpg',
+    desc: 'massive redwood park, with a fountain',
+  },
+]
+export default data
+```
+So we have our data, now we need to do something with it, lets go back to our `PageContent.js` file.  
+
+First lets import our data at the top of the file
+```js
+import data from './data'
+```
+
+Then remove all of the `<Project>` components.  
+We are going to use an array method known as array.map. This will allow us to take a list, do something to every element, and return a new list.
+this is similar to the python `for i in array` but with some differences.
+
+Inside our `projects` div, we are going to add our map function.
+```js
+...
+  <div className="projects">
+      { // this is to allow us to write js inside of our HTML
+        //        place is the element in the array
+        //        i is the index of the element
+        data.map((place, i) => { //data takes a function as a parameter
+          return ( //if you return HTML, it will be rendered
+            <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
+          )
+
+        })
+      }
+    </div>
+...
+```
+
+Ok lets break down the map method a bit more.
+lets take a look at just the first line
+```js
+data.map((place, i) => {})
+```
+The map method takes in a callback. A callback is a function that doesn't get called right away. So it's saving the function for later.
+
+if you haven't seen a fat arrow function before, it's just another way to write a function in javascript. Rather than
+```js
+name = function(param) {
+
+}
+```
+it looks like
+```js
+name = (param) => {
+
+}
+```
+So if we look at the map function we are using, we see it gives us 2 parameters, place, and i.  
+place is the element in the array, which in this case is our sf location  
+and i is the index in the array
+
+So now lets look at the HTML
+
+```xml
+<Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={i} />
+```
+Theres a few things going on here, first off, if you ever map anything into html, you need to give each element a unique "key" so that react knows whats going on. thats what our ```key={`${i}-${place.image}`}```  attribute is doing. We are setting the key to the index of the element, and then the location of the image.
+
+Then we have `title={place.title}`  
+If you look at our `data.js` file, you can see that every item has a few key/value pairs, and one of the keys is title, this is the same for `image={place.image}`
+
+fianlly we have `link={i}`  
+What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, youll see it changes the navbar to have a number. This is what we will use to determine what place the user wants more info about
