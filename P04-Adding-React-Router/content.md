@@ -173,12 +173,102 @@ and i is the index in the array
 So now lets look at the HTML
 
 ```xml
-<Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={i} />
+<Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
 ```
 Theres a few things going on here, first off, if you ever map anything into html, you need to give each element a unique "key" so that react knows whats going on. thats what our ```key={`${i}-${place.image}`}```  attribute is doing. We are setting the key to the index of the element, and then the location of the image.
 
 Then we have `title={place.title}`  
 If you look at our `data.js` file, you can see that every item has a few key/value pairs, and one of the keys is title, this is the same for `image={place.image}`
 
-fianlly we have `link={i}`  
-What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, youll see it changes the navbar to have a number. This is what we will use to determine what place the user wants more info about
+finally we have ```link={`${i}`}```  
+What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, youll see it changes the navbar to have a number. This is what we will use to determine where the user wants more info about
+
+Ok, now onto reading the url, and rendering things off of it.
+
+Lets go to the `app.js` file.  
+We are going to be using the `react-router` component called `<Route>`
+
+`<Route>` is what we use to conditionally render things based on the url.
+`<Route>` has a few different attributes, but the one we are worried about is `path`. We use path to tell react what to render given a url. We also need a `component` attribute, which is what to render.
+```xml
+<Route path='/home' component={home} />
+```
+
+So in `app.js` we are going to alter the `<PageContent>` component to be rendered by a path.
+```xml
+...
+<Route exact path='/' component={PageContent} />
+...
+```
+Now if you go to the website, you may see just the header, if so make sure you are at the `/` route, meaning there shouldnt be any numbers after the slash. This is because of the `exact` attribute. if we left the `exact` out like we did in the example, then any url that matched would render the component, but because the route is just a slash, every route matches it. So we add the `exact` to make sure it only renders when you are at the index route.
+
+Back to the top of the page, lets import our data again,
+```js
+import data from './data'
+```
+
+We need a new component for our selected location, so lets create a new file in `src` called `SelectedProject.js` and copy almost all of the code from `Project.js` but we are going to change the height and width of the image
+```jsx
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+function SelectedProject(props) {
+  return (
+    <div className='project'>
+      <img alt="" src={props.image} width="600" height="400" />
+      <h3>{props.title}</h3>
+      <Link to={props.link}>Link to project</Link>
+    </div>
+  )
+}
+
+export default SelectedProject
+```
+Let's change the link to be back to the home page
+```xml
+<Link to='/'>Back to Home</Link>
+```
+And before we link back to home, lets add our description
+```xml
+<p>{props.desc}</p>
+<Link to='/'>Back to Home</Link>
+```
+
+now lets import our new component to `app.js` add some routes for our images  
+So instead of making all of the routes ourselves, we are going to use a url parameter. This will allow us to know what the number is, rather then making a route for every one of the locations.
+```xml
+import SelectedProject from 'SelectedProject.js'
+...
+<Route exact path='/' component={PageContent} />
+<Route path='/:index' component={SelectedProject} />
+...
+```
+adding a colon, makes it a url parameter, so we can access that back over in the `SelectedProject.js`. We are going to import our data, as well as add `useParams()` where we are importing `react-router`
+```js
+import data from './data'
+import { Link, useParams } from 'react-router-dom'
+```
+`useParams` will allow us to grab all of the url parameters in our route, in this case `index`
+
+before the return statement in the function, we are going to create an index variable that will hold our index, and then a variable that will hold all of the data of the location
+
+```jsx
+function SelectedProject(props) {
+  const { index } = useParams()
+  const place = data[index]
+  return (
+    ...
+```
+
+Then we are going to update everything we were using props to gather to use our new place variable instead
+```xml
+<div className='project'>
+  <img alt="" src={place.image} width="600" height="400" />
+  <h3>{place.title}</h3>
+  <p>{place.desc}</p>
+  <Link to='/'>Back to Home</Link>
+</div>
+```
+
+And congratulations you should now be able to navigate to and from different locations!
+
