@@ -40,7 +40,7 @@ While you can install React manually, the boilerplate code installed by `create-
 >
 > For example, `nvm install 10.16` installs node 10.16 which was the latest version of Node at the time this was written
 >
-> Use nvm to select and use the a specific version of node: `nvm use 10.16` uses Node version 10.16.
+> Use nvm to select and use a specific version of node: `nvm use 10.16` uses Node version 10.16.
 
 # Run Your App
 
@@ -54,7 +54,7 @@ npm start
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
-Here you are running some background services that bundle your app. React apps are written with the ES6 version of JavaScript along with JSX an extension of the JS language. This code does not run in the browser it needs to be transpiled to vanilla ES5 version of JS first.
+Here you are running some background services that bundle your app. React apps are written with the ES6 version of JavaScript along with with JSX an extension of the JS language. This code does not run in the browser it needs to be transpiled to the vanilla ES5 version of JS first.
 
 The command also starts a local server that hosts your project, watches for changes to files in the project folder and relaunches the server when changes occur.
 
@@ -70,9 +70,9 @@ Explore the project. Create React generates many files and arranges them in dire
 
 **You will do all of your work in the src directory.** The other files and folders you can ignore for now.
 
-`README.md` contains reference info about create react app. Look here for reminders about the npm commands used with create-react-app.
+`README.md` contains reference info about create React app. Look here for reminders about the npm commands used with create-react-app.
 
-Take a look in `src`:
+Take a look at `src`:
 
 - `src`
   - `App.css`
@@ -95,7 +95,7 @@ Further down the code you'll that the `App` Component is used here:
 
 `ReactDOM.render(<App />, document.getElementById('root'));`
 
-This is the top level component. While `App` is a single component all the components it contains will be rendered.
+This is the top-level component. While `App` is a single component all the components it contains will be rendered.
 
 Take a look at `App.js` to see what it renders.
 
