@@ -13,11 +13,11 @@ Let's make a new Component! This component will be a header for your page.
 import React from 'react'
 >
 function PageHeader() {
-  return (
-    <div>
-      <h1>Name of your site here</h1>
-    </div>
-  )
+ return (
+ <div>
+ <h1>Name of your site here</h1>
+ </div>
+ )
 }
 >
 export default PageHeader
@@ -42,8 +42,8 @@ Whereas this code will not produce an error:
 ```html
 // Good! has a single top level element
 <div>
-  <h1>Hello</h1>
-  <p>World</p>
+ <h1>Hello</h1>
+ <p>World</p>
 </div>
 ```
 
@@ -51,21 +51,21 @@ If you are returning a multiline JSX statement, make sure to wrap it in the `(` 
 
 ```js
 function MyComp() {
-  return <h1>Hello World</h1> // Good! Single line
+ return <h1>Hello World</h1> // Good! Single line
 }
 >
 function MyComp() {
-  // Good! Multiline wrapped in ( ... ) also has a single top level node.
-  return (
-    <div>
-      <h1>Hello</h1>
-      <p>World</p>
-    </div>
-  )
+ // Good! Multiline wrapped in ( ... ) also has a single top level node.
+ return (
+ <div>
+ <h1>Hello</h1>
+ <p>World</p>
+ </div>
+ )
 }
 ```
 
-In `PageHeader.js`, you exported Header as the _default export_. Any file/module may have a single `default` export. Use the default export for the most important export. In this case we only export one thing, making it the obvious choice for the default export!
+In `PageHeader.js`, you exported Header as the _default export_. Any file/module may have a single `default` export. Use the default export for the most important export. In this case, we only export one thing, making it the obvious choice for the default export!
 
 # Import and Use Header
 
@@ -89,11 +89,11 @@ The `.js` file extension is optional when using import. `import PageHeader from 
 >
 ```js
 function App() {
-  return (
-    <div className="App">
-      <PageHeader />
-    </div>
-  );
+ return (
+ <div className="App">
+ <PageHeader />
+ </div>
+ );
 }
 ```
 
@@ -101,7 +101,7 @@ Here you imported your component and used that component the page.
 
 Notice you imported `PageHeader` and used it as a component by writing it like an HTML tag like this: `<PageHeader />`
 
-Since the Component doesn't have any child components you can use a self closing tag (`<TagName />` instead of `<TagName>...</TagName>`).
+Since the Component doesn't have any child components you can use a self-closing tag (`<TagName />` instead of `<TagName>...</TagName>`).
 
 # Style Your Header
 
@@ -109,7 +109,7 @@ Now let's add some styles to the header! CSS styles are applied to React compone
 
 The Create React App Webpack Build system will import styles and include them in a Component when you import a `.css` file into that component.
 
-This system is good because it allows you to associate styles with components. Rather than throwing all of your styles into single style sheet.
+This system is good because it allows you to associate styles with components. Rather than throwing all of your styles into a single style sheet.
 
 > [action]
 >
@@ -117,12 +117,12 @@ This system is good because it allows you to associate styles with components. R
 >
 ```css
 .PageHeader {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 1em;
-  background-color: rgb(19, 99, 99);
-  color: #fff;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ padding: 1em;
+ background-color: rgb(19, 99, 99);
+ color: #fff;
 }
 ```
 
@@ -146,13 +146,13 @@ When assigning a class name to a JSX tag use the name `className` in place of `c
 >
 ```js
 function PageHeader() {
-  return (
-    <div className="PageHeader">
-      <header>
-        <h1>SF Public Spaces</h1>
-      </header>
-    </div>
-  )
+ return (
+ <div className="PageHeader">
+ <header>
+ <h1>SF Public Spaces</h1>
+ </header>
+ </div>
+ )
 }
 ```
 

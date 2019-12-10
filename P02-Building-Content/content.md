@@ -13,11 +13,11 @@ Now we'll create a content container component. This is where we'll store our aw
 import React from 'react'
 >
 function PageContent() {
-  return (
-    <div>
-      <h2>Content here...</h2>
-    </div>
-  )
+ return (
+ <div>
+ <h2>Content here...</h2>
+ </div>
+ )
 }
 >
 export default PageContent
@@ -35,12 +35,12 @@ Import this file and use the new Component in `App.js`
 >
 ```js
 function App() {
-  return (
-    <div className="App">
-      <PageHeader />
-      <PageContent />
-    </div>
-  );
+ return (
+ <div className="App">
+ <PageHeader />
+ <PageContent />
+ </div>
+ );
 }
 ```
 
@@ -48,9 +48,9 @@ React uses a Component Architecture. Notice here how one component can contain a
 
 # Adding Content To The Container
 
-So we have an empty container, now we need to add content to it. Here the goal is to display a list of your projects in the content page. Each project will use the same component but will eventually display different information for each project.
+So we have an empty container, now we need to add content to it. Here the goal is to display a list of your projects on the content page. Each project will use the same component but will eventually display different information for each project.
 
-For now imagine each project has the following elements:
+For now, imagine each project has the following elements:
 
 - Image
 - Title
@@ -66,13 +66,13 @@ Let's make a component to show a project.
 import React from 'react'
 >
 function Project() {
-  return (
-    <div>
-      <img src="#" width="300" height="200" />
-      <h3>Title of Project</h3>
-      <a href="#">Link to project</a>
-    </div>
-  )
+ return (
+ <div>
+ <img src="#" width="300" height="200" />
+ <h3>Title of Project</h3>
+ <a href="#">Link to project</a>
+ </div>
+ )
 }
 >
 export default Project
@@ -90,22 +90,22 @@ Now we can import and add a few Projects to your Content Page.
 >
 ```js
 function PageContent() {
-  return (
-    <div>
-      <Project />
-      <Project />
-      <Project />
-      <Project />
-      <Project />
-      <Project />
-    </div>
-  )
+ return (
+ <div>
+ <Project />
+ <Project />
+ <Project />
+ <Project />
+ <Project />
+ <Project />
+ </div>
+ )
 }
 ```
 
 This should now show a list of 6 projects in PageContent which is displayed in the App.
 
-While this is working, it's less than ideal since all of the projects has the same title, image src, and link url. You will address this in the coming steps.
+While this is working, it's less than ideal since all of the projects have the same title, image src, and link URL. You will address this in the coming steps.
 
 Components can be reused and nested. You've used the `Project` component 6 times here. Each is a separate and unique instance of `Project.js`.
 
@@ -113,7 +113,7 @@ All of these components are wrapped up in the `PageContent` which is rendered by
 
 # Add some Local Image Files
 
-We have these projects, but there's no images attached to them. In order to create an images folder. This will need to be placed in the `public` folder. Your React project is run from the `public` folder after the source files are transpiled.
+We have these projects, but there are no images attached to them. This will need to be placed in the `public` folder. Your React project is run from the `public` folder after the source files are transpiled.
 
 Images and other static files that your project will use must be referenced with the public directory as the root.
 
@@ -131,14 +131,14 @@ Now we can reference an image from your `Project` component.
 >
 ```js
 function Project() {
-  return (
-    <div>
-      // replace kitten-0.jpeg with your image
-      <img src='/images/kitten-0.jpeg' width="300" height="200" />
-      <h3>Title of Project</h3>
-      <a href="#">Link to project</a>
-    </div>
-  )
+ return (
+ <div>
+ // replace kitten-0.jpeg with your image
+ <img src='/images/kitten-0.jpeg' width="300" height="200" />
+ <h3>Title of Project</h3>
+ <a href="#">Link to project</a>
+ </div>
+ )
 }
 ```
 
@@ -154,15 +154,15 @@ This is great if you want to have purely static components, but let's aim a litt
 
 Components can be made dynamic by using props. **Props** are values (think properties) that are passed into the Component from outside.
 
-Above you created a list of `<Project />` component instances each of which displays exactly the same thing. The goal of this step is to make this component dynamic by adding props. _This will allow each instance to be configured differently._
+Above you created a list of `<Project />` component instances each of which displays the same thing. The goal of this step is to make this component dynamic by adding props. _This will allow each instance to be configured differently._
 
-Props is always an Object with properties. All of the values that you want to pass into a component will be attached to this Object.
+Props are always an object with properties. All of the values that you want to pass into a component will be attached to this Object.
 
 In the case of the `Project` Component there are three things that need to be dynamic:
 
 - title
-- image url
-- link url
+- image URL
+- link URL
 
 > [action]
 >
@@ -170,13 +170,13 @@ In the case of the `Project` Component there are three things that need to be dy
 >
 ```js
 function Project(props) {
-  return (
-    <div>
-      <img src={props.image} width="300" height="200" />
-      <h3>{props.title}</h3>
-      <a href={props.link}>Link to project</a>
-    </div>
-  )
+ return (
+ <div>
+ <img src={props.image} width="300" height="200" />
+ <h3>{props.title}</h3>
+ <a href={props.link}>Link to project</a>
+ </div>
+ )
 }
 ```
 
@@ -188,13 +188,13 @@ Notice when using JavaScript expressions in a JSX block you must wrap the expres
 >
 ```js
 function Project({ image, title, link }) {
-  return (
-    <div>
-      <img src={image} width="300" height="200" />
-      <h3>{title}</h3>
-      <a href={link}>Link to project</a>
-    </div>
-  )
+ return (
+ <div>
+ <img src={image} width="300" height="200" />
+ <h3>{title}</h3>
+ <a href={link}>Link to project</a>
+ </div>
+ )
 }
 ```
 
@@ -208,22 +208,22 @@ Each property assigned to props is set as an attribute in the JSX declaration.
 >
 ```js
 function PageContent() {
-  return (
-    <div>
-      <Project title="Tetris Dots" image="/images/kitten-0.jpeg" link="#" />
-      <Project title="Zombie Server" image="/images/kitten-1.jpeg" link="#" />
-      <Project title="Amazing Colors" image="/images/kitten-2.jpeg" link="#" />
-      <Project title="Flip Toggle" image="/images/kitten-3.jpeg" link="#" />
-      <Project title="121 Second St" image="/images/kitten-4.jpeg" link="#" />
-      <Project title="Slide Shows" image="/images/kitten-5.jpeg" link="#" />
-    </div>
-  )
+ return (
+ <div>
+ <Project title="Tetris Dots" image="/images/kitten-0.jpeg" link="#" />
+ <Project title="Zombie Server" image="/images/kitten-1.jpeg" link="#" />
+ <Project title="Amazing Colors" image="/images/kitten-2.jpeg" link="#" />
+ <Project title="Flip Toggle" image="/images/kitten-3.jpeg" link="#" />
+ <Project title="121 Second St" image="/images/kitten-4.jpeg" link="#" />
+ <Project title="Slide Shows" image="/images/kitten-5.jpeg" link="#" />
+ </div>
+ )
 }
 ```
 
 The attribute name needs to match the name of the key on the props object, `title`, `link`, and `image` in this case.
 
-You now have a single Project Component which you can use as often as you like, and each instance can display any title, image, and link url. _This is the power of props_. Use Props to configure your components.
+You now have a single Project Component which you can use as often as you like, and each instance can display any title, image, and link URL. _This is the power of props_. Use Props to configure your components.
 
 You can assign props as key value pairs defined in JSX like attributes in HTML. For example: <MyComp message="Hello World" value={42} />`
 
@@ -231,10 +231,10 @@ You can get props inside a component from the props object which is passed as a 
 
 ```js
 function MyComp(props) {
-  <div>
-    <h1>{props.message}</h1> // Hello World
-    <p>{props.value}</p> // 42
-  </div>
+ <div>
+ <h1>{props.message}</h1> // Hello World
+ <p>{props.value}</p> // 42
+ </div>
 }
 ```
 

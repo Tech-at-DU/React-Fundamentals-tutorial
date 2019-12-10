@@ -5,13 +5,13 @@ slug: thinking-in-components
 
 Think of the page you created. It is built from Components. The Components are like Lego bricks, you can mix and match and reuse them to build a larger structure/system.
 
-When you edit your project you need only be concerned with the one component or the interaction between two components. In other words you'll often only be concerned with one or two components at a time while you work.
+When you edit your project you need only be concerned with the one component or the interaction between two components. In other words, you'll often only be concerned with one or two components at a time while you work.
 
-In this page `App` is the top level component. It displays the `PageHeader` and `PageContent` components. The `PageContent` Component displays a list of `Project` components.
+In this page `App` is the top-level component. It displays the `PageHeader` and `PageContent` components. The `PageContent` Component displays a list of `Project` components.
 
 To make changes to your project you'll need to think about which component is responsible for the area that you want to edit. You'll make the changes in the file that defines that component.
 
-It would be really nice if the projects were arranged in a grid. Let's do this by adding styles to the `PageContent` component. Remember, the `PageContent` component displays the `Project` components.
+It would be nice if the projects were arranged in a grid. Let's do this by adding styles to the `PageContent` component. Remember, the `PageContent` component displays the `Project` components.
 
 > [action]
 >
@@ -19,11 +19,11 @@ It would be really nice if the projects were arranged in a grid. Let's do this b
 >
 ```css
 .PageContent {
-  width: 960px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2em;
+ width: 960px;
+ margin: auto;
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
+ grid-gap: 2em;
 }
 ```
 >
@@ -35,10 +35,10 @@ It would be really nice if the projects were arranged in a grid. Let's do this b
 >
 ```js
 function PageContent() {
-  return (
-    <div className="PageContent">
-      ...
-  )}
+ return (
+ <div className="PageContent">
+ ...
+ )}
 ```
 
 React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI.
@@ -70,12 +70,12 @@ Your page needs a footer!
 > - Define the footer in this file. Remember to export the footer as default
 > - Import the Footer Component into App and render it
 
-Next let's style your Footer:
+Next, let's style your Footer:
 
 > [action]
 >
 > Add a class name to elements in Footer
-> Make a new file for your footer css
+> Make a new file for your footer CSS
 > Add styles to this file and style elements in Footer
 > Import the Footer Styles
 
@@ -87,7 +87,7 @@ Your site should look very similar to the finished product you saw in the first 
 
 Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
 
-This allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.
+This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
 
 # Now Commit
 

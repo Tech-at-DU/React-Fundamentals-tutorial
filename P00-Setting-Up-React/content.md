@@ -54,7 +54,7 @@ npm start
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
-Here you are running some background services that bundle your app. React apps are written with the ES6 version of JavaScript along with with JSX an extension of the JS language. This code does not run in the browser it needs to be transpiled to the vanilla ES5 version of JS first.
+Here you are running some background services that bundle your app. React apps are written with the ES6 version of JavaScript along with JSX an extension of the JS language. This code does not run in the browser it needs to be transpiled to the vanilla ES5 version of JS first.
 
 The command also starts a local server that hosts your project, watches for changes to files in the project folder and relaunches the server when changes occur.
 
@@ -75,13 +75,13 @@ Explore the project. Create React generates many files and arranges them in dire
 Take a look at `src`:
 
 - `src`
-  - `App.css`
-  - `App.js`
-  - `App.test.js`
-  - `index.css`
-  - `index.js`
-  - `logo.svg`
-  - `serviceWorker.js`
+ - `App.css`
+ - `App.js`
+ - `App.test.js`
+ - `index.css`
+ - `index.js`
+ - `logo.svg`
+ - `serviceWorker.js`
 
 These are the files that make up the app. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You don't ever need to edit this file.
 
