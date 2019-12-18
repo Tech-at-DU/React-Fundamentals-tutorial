@@ -272,3 +272,11 @@ Then we are going to update everything we were using props to gather to use our 
 
 And congratulations you should now be able to navigate to and from different locations!
 
+# Feedback and Review - 2 minutes
+
+**We promise this won't take longer than 2 minutes!**
+
+Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
+
+This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
+
