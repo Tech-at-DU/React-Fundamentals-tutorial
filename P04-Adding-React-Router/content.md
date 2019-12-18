@@ -3,49 +3,73 @@ title: "Adding React Router"
 slug: adding-react-router
 ---
 
-Now we have a cool looking page, but what if we want to check out one of the cats?
+# React Router
 
-Most websites have different pages you can visit. When you change pages, the page reloads and sends a new request to the server which then loads the page you are looking for. However, when you are building a single page application with something such as React, if you were to reload the window when you wanted to go to a new page, it would defeat the purpose of using react.
+react Router is a library that adds navigation to your React projects. You would use React Router to make your Single Page Applications built with React act like a multi-page web site. 
 
-So how we get around this is with something called `React Router`. React router allows you to link to new parts of your page without having to refresh the window.
+Now you have a nice looking single page. What if you wanted to give each cat it's own page? 
 
-First things first, we need to download import `React Router`. 
- in our terminal we need to run the command:
- ```cmd
+Most websites have different pages you can visit. When you change pages, the page reloads and sends a new request to the server which then loads the page you are looking for. However, when you are building a *single page application* with something such as React loading a new page reloads the window and starts your application over again. 
+
+**Single Page Applications** dont't refresh/reload the content of browser. Instead Single Page Applications change the content displayed in the DOM. In other words a Single Page Application changes the HTML displayed in the window without loading a new file. 
+
+In React this happens by controlling which components are displayed. You can think and design your applciations where components are the pages of your web site. 
+
+React router allows you to link to new parts of your page without having to refresh the window.
+
+## Getting started with React Router
+
+You'll need to install React Router then use the components this package provides to create navigation. 
+
+### Install React Router Dom
+
+React Router provides a few different routers. You'll use React Router DOM for this project because it works with the Browser. 
+
+First things first, we need to download import `React Router`. in our terminal we need to run the command:
+ 
+ ```bash
 npm install react-router-dom --save
  ```
- Now go to `app.js` and import it at the top of the page
+ 
+ Now go to `App.js` and import it at the top of the page:
+ 
  ```js
 import { BrowserRouter as Router, Route } from 'react-router-dom'
  ```
- For `React Router` to actually work, we need to wrap the entire app in our `Router`. So we are going to alter the return in our `app.js` to look like:
+ 
+For `React Router` to work you need to wrap the entire app (all other components) in a `Router`. Alter the return in our `App.js` to look like:
+
 ```jsx
  return(
- <Router>
- <div className="App">
- ...
- </div>
- </Router>
- )
+   <Router>
+     <div className="App">
+       ...
+     </div>
+   </Router>
+  )
 ```
-Now we are all set up to use `React Router`
+
+Now we are all set up to use `React Router` to navigate to different routes. 
 
 Let's start by learning to change our URL. 
- By default the `<a>` actually refreshes the screen before changing the URL. This is an issue because we don't want the page to reload ever.
- 
- That's ok though because React Router gives us a solution. 
- React Router gives us a `<Link>` tag that acts just like an `<a>` tag, except without refreshing the page! all you have to do is give it a `to` attribute rather than an `href` attribute and you are good to go.
- ```xml
+
+By default the `<a>` actually refreshes the screen before changing the URL. This would be an issue because we don't want the page to reload, ever.
+
+React Router gives us a `<Link>` tag that acts just like an `<a>` tag, except without refreshing the page! all you have to do is give it a `to` attribute rather than an `href` attribute and you are good to go.
+
+ ```JSX
  <Link to="/images/kitten-0.jpeg">
  ```
 
- So let's update our `Project.js` file to reflect these changes
+ Update your `Project.js` file to reflect these changes
  at the top, we have to import our `Link`
+ 
  ```js
 import { Link } from 'react-router-dom'
  ```
 
- and then we have to change our `<a>` tag to a `<link>`
+Next change your `<a>` tag to a `<Link>` (note the case!) and the `href` attribute to `to`:
+ 
  ```xml
  <div className='project'>
  ...
@@ -53,20 +77,24 @@ import { Link } from 'react-router-dom'
 </div>
 ```
 
-Now let's go back over to the `PageContent.js` file, and change the `link` attribute on the `Project` components to be something like `/home` and `/signup` but these can be whatever you want as long as they start with a backslash.
+Now go back to the `PageContent.js` file, and change the `Link` attribute on the `Project` components to be something like `/home` and `/signup` but these can be whatever you want as long as they start with a backslash.
 
-When we go back to look at the page and click the links, we see it updates the URL, but nothing on the page changes.
+View your project in your browser. Click one of the links. The page doesn't change but the url in the address bar does. It should show the value you set as the link. For example: `/home` or `/signup`. This is still not what we want but we're almost there. 
 
-Before we fix that though, we should dry up or code a little bit. notice in the `PageContent.js` file, we repeat the same line of code many times. So let's get the computer to do that for us.
+### Improving the code
 
-First things first, here are the images we will be using 
+There is an improvement you can make before continuing. Currently the you've written `<Project ... />` 6 times. This might be better handled with a loop or an Array.
+
+First things first, here are the images we will be using:
+
 [images](https://drive.google.com/drive/folders/1x7vuBrK7riYPJaKCotfG9kF91vCcSlxv?usp=sharing)
-These go in the public folder of the react app, outside of the src folder. 
-They should all be in a folder called `images`, which is inside the `public` folder
 
-Now we are going to create a new file in our `src` folder called `data.js` 
-this will be where we get the data for our projects. 
-inside of this file, we are going to export an array that contains our data.
+These go in the public folder of the react app, outside of the src folder. They should all be in a folder called `images`, which is inside the `public` folder
+
+Create a new file in our `src` folder called `data.js`.
+
+This will hold an array that describes each of the "Projects" and will include the title, image url, and link url for each. 
+
 ```js
 // Theres a lot here, feel free to copy paste
 const data = [
@@ -118,74 +146,105 @@ const data = [
 ]
 export default data
 ```
-So we have our data, now we need to do something with it, lets go back to our `PageContent.js` file. 
+
+Now that you have data, you need to do something with it, lets go back to your `PageContent.js` file. 
 
 First, let's import our data at the top of the file
 ```js
 import data from './data'
 ```
 
-Then remove all of the `<Project>` components. 
-We are going to use an array method known as array.map. This will allow us to make a list, do something to every element, and return a new list.
-this is similar to the python `for i in array` but with some differences.
+Remove all of the `<Project ... />` components. 
 
-Inside our `projects` div, we are going to add our map function.
+Data is an array of objects, you want to turn these into an array Components. 
+
+In the `PageContent` component, inside the function but before `return` add the following: 
+
 ```js
 ...
- <div className="projects">
- { // this is to allow us to write js inside of our HTML
- // place is the element in the array
- // i is the index of the element
- data.map((place, i) => { //data takes a function as a parameter
- return ( //if you return HTML, it will be rendered
- <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
- )
+function PageContent() {
+  
+  const projects = data.map((place, i) => {
+    return <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
+  })
 
- })
- }
- </div>
+  // Replace components with array here:
+  return (
+    <div className="PageContent">
+      {projects}
+    </div>
+  )
+}
 ...
 ```
 
-Ok, let's break down the map method a bit more.
-let's take a look at just the first line
+Ok, let's break down the map method a bit more. Take a look at the section before return. 
 ```js
-data.map((place, i) => {})
+const projects = data.map((place, i) => {
+  return <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
+})
 ```
+
 The map method takes in a callback. A callback is a function that doesn't get called right away. So it's saving the function for later.
 
 if you haven't seen a fat arrow function before, it's just another way to write a function in javascript. Rather than
+
 ```js
-name = function(param) {
+const myFunction = function(param) {
 
 }
 ```
-it looks like
+
+An arrow function would look like this:
+
 ```js
-name = (param) => {
+const myFunction = (param) => {
 
 }
 ```
-So if we look at the map function we are using, we see it gives us 2 parameters, place, and i. 
-`place` is the element in the array, which in this case is our SF location 
-and i is the index in the array
+
+In the example the function takes 2 parameters, place, and i. `place` is the element in the array, which in this case is our SF location and `i` this element's index in the array
 
 So now let's look at the HTML
 
-```xml
+```JSX
 <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
 ```
-A few things are going on here, first off, if you ever map anything into HTML, you need to give each element a unique "key" so that react knows whats going on. that's what our `key={`${i}-${place.image}`}` attribute is doing. We are setting the key to the index of the element, and then the location of the image.
+
+Now take a look at the changes after `return`
+
+```JSX
+return (
+  <div className="PageContent">
+    {projects}
+  </div>
+)
+```
+
+Here you put the array `projects` where you want all of the Components in the array to be displayed. React is smart, if you try and render an array of components React will automatically loop over the array and display all of the elements. 
+
+(this only applies when the array contains components!)
+
+When you do this React asks one favor in return: it wants each component in the array to have a `key` prop. Take another look at the map function. You'll see that you gave each component a key prop. 
+
+```JSX
+<Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
+```
+
+The value for a key can be anything as long as keys in a collection are unique. 
 
 Then we have `title={place.title}` 
+
 If you look at our `data.js` file, you can see that every item has a few key/value pairs, and one of the keys is the title, this is the same for `image={place.image}`
 
 finally, we have `link={`${i}`}`
+
 What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, you'll see it changes the navbar to have a number. This is what we will use to determine where the user wants more info about
 
 Ok, now onto reading the URL, and rendering things off of it.
 
 Let's go to the `app.js` file. 
+
 We are going to be using the `react-router` component called `<Route>`
 
 `<Route>` is what we use to conditionally render things based on the URL.
