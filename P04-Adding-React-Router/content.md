@@ -239,26 +239,50 @@ If you look at our `data.js` file, you can see that every item has a few key/val
 
 finally, we have `link={`${i}`}`
 
-What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, you'll see it changes the navbar to have a number. This is what we will use to determine where the user wants more info about
+This link is passed as a prop to the Project component. The project Component will set this value as the `to` on it's Link. 
 
-Ok, now onto reading the URL, and rendering things off of it.
+## Rendering Routes
 
-Let's go to the `app.js` file. 
+Here is where you will render some routes. A Route is a Component that is rendered when the url in the address bar matches the component's path. You write code that defines routes but the route itself only shows some of the time. 
 
-We are going to be using the `react-router` component called `<Route>`
+Go to the `App.js` file. 
 
-`<Route>` is what we use to conditionally render things based on the URL.
-`<Route>` has a few different attributes, but the one we are worried about is `path`. We use the path to tell react what to render given a URL. We also need a `component` attribute, which is what to render.
-```xml
+At the top of the file you imported `route` with: 
+
+```JS
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+```
+
+`route` is a component, you'll define a route here: 
+
+`<Route>` is what you use to conditionally render things based on the URL.
+
+`<Route>` has a few different props. We use the `path` to tell the Route when to render, use the `component` attribute to tell the Route what to render. For example: 
+
+```JSX
 <Route path='/home' component={home} />
 ```
 
-In `app.js` we are going to alter the `<PageContent>` component to be rendered by a path.
-```xml
-...
-<Route exact path='/' component={PageContent} />
-...
+Think of the code above as rendering your home page when when path in the address bar is `/home`.
+
+In `App.js` alter the code by removing `<PageContent>` replacing it with a Route that renders that component:
+
+```jsx
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <PageHeader />
+        <Route exact path='/' component={PageContent} />
+        <PageFooter />
+      </div>
+    </Router>
+  );
+}
 ```
+
+The path in this case is `/`. 
+
 Now if you go to the website, you may see just the header, if so make sure you are at the `/` route, meaning there shouldn't be any numbers after the slash. This is because of the `exact` attribute. if we left the `exact` out as we did in the example, then any URL that matched would render the component, but because the route is just a slash, every route matches it. So we add the `exact` to make sure it only renders when you are at the index route.
 
 Back to the top of the page, let's import our data again,
@@ -266,28 +290,87 @@ Back to the top of the page, let's import our data again,
 import data from './data'
 ```
 
-We need a new component for our selected location, so let's create a new file in `src` called `SelectedProject.js` and copy almost all of the code from `Project.js` but we are going to change the height and width of the image
+Create a new file in `src` called `SelectedProject.js` and copy almost all of the code from `Project.js` but we are going to change the height and width of the image
+
 ```jsx
 import React from 'react'
 import {Link} from 'react-router-dom'
+import data from './data'
 
 function SelectedProject(props) {
- return (
- <div className='project'>
- <img alt="" src={props.image} width="600" height="400" />
- <h3>{props.title}</h3>
- <Link to={props.link}>Link to project</Link>
- </div>
- )
+  const { params } = props.match;
+
+  const { image, title } = data[params.index]
+
+  return (
+    <div className='project'>
+      <img alt="" src={image} width="600" height="400" />
+      <h3>{title}</h3>
+      <Link to="/">Back to Home</Link>
+    </div>
+  )
 }
 
 export default SelectedProject
 ```
-Let's change the link to be back to the home page
-```xml
+
+Notice the path in the link is "/", clicking this link will display the PageContent Route.
+
+Here you also imported data. You will pass the index of the project to display as a param and get the object for that project from data. 
+
+
+
+You want to show the selected project sometimes, like when you click one of the projects for example. Add a Route for selected project in `App.js`.
+
+```JSX
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <PageHeader />
+        <Route exact path='/' component={PageContent} />
+        <Route path='/:index' component={SelectedProject} />
+        <PageFooter />
+      </div>
+    </Router>
+  );
+}
+```
+
+Test your work. You should be able to click the link below a Project and see the SelectedProject. Clicking Back to Home should show the PageContent component again. 
+
+### Passing params to a Route
+
+Notice the ':' colon in the path: 
+
+`<Route path='/:index' component={SelectedProject} />`
+
+This allows you to pass params/values to a route. This allows you to use a single Route for many different uses. 
+
+Sometimes you want to configure a component before rendering it. That is you'll want to set props on that component. This is how you displayed a list of Projects where each used the same component but each displays different information. You can do this by using the Route's render prop. 
+
+In `App.js` import `data` at the top: 
+
+`import data from './data'`
+
+Then modify the Route that displays `SelectedProject`. 
+
+
+
+
+
+
+
+
+
+Change the link to be back to the home page
+
+```JSX
 <Link to='/'>Back to Home</Link>
 ```
+
 And before we link back to home, lets add our description
+
 ```xml
 <p>{props.desc}</p>
 <Link to='/'>Back to Home</Link>
@@ -295,6 +378,7 @@ And before we link back to home, lets add our description
 
 Now let's import our new component to `app.js` add some routes for our images 
 So instead of making all of the routes ourselves, we are going to use a URL parameter. This will allow us to know what the number is, rather than making a route for every one of the locations.
+
 ```xml
 import SelectedProject from 'SelectedProject.js'
 ...
@@ -302,6 +386,7 @@ import SelectedProject from 'SelectedProject.js'
 <Route path='/:index' component={SelectedProject} />
 ...
 ```
+
 adding a colon makes it a URL parameter, so we can access that back over in the `SelectedProject.js`. We are going to import our data, as well as add `useParams()` where we are importing `react-router`
 ```js
 import data from './data'
@@ -320,6 +405,7 @@ function SelectedProject(props) {
 ```
 
 Then we are going to update everything we were using props to gather to use our new place variable instead
+
 ```xml
 <div className='project'>
  <img alt="" src={place.image} width="600" height="400" />
