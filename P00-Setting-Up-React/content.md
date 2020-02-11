@@ -49,7 +49,7 @@ While you can install React manually, the boilerplate code installed by `create-
 > Run your app! Navigate to the react project folder and the following command:
 >
 ```bash
-npm start
+yarn start
 ```
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)

@@ -82,14 +82,6 @@ Next, let's style your Footer:
 
 Your site should look very similar to the finished product you saw in the first chapter.
 
-# Feedback and Review - 2 minutes
-
-**We promise this won't take longer than 2 minutes!**
-
-Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
-
-This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
-
 # Now Commit
 
 >[action]

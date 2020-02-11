@@ -260,9 +260,9 @@ Creat a new file: `SelectedProject.js`. Define a new component in this file:
 ```jsx
 import React from 'react'
 import {Link} from 'react-router-dom'
+import data from './data'
 
 function SelectedProject(props) {
-
 
   return (
     <div className='project'>
@@ -328,4 +328,12 @@ Earlier you used `place` in this block now it is defined!
 ```
 
 And congratulations you should now be able to navigate to and from different locations!
+
+# Feedback and Review - 2 minutes
+
+**We promise this won't take longer than 2 minutes!**
+
+Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
+
+This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
 
