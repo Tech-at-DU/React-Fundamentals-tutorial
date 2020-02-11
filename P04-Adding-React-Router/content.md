@@ -3,270 +3,327 @@ title: "Adding React Router"
 slug: adding-react-router
 ---
 
-Now we have a cool looking page, but what if we want to check out one of the cats?
+Now you have a single page that shows a list of projects. What you wanted your single page website to display multiple pages. For example imagine you want to click on a project and show a page dedicated to that project.
 
-Most websites have different pages you can visit. When you change pages, the page reloads and sends a new request to the server which then loads the page you are looking for. However, when you are building a single page application with something such as React, if you were to reload the window when you wanted to go to a new page, it would defeat the purpose of using react.
+Simple web sites use different files loaded for each page of content. Single pages are just a single and are never reloaded. 
 
-So how we get around this is with something called `React Router`. React router allows you to link to new parts of your page without having to refresh the window.
+If this is the case how does a single page site show multiple pages? With React this is done by creating components for each page and showing only the component for the currently visible page. 
 
-First things first, we need to download import `React Router`. 
- in our terminal we need to run the command:
- ```cmd
+React Router is a powerful tool that manages components to make your React projects act like mulitpage web sites. You should use it for your project!
+
+The first step is to import `React Router`. 
+
+In terminal run the command:
+```cmd
 npm install react-router-dom --save
- ```
- Now go to `app.js` and import it at the top of the page
- ```js
+```
+
+Now go to `app.js` and import it at the top of the page
+
+```js
 import { BrowserRouter as Router, Route } from 'react-router-dom'
  ```
- For `React Router` to actually work, we need to wrap the entire app in our `Router`. So we are going to alter the return in our `app.js` to look like:
+
+For `React Router` to work, you need to **wrap the entire app in `Router`**. You are going to alter the return in your `app.js` component to look like:
+
 ```jsx
- return(
- <Router>
- <div className="App">
- ...
- </div>
- </Router>
+return(
+  <Router>
+    <div className="App">
+    ...
+    </div>
+  </Router>
  )
 ```
-Now we are all set up to use `React Router`
+Now you are all set up to use `React Router`.
 
-Let's start by learning to change our URL. 
- By default the `<a>` actually refreshes the screen before changing the URL. This is an issue because we don't want the page to reload ever.
- 
- That's ok though because React Router gives us a solution. 
- React Router gives us a `<Link>` tag that acts just like an `<a>` tag, except without refreshing the page! all you have to do is give it a `to` attribute rather than an `href` attribute and you are good to go.
- ```xml
- <Link to="/images/kitten-0.jpeg">
- ```
+Start by learning to change the URL. 
 
- So let's update our `Project.js` file to reflect these changes
- at the top, we have to import our `Link`
- ```js
+The `<a>` refreshes loads a new page. This is an issue because you don't want the page to reload it would break your single page application.
+
+React Router gives us a solution. 
+
+React Router gives us the `<Link>` component. This component acts just like an `<a>` tag, except without refreshing the page! `Link` only chnages the URL without refreshing the page.
+
+Set the `to` attribute rather than an `href` attribute when using `Link`.
+
+```xml
+<Link to="/images/kitten-0.jpeg">
+```
+
+Update our `Project.js` file.
+
+At the top, import `Link`:
+
+```js
 import { Link } from 'react-router-dom'
- ```
+```
 
- and then we have to change our `<a>` tag to a `<link>`
- ```xml
- <div className='project'>
- ...
- <Link to={props.link}>Link to project</Link>
+Add a Link that will act as navigation. This link will navigate to a "Page" by showing a new component. 
+
+```xml
+<div className='project'>
+  ...
+  <Link to={props.link}>Link to project</Link>
 </div>
 ```
 
-Now let's go back over to the `PageContent.js` file, and change the `link` attribute on the `Project` components to be something like `/home` and `/signup` but these can be whatever you want as long as they start with a backslash.
+Go back to the `PageContent.js` file, and change the `link` attribute on the `Project` components to be something like `/home` and `/signup`. These can be whatever you want as long as they start with a backslash.
 
-When we go back to look at the page and click the links, we see it updates the URL, but nothing on the page changes.
+When you test the page and click the links, you see it updates the URL, but nothing on the page changes. To 'navigate to another "page" you need to create some `Routes`. You'll do that in an upcoming step. Before that you will make a few changes to the existing code. 
 
-Before we fix that though, we should dry up or code a little bit. notice in the `PageContent.js` file, we repeat the same line of code many times. So let's get the computer to do that for us.
+Ntice in the `PageContent.js` file has repeated a similar line of code many times. Better to make a loop here. 
 
-First things first, here are the images we will be using 
+Download the images we will be using:
+
 [images](https://drive.google.com/drive/folders/1x7vuBrK7riYPJaKCotfG9kF91vCcSlxv?usp=sharing)
-These go in the public folder of the react app, outside of the src folder. 
-They should all be in a folder called `images`, which is inside the `public` folder
 
-Now we are going to create a new file in our `src` folder called `data.js` 
-this will be where we get the data for our projects. 
-inside of this file, we are going to export an array that contains our data.
+They should all be in a folder called `images`, which is inside the `public` folder.
+
+Now create a new file in the `src` folder called `data.js`.
+
+This will be the data that descibes all of your projects. In future projects you might follow a simialr pattern for building an but this data would be laoded from a server as JSON.
+
+Inside `data.js`, add the following. 
+
 ```js
 // Theres a lot here, feel free to copy paste
 const data = [
- {
- title: '50 california',
- image: '/images/50-california-st.png',
- desc: 'A small plaza with groomed bushes and trees',
- },
- {
- title: '100 pine',
- image: '/images/100-pine.jpg',
- desc: 'beautiful water fountain',
- },
- {
- title: '101 california',
- image: '/images/101-california.jpg',
- desc: 'nice sitting area with plants',
- },
- {
- title: '343 sansome roof garden',
- image: '/images/343-sansome-roof-garden.jpg',
- desc: 'unique roof garden',
- },
- {
- title: '525 market street plaza',
- image: '/images/525-market-street-plaza.jpg',
- desc: 'large indoor plaza with a fountain',
- },
- {
- title: 'citigroup center',
- image: '/images/citigroup-center.jpg',
- desc: 'neat sitting area with a fountain',
- },
- {
- title: 'empire park',
- image: '/images/empire-park.jpg',
- desc: 'a green shady sitting area',
- },
- {
- title: '150 california garden terrace',
- image: 'images/garden-terrace-at-150-california.jpg',
- desc: 'garden terrace with a sitting area',
- },
- {
- title: 'transamerica redwood park',
- image: '/images/transamerica-redwood-park.jpg',
- desc: 'massive redwood park, with a fountain',
- },
+  {
+    title: '50 california',
+    image: '/images/50-california-st.png',
+    desc: 'A small plaza with groomed bushes and trees',
+  },
+  {
+    title: '100 pine',
+    image: '/images/100-pine.jpg',
+    desc: 'beautiful water fountain',
+  },
+  {
+    title: '101 california',
+    image: '/images/101-california.jpg',
+    desc: 'nice sitting area with plants',
+  },
+  {
+    title: '343 sansome roof garden',
+    image: '/images/343-sansome-roof-garden.jpg',
+    desc: 'unique roof garden',
+  },
+  {
+    title: '525 market street plaza',
+    image: '/images/525-market-street-plaza.jpg',
+    desc: 'large indoor plaza with a fountain',
+  },
+  {
+    title: 'citigroup center',
+    image: '/images/citigroup-center.jpg',
+    desc: 'neat sitting area with a fountain',
+  },
+  {
+    title: 'empire park',
+    image: '/images/empire-park.jpg',
+    desc: 'a green shady sitting area',
+  },
+  {
+    title: '150 california garden terrace',
+    image: 'images/garden-terrace-at-150-california.jpg',
+    desc: 'garden terrace with a sitting area',
+  },
+  {
+    title: 'transamerica redwood park',
+    image: '/images/transamerica-redwood-park.jpg',
+    desc: 'massive redwood park, with a fountain',
+  },
 ]
 export default data
 ```
-So we have our data, now we need to do something with it, lets go back to our `PageContent.js` file. 
 
-First, let's import our data at the top of the file
+Now that your data is defined go back to `PageContent.js` file. 
+
+First, import your data at the top of the file.
+
 ```js
 import data from './data'
 ```
 
 Then remove all of the `<Project>` components. 
-We are going to use an array method known as array.map. This will allow us to make a list, do something to every element, and return a new list.
-this is similar to the python `for i in array` but with some differences.
 
-Inside our `projects` div, we are going to add our map function.
+You're going to use `array.map` to  transform the arrays of JavaScript objects in the data array into an array of components you can display. 
+
+Inside the `projects` div, map data to an array of components.
+
 ```js
 ...
  <div className="projects">
- { // this is to allow us to write js inside of our HTML
- // place is the element in the array
- // i is the index of the element
- data.map((place, i) => { //data takes a function as a parameter
- return ( //if you return HTML, it will be rendered
- <Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
- )
-
- })
+  {
+    // place is the element in the array
+    // i is the index of the element
+    data.map((place, i) => { // data takes a function as a parameter
+      return ( // Return a component
+      <Project 
+        key={`${i}-${place.image}`} 
+        title={place.title} 
+        image={place.image} 
+        link={`${i}`} 
+      />
+    )
+  })
  }
  </div>
 ...
 ```
 
-Ok, let's break down the map method a bit more.
-let's take a look at just the first line
-```js
-data.map((place, i) => {})
-```
-The map method takes in a callback. A callback is a function that doesn't get called right away. So it's saving the function for later.
+Let's break down the map method.
 
-if you haven't seen a fat arrow function before, it's just another way to write a function in javascript. Rather than
+Take a look at the first line:
+
 ```js
-name = function(param) {
+data.map((place, i) => { ... })
+```
+
+The map method takes in a function as it's first parameter. It calls this function once for each item in the array (`data`)
+
+The example uses an arrow function. These are similar to the functions you've written before. 
+
+Here is a function:
+
+```js
+const name = function(param) {
+  ...
+}
+```
+
+Here is the same function written as an arrow function:
+
+```js
+const name = (param) => {
 
 }
 ```
-it looks like
+
+The sample code for uses this type of function. 
+
 ```js
-name = (param) => {
-
-}
+data.map((place, i) => { ... })
 ```
-So if we look at the map function we are using, we see it gives us 2 parameters, place, and i. 
-`place` is the element in the array, which in this case is our SF location 
-and i is the index in the array
 
-So now let's look at the HTML
+The function provided as a parameter to map is called once for each item in the array. This function takes two parameters. The first is `place` and will be one of the values from the array, the second parameter `i` i will be the index of that value in the array. 
+
+The function supplied to map needs to return a values. Each value returned is added to a new array which returned by `map()`. In this way `Array.map()` transform an array of one type into an array of another type.  
+
+Take a look at the JSX returned inside the mapping function. 
 
 ```xml
-<Project key={`${i}-${place.image}`} title={place.title} image={place.image} link={`${i}`} />
+<Project 
+  key={`${i}-${place.image}`} 
+  title={place.title} 
+  image={place.image} 
+  link={`${i}`} 
+/>
 ```
-A few things are going on here, first off, if you ever map anything into HTML, you need to give each element a unique "key" so that react knows whats going on. that's what our `key={`${i}-${place.image}`}` attribute is doing. We are setting the key to the index of the element, and then the location of the image.
 
-Then we have `title={place.title}` 
-If you look at our `data.js` file, you can see that every item has a few key/value pairs, and one of the keys is the title, this is the same for `image={place.image}`
+Here you are defining a new component using JSX and defing four attributes. The values for these attributes are taken from the places object. 
 
-finally, we have `link={`${i}`}`
-What this is doing is setting the `to` attribute of the link to be the index of the element. If you look at our website and click on any of the links now, you'll see it changes the navbar to have a number. This is what we will use to determine where the user wants more info about
+Take a look at the data array in data.js. You'll see all of the properties taken from place exist on each object in the array.
 
-Ok, now onto reading the URL, and rendering things off of it.
+Go to the `app.js` file. Now it's time to create some routes.
 
-Let's go to the `app.js` file. 
-We are going to be using the `react-router` component called `<Route>`
+`<Route>` is a component that is rendered by React Router when the URL matches the path of the route. 
 
-`<Route>` is what we use to conditionally render things based on the URL.
-`<Route>` has a few different attributes, but the one we are worried about is `path`. We use the path to tell react what to render given a URL. We also need a `component` attribute, which is what to render.
+**Note: don't confuse Router and Route!** Router is a component that manages Routes. 
+
+Set the path of a route with the path attribute: 
+
 ```xml
 <Route path='/home' component={home} />
 ```
 
-In `app.js` we are going to alter the `<PageContent>` component to be rendered by a path.
+In `app.js` alter the `<PageContent>` component to be rendered by a path.
+
 ```xml
 ...
 <Route exact path='/' component={PageContent} />
 ...
 ```
-Now if you go to the website, you may see just the header, if so make sure you are at the `/` route, meaning there shouldn't be any numbers after the slash. This is because of the `exact` attribute. if we left the `exact` out as we did in the example, then any URL that matched would render the component, but because the route is just a slash, every route matches it. So we add the `exact` to make sure it only renders when you are at the index route.
 
-Back to the top of the page, let's import our data again,
+Now the `PageContent` component will be rendered only when the url is exactly `/`. 
+
+At the top of the page import data:
+
 ```js
 import data from './data'
 ```
 
-We need a new component for our selected location, so let's create a new file in `src` called `SelectedProject.js` and copy almost all of the code from `Project.js` but we are going to change the height and width of the image
+Make a new Component to show a selected project. Clicking on a project will display the selected project and show details about that project. 
+
+Creat a new file: `SelectedProject.js`. Define a new component in this file:
 ```jsx
 import React from 'react'
 import {Link} from 'react-router-dom'
 
 function SelectedProject(props) {
- return (
- <div className='project'>
- <img alt="" src={props.image} width="600" height="400" />
- <h3>{props.title}</h3>
- <Link to={props.link}>Link to project</Link>
- </div>
- )
+
+
+  return (
+    <div className='project'>
+      <img alt="" src={place.image} width="600" height="400" />
+      <h3>{place.title}</h3>
+      <p>{place.desc}</p>
+      <Link to='/'>Back to Home</Link>
+    </div>
+  )
 }
 
 export default SelectedProject
 ```
-Let's change the link to be back to the home page
-```xml
-<Link to='/'>Back to Home</Link>
-```
-And before we link back to home, lets add our description
-```xml
-<p>{props.desc}</p>
-<Link to='/'>Back to Home</Link>
+
+Notice the Link will take up back to the homepage, since it sets the url to `/`.
+
+Import the new component in `app.js`. 
+
+```JS
+import SelectedProject from './SelectedProject.js'
 ```
 
-Now let's import our new component to `app.js` add some routes for our images 
-So instead of making all of the routes ourselves, we are going to use a URL parameter. This will allow us to know what the number is, rather than making a route for every one of the locations.
+Add a Route to display a selected project.
+
 ```xml
-import SelectedProject from 'SelectedProject.js'
 ...
 <Route exact path='/' component={PageContent} />
 <Route path='/:index' component={SelectedProject} />
 ...
 ```
-adding a colon makes it a URL parameter, so we can access that back over in the `SelectedProject.js`. We are going to import our data, as well as add `useParams()` where we are importing `react-router`
+
+Adding a colon in the path makes it a URL parameter, you can access this value in `SelectedProject.js`. Go to that file now. 
+
+Import our data, as well as add `useParams()`:
+
 ```js
 import data from './data'
 import { Link, useParams } from 'react-router-dom'
 ```
-`useParams` will allow us to grab all of the URL parameters in our route, in this case `index`
 
-before the return statement in the function, we are going to create an index variable that will hold our index, and then a variable that will hold all of the data of the location
+`useParams` allows you to grab all of the URL parameters in a route, in this case it will give you the value of `index`.
+
+Before the return statement get the value of index with `useParams()`. Then get the data object from the data array with `index`.
 
 ```jsx
 function SelectedProject(props) {
- const { index } = useParams()
- const place = data[index]
- return (
- ...
+  const { index } = useParams()
+  const place = data[index]
+  
+  return (
+    ...
 ```
 
-Then we are going to update everything we were using props to gather to use our new place variable instead
+Earlier you used `place` in this block now it is defined! 
+
 ```xml
 <div className='project'>
- <img alt="" src={place.image} width="600" height="400" />
- <h3>{place.title}</h3>
- <p>{place.desc}</p>
- <Link to='/'>Back to Home</Link>
+  <img alt="" src={place.image} width="600" height="400" />
+  <h3>{place.title}</h3>
+  <p>{place.desc}</p>
+  <Link to='/'>Back to Home</Link>
 </div>
 ```
 

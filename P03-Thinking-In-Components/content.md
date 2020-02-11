@@ -19,11 +19,11 @@ It would be nice if the projects were arranged in a grid. Let's do this by addin
 >
 ```css
 .PageContent {
- width: 960px;
- margin: auto;
- display: grid;
- grid-template-columns: 1fr 1fr 1fr;
- grid-gap: 2em;
+  width: 960px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2em;
 }
 ```
 >
@@ -35,10 +35,11 @@ It would be nice if the projects were arranged in a grid. Let's do this by addin
 >
 ```js
 function PageContent() {
- return (
- <div className="PageContent">
- ...
- )}
+  return (
+    <div className="PageContent">
+    ...
+  )
+}
 ```
 
 React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI.

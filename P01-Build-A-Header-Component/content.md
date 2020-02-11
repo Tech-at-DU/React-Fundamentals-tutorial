@@ -13,11 +13,11 @@ Let's make a new Component! This component will be a header for your page.
 import React from 'react'
 >
 function PageHeader() {
- return (
- <div>
- <h1>Name of your site here</h1>
- </div>
- )
+  return (
+    <div>
+    <h1>Name of your site here</h1>
+    </div>
+  )
 }
 >
 export default PageHeader
@@ -42,8 +42,8 @@ Whereas this code will not produce an error:
 ```html
 // Good! has a single top level element
 <div>
- <h1>Hello</h1>
- <p>World</p>
+  <h1>Hello</h1>
+  <p>World</p>
 </div>
 ```
 
@@ -51,17 +51,17 @@ If you are returning a multiline JSX statement, make sure to wrap it in the `(` 
 
 ```js
 function MyComp() {
- return <h1>Hello World</h1> // Good! Single line
+  return <h1>Hello World</h1> // Good! Single line
 }
 >
 function MyComp() {
- // Good! Multiline wrapped in ( ... ) also has a single top level node.
- return (
- <div>
- <h1>Hello</h1>
- <p>World</p>
- </div>
- )
+  // Good! Multiline wrapped in ( ... ) also has a single top level node.
+  return (
+    <div>
+    <h1>Hello</h1>
+    <p>World</p>
+    </div>
+  )
 }
 ```
 
@@ -89,11 +89,11 @@ The `.js` file extension is optional when using import. `import PageHeader from 
 >
 ```js
 function App() {
- return (
- <div className="App">
- <PageHeader />
- </div>
- );
+  return (
+    <div className="App">
+    <PageHeader />
+    </div>
+  );
 }
 ```
 
@@ -117,12 +117,12 @@ This system is good because it allows you to associate styles with components. R
 >
 ```css
 .PageHeader {
- width: 100%;
- display: flex;
- justify-content: center;
- padding: 1em;
- background-color: rgb(19, 99, 99);
- color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  background-color: rgb(19, 99, 99);
+  color: #fff;
 }
 ```
 
@@ -146,13 +146,13 @@ When assigning a class name to a JSX tag use the name `className` in place of `c
 >
 ```js
 function PageHeader() {
- return (
- <div className="PageHeader">
- <header>
- <h1>SF Public Spaces</h1>
- </header>
- </div>
- )
+  return (
+    <div className="PageHeader">
+      <header>
+        <h1>SF Public Spaces</h1>
+      </header>
+    </div>
+  )
 }
 ```
 

@@ -13,11 +13,11 @@ Now we'll create a content container component. This is where we'll store our aw
 import React from 'react'
 >
 function PageContent() {
- return (
- <div>
- <h2>Content here...</h2>
- </div>
- )
+  return (
+    <div>
+      <h2>Content here...</h2>
+    </div>
+  )
 }
 >
 export default PageContent
@@ -35,12 +35,12 @@ Import this file and use the new Component in `App.js`
 >
 ```js
 function App() {
- return (
- <div className="App">
- <PageHeader />
- <PageContent />
- </div>
- );
+  return (
+    <div className="App">
+      <PageHeader />
+      <PageContent />
+    </div>
+  );
 }
 ```
 
@@ -66,13 +66,13 @@ Let's make a component to show a project.
 import React from 'react'
 >
 function Project() {
- return (
- <div>
- <img src="#" width="300" height="200" />
- <h3>Title of Project</h3>
- <a href="#">Link to project</a>
- </div>
- )
+  return (
+    <div>
+      <img src="#" width="300" height="200" />
+      <h3>Title of Project</h3>
+      <a href="#">Link to project</a>
+    </div>
+  )
 }
 >
 export default Project
@@ -90,16 +90,16 @@ Now we can import and add a few Projects to your Content Page.
 >
 ```js
 function PageContent() {
- return (
- <div>
- <Project />
- <Project />
- <Project />
- <Project />
- <Project />
- <Project />
- </div>
- )
+  return (
+    <div>
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+    </div>
+  )
 }
 ```
 
@@ -131,14 +131,14 @@ Now we can reference an image from your `Project` component.
 >
 ```js
 function Project() {
- return (
- <div>
- // replace kitten-0.jpeg with your image
- <img src='/images/kitten-0.jpeg' width="300" height="200" />
- <h3>Title of Project</h3>
- <a href="#">Link to project</a>
- </div>
- )
+  return (
+    <div>
+      // replace kitten-0.jpeg with your image
+      <img src='/images/kitten-0.jpeg' width="300" height="200" />
+      <h3>Title of Project</h3>
+      <a href="#">Link to project</a>
+    </div>
+  )
 }
 ```
 
@@ -170,13 +170,13 @@ In the case of the `Project` Component there are three things that need to be dy
 >
 ```js
 function Project(props) {
- return (
- <div>
- <img src={props.image} width="300" height="200" />
- <h3>{props.title}</h3>
- <a href={props.link}>Link to project</a>
- </div>
- )
+  return (
+    <div>
+      <img src={props.image} width="300" height="200" />
+      <h3>{props.title}</h3>
+      <a href={props.link}>Link to project</a>
+    </div>
+  )
 }
 ```
 
@@ -188,13 +188,13 @@ Notice when using JavaScript expressions in a JSX block you must wrap the expres
 >
 ```js
 function Project({ image, title, link }) {
- return (
- <div>
- <img src={image} width="300" height="200" />
- <h3>{title}</h3>
- <a href={link}>Link to project</a>
- </div>
- )
+  return (
+    <div>
+      <img src={image} width="300" height="200" />
+      <h3>{title}</h3>
+      <a href={link}>Link to project</a>
+    </div>
+  )
 }
 ```
 
@@ -208,16 +208,16 @@ Each property assigned to props is set as an attribute in the JSX declaration.
 >
 ```js
 function PageContent() {
- return (
- <div>
- <Project title="Tetris Dots" image="/images/kitten-0.jpeg" link="#" />
- <Project title="Zombie Server" image="/images/kitten-1.jpeg" link="#" />
- <Project title="Amazing Colors" image="/images/kitten-2.jpeg" link="#" />
- <Project title="Flip Toggle" image="/images/kitten-3.jpeg" link="#" />
- <Project title="121 Second St" image="/images/kitten-4.jpeg" link="#" />
- <Project title="Slide Shows" image="/images/kitten-5.jpeg" link="#" />
- </div>
- )
+  return (
+    <div>
+      <Project title="Tetris Dots" image="/images/kitten-0.jpeg" link="#" />
+      <Project title="Zombie Server" image="/images/kitten-1.jpeg" link="#" />
+      <Project title="Amazing Colors" image="/images/kitten-2.jpeg" link="#" />
+      <Project title="Flip Toggle" image="/images/kitten-3.jpeg" link="#" />
+      <Project title="121 Second St" image="/images/kitten-4.jpeg" link="#" />
+      <Project title="Slide Shows" image="/images/kitten-5.jpeg" link="#" />
+    </div>
+  )
 }
 ```
 
@@ -231,10 +231,10 @@ You can get props inside a component from the props object which is passed as a 
 
 ```js
 function MyComp(props) {
- <div>
- <h1>{props.message}</h1> // Hello World
- <p>{props.value}</p> // 42
- </div>
+  <div>
+    <h1>{props.message}</h1> // Hello World
+    <p>{props.value}</p> // 42
+  </div>
 }
 ```
 
