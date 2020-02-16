@@ -26,7 +26,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 For `React Router` to work, you need to **wrap the entire app in `Router`**. You are going to alter the return in your `app.js` component to look like:
 
-```jsx
+```xml
 return(
   <Router>
     <div className="App">
