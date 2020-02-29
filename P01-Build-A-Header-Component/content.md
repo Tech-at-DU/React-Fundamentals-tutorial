@@ -3,31 +3,108 @@ title: "Build A Header Component"
 slug: build-a-header-component
 ---
 
-Let's make a new Component! This component will be a header for your page.
+# Making Components
+
+React projects are built with Components. To build web applications with React you need to think in Components. 
+
+Create would best be described as a library for creating user interfaces. Think of Components as the elements of user interfaces. For example, your site might be made up of the following Components: 
+
+- App
+- Header
+- Logo
+- NavBar
+- NavLink
+- Content
+- Card
+- Footer
+
+Each of these elements, and more, would be separate Components, and you would define a file for each. 
+
+Components can be nested. That is one Component can be the child of another Component. Rendering the parent would render the child. The components from the list above might be nested in this way: 
+
+- App
+  - Header
+  - Logo
+  - NavBar
+  - NavLink
+  - Content
+  - Card
+  - Footer
+
+Components can also be reused. Rather than writing a new NavLink for each link, or a new card for each card you can reuse the existing Component as often as you like. The list above might look like this if our site had three NavLinks and 4 cards. 
+
+- App
+  - Header
+  - Logo
+  - NavBar
+  - NavLink
+  - NavLink
+  - NavLink
+  - Content
+  - Card
+  - Card
+  - Card
+  - Card
+  - Footer
+
+
+The best way to understand Components is to make one for yourself!
+
+## Make a Component
+
+In this step, you'll make a Component that displays a title. Let's call that Component `Title`. 
 
 > [action]
 >
-> Make a new file, `src/PageHeader.js`, and add the following:
+> Create a new file, `src/Title.js`, and add the following:
 >
 ```js
 import React from 'react'
 >
-function PageHeader() {
+function Title() {
   return (
     <div>
-    <h1>Name of your site here</h1>
+      <h1>SFPOPOS</h1>
     </div>
   )
 }
 >
-export default PageHeader
+export default Title
 ```
 
-# What Did I Just Write?
+### What Did I Just Write?
 
-**A simple React Component is just a function that returns some JSX!**
+Besides the import and export statements at the top and bottom, you have written a plain JS function. 
 
-You must import `React` to use JSX! You may have noticed that `React` was not used in this file but it was imported anyway. `React` must be in scope when using JSX.
+Looking closely the function returns a block of what looks like HTML. Looking closely you'll this HTML-like block is not in a string. This is JSX. 
+
+JSX is an extension of the HTML language. It uses the XML language syntax and in a React project can be written alongside your regular JavaScript. 
+
+JSX is converted plain vanilla JS by the build system. While the project is running in the terminal this will happen each time you save your files. 
+
+The code above will be converted to something like this: 
+
+```JS
+function Title() {
+  return React.createElement("div", null, React.createElement("h1", null, "SFPOPOS"));
+}
+```
+
+It doesn't look too much different, but it is a lot harder to understand what is happening. 
+
+What is the purpose of JSX? JSX translates to HTML code that looks more or less like the JSX you have written. In the Non-JSX version of the code, it's hard to tell what the HTML output is. 
+
+Besides being easier to read it's also easier to write. 
+
+React is a library for creating user interfaces. The Components you write translate to atomic pieces of those interfaces. 
+
+**A React Component is just a function that returns some JSX!**
+
+You may have noticed that `React` was not used in this file but it was imported anyway. `React` must be in scope when using JSX.
+
+### JSX Rules and Syntax
+
+JSX has rules of syntax that come with it. 
 
 JSX must always have a top level node. For example, the code below produces an error:
 
@@ -56,42 +133,46 @@ function MyComp() {
 >
 function MyComp() {
   // Good! Multiline wrapped in ( ... ) also has a single top level node.
-  return (
+  return ( // <- (
     <div>
-    <h1>Hello</h1>
-    <p>World</p>
+      <h1>Hello</h1>
+      <p>World</p>
     </div>
-  )
+  ) // <- )
 }
 ```
 
-In `PageHeader.js`, you exported Header as the _default export_. Any file/module may have a single `default` export. Use the default export for the most important export. In this case, we only export one thing, making it the obvious choice for the default export!
+In `Title.js`, you exported the `Title` function as the _default export_. Any file/module may have a single `default` export. Use the default export for the most important export. In this case, we only export one thing, making it the obvious choice for the default export!
 
-# Import and Use Header
+## Using a Component
 
-Let's use the header!
+Let's use the Title Component in `App.js`.
 
 > [action]
 >
-> In `App.js` import your Header:
+> In `App.js` import Title at the top of the page:
 >
 ```js
-import PageHeader from './PageHeader'
+import Title from './Title'
 ```
 
-Here you are importing the default export from `PageHeader.js`.
+Here you are importing the default export from `Title.js`.
 
-The `.js` file extension is optional when using import. `import PageHeader from './PageHeader.js'` would also work here.
+The `.js` file extension is optional when using import. 
+
+`import Title from './Title.js'` 
+
+would also work here.
 
 > [action]
 >
-> Now let's use the header inside the App component. In `App.js`, rewrite the existing component:
+> Now let's use the `Title` Component inside the `App` Component. In `App.js`, rewrite the existing component to look like: 
 >
 ```js
 function App() {
   return (
     <div className="App">
-    <PageHeader />
+      <Title />
     </div>
   );
 }
@@ -99,57 +180,56 @@ function App() {
 
 Here you imported your component and used that component the page.
 
-Notice you imported `PageHeader` and used it as a component by writing it like an HTML tag like this: `<PageHeader />`
+Notice you imported `Title` and used it as a Component by writing it like an HTML tag between `<` and `>` like this: `<Title />`
 
-Since the Component doesn't have any child components you can use a self-closing tag (`<TagName />` instead of `<TagName>...</TagName>`).
+Since the Component doesn't have any child Components you can use a self-closing tag (`<TagName />` instead of `<TagName>...</TagName>`).
 
-# Style Your Header
+This is another rule of the JSX Language. Empty tags can be written as a single tag ending with `/`.
 
-Now let's add some styles to the header! CSS styles are applied to React components in the same way they are applied to regular HTML with a few notable differences.
+### Styling a Component
 
-The Create React App Webpack Build system will import styles and include them in a Component when you import a `.css` file into that component.
+Add some styles to the header! CSS styles are applied to React components in the same way they are applied to regular HTML with a few notable differences.
 
-This system is good because it allows you to associate styles with components. Rather than throwing all of your styles into a single style sheet.
+The Create React boilerplate project allows styles to be imported into a Component. 
 
 > [action]
 >
-> Add a new File: `src/PageHeader.css`, and then add the following CSS styles to it:
+> Add a new File: `src/Title.css`, and then add the following CSS styles to it:
 >
 ```css
-.PageHeader {
+.Title {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 1em;
-  background-color: rgb(19, 99, 99);
+  background-color: rgb(192, 45, 26);
   color: #fff;
 }
 ```
 
-Now in `PageHeader.js`, we'll import the CSS code and add a class name to reference this style rule.
+In the Component `Title.js`, import the CSS file and use the class name `Title`.
 
 > [action]
 >
 > Import the CSS file at the top of the page:
 >
 ```js
-import './PageHeader.css'
+import './Title.css'
 ```
 
-The build script will include styles that are imported into a component.
-
-When assigning a class name to a JSX tag use the name `className` in place of `class`.
+When assigning a class name to a JSX tag use `className` in place of `class`.
 
 > [action]
 >
-> Make sure your `PageHeader` function looks like the following:
+> Make sure your `Title` function looks like the following:
 >
 ```js
 function PageHeader() {
   return (
-    <div className="PageHeader">
+    <div className="Title">
       <header>
-        <h1>SF Public Spaces</h1>
+        <h1>SFPOPOS</h1>
       </header>
     </div>
   )
