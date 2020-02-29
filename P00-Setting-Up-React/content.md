@@ -3,24 +3,47 @@ title: "Setting Up React"
 slug: setting-up-react
 ---
 
+# React Fundamentals
+
+## Introduction
+
 The goal of this tutorial is to learn the foundational concepts of React by building a web site using React. This tutorial will keep things simple and focus on only a few core concepts. Future lessons will build on these concepts.
 
-By the end of this tutorial, you'll have a react site that looks similar to the following (replacing the adorable kittens with images of your choosing):
+By the end of this tutorial, you'll have a react site that looks similar to the following:
 
 ![final-product](assets/final-product.png)
 
-Besides using this tutorial to create a Website with React, you can use this as a guide to get started with future React projects.
+You can repurpose the code here by changing the images and other content, adding your own styles to create a React web site of your own design.
 
-# Learning Outcomes
+The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will present a detail view of that item, with more information. 
+
+## SF Privately Owned Public Spaces
+
+What you will be building is a web site for San Franciscos Privately Owned Public Spaces. You can read about them [here](https://sf.curbed.com/maps/sf-parks-private-popos-public-owned-spaces-downtown). This is a link to the [official website](https://sfpopos.com).
+
+## Learning Outcomes
 
 By the end of this tutorial, you should be able to...
 
 1. Understand how to set up a React project
 1. Create basic React components
 
-# Create React App
+## Getting Started
 
-Let's get started by creating a new React App! Here you are installing the react starter project from the React Team at Facebook:
+This tutorial assumes that you have installed Node. If you haven't you'll need to install it now: 
+
+https://nodejs.org/en/
+
+This tutorial will require that you use the terminal. You'll need to execute basic terminal commands. 
+
+You'll need to 
+
+- navigate to directories 
+- execute shell commands
+
+## Create React App
+
+Let's get started by creating a new React App! Here you are installing the react starter project from the React Team at Facebook. 
 
 > [action]
 >
@@ -28,6 +51,12 @@ Let's get started by creating a new React App! Here you are installing the react
 >
 ```bash
 npx create-react-app <name>
+```
+
+Replace `<name>` with the name of your project. This name should be lowercase and not contain any spaces or special characters. For example: 
+
+```bash
+npx create-react-app sfpopos
 ```
 
 While you can install React manually, the boilerplate code installed by `create-react-app` is comprehensive and up to date. Use this whenever possible.
@@ -42,46 +71,64 @@ While you can install React manually, the boilerplate code installed by `create-
 >
 > Use nvm to select and use a specific version of node: `nvm use 10.16` uses Node version 10.16.
 
-# Run Your App
+### Run Your App
+
+Navigate into the project directory with: 
+
+> [action]
+> Navigate to into your project folder with: 
+>
+`cd sfpopos`bash
 
 > [action]
 >
-> Run your app! Navigate to the react project folder and the following command:
+> Run your app with: 
 >
 ```bash
 yarn start
 ```
 
+Alternatively you can use: `npm start`
+
+
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
-Here you are running some background services that bundle your app. React apps are written with the ES6 version of JavaScript along with JSX an extension of the JS language. This code does not run in the browser it needs to be transpiled to the vanilla ES5 version of JS first.
+It should look like this: 
 
-The command also starts a local server that hosts your project, watches for changes to files in the project folder and relaunches the server when changes occur.
+![React Splash Page](assets/image-1.png)
 
-# Explore The App
+Here you ran a background service that processed your JavaScript Code, launched a local server, and opened the page in your browser. 
+
+React apps are not written in standard JavaScript. Instead they use newer extensions to the language which are not compatible with older browsers.
+
+It's this background service that does the job of making your code compatible with all browsers. The service will also recompile your code and refresh the browser as you work any time you save a file. 
+
+## Explore The App
 
 Explore the project. Create React generates many files and arranges them in directories:
 
-- `node_modules`
-- `public`
 - `.gitignore`
+- `node_modules`
 - `package.json`
+- `public`
 - `README.md`
+- `yarn.lock`
+
+`README.md` contains reference info about create React app. Use this to reference how to run the project. 
 
 **You will do all of your work in the src directory.** The other files and folders you can ignore for now.
-
-`README.md` contains reference info about create React app. Look here for reminders about the npm commands used with create-react-app.
 
 Take a look at `src`:
 
 - `src`
- - `App.css`
- - `App.js`
- - `App.test.js`
- - `index.css`
- - `index.js`
- - `logo.svg`
- - `serviceWorker.js`
+  - `App.css`
+  - `App.js`
+  - `App.test.js`
+  - `index.css`
+  - `index.js`
+  - `logo.svg`
+  - `serviceWorker.js`
+  - `setupTests.js`
 
 These are the files that make up the app. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You don't ever need to edit this file.
 
