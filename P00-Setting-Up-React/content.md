@@ -116,6 +116,8 @@ Explore the project. Create React generates many files and arranges them in dire
 
 `README.md` contains reference info about create React app. Use this to reference how to run the project. 
 
+### src directory
+
 **You will do all of your work in the src directory.** The other files and folders you can ignore for now.
 
 Take a look at `src`:
@@ -130,34 +132,59 @@ Take a look at `src`:
   - `serviceWorker.js`
   - `setupTests.js`
 
-These are the files that make up the app. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You don't ever need to edit this file.
+### index.js
 
-React Projects are built from Components. This default project has one Component: `App` which defined in the file `App.js`. This Component generates everything you are seeing in the browser.
+These are the files that make up the app/website. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You won't ever need to edit this file.
+
+React apps are built with Components. Typically each Component is stored in a single file named after the Component. In the default `App.js` is a Component. Components usually begin with an uppercase letter. 
+
+If a Component has styles these can be placed in a CSS file with the same name as the Coponent. Here `App.css` contains the styles that are used by the `App.js` Component. 
+
+In the default project everything you see in the browser is defined in `App.js`, and styled with `App.css`.
 
 Take a look at `index.js`. You'll see that this file imports `App.js` at the top of the page:
 
 `import App from './App';`
 
-Further down the code you'll that the `App` Component is used here:
+When you want to include code from one fil, `App.js` for example, and use it on another file, `index.js` you'll `import from`. We will talk more about this coming up. 
+
+Further down the code you'll see that the `App` Component, imported at the top, is used here:
 
 `ReactDOM.render(<App />, document.getElementById('root'));`
 
-This is the top-level component. While `App` is a single component all the components it contains will be rendered.
+`<App />` is telling React to render this Component as HTML. 
 
-Take a look at `App.js` to see what it renders.
+The `App` Component is the top level Component in this project. Component can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of it's child Components. 
 
-In `App.js` you'll see a single function that returns a block of what appears to be HTML. Notice the HTML is not a string. This is **JSX**.
+### App.js
+
+Take a look at `App.js`. You should see some import statements at the top. 
+
+```JS
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+```
+
+These import the react library, the logo image, and App.css code. Each from the files named. 
+
+**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin begin with a `./`.
+
+After the imports in `App.js` you'll see a single function that returns a block of what appears to be HTML. 
+
+Notice the HTML is not a string. This is **JSX**.
 
 > [info]
 >
 > JSX is an extension of the JS language. JSX is transpiled into plain JS before the App is run. This transpiling process is handled by Webpack and it is why you build and run the app from the command line.
+> 
+JSX gives an alternative way to write our code that generates HTML. 
 
-
-# Using Git/GitHub
+## Using Git/GitHub
 
 Much like we've done in earlier tutorials, make sure you're committing your code as you complete milestones. At a minimum, you should make a commit whenever the tutorial prompts you.
 
-# Set Up Git/GitHub
+### Set Up Git/GitHub
 
 Set up your repo!
 
