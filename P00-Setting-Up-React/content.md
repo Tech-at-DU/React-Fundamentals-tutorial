@@ -13,13 +13,13 @@ By the end of this tutorial, you'll have a react site that looks similar to the 
 
 ![final-product](assets/final-product.png)
 
-You can repurpose the code here by changing the images and other content, adding your own styles to create a React web site of your own design.
+You can repurpose the code here by changing the images and other content, adding your styles to create a React web site of your design.
 
 The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will present a detail view of that item, with more information. 
 
 ## SF Privately Owned Public Spaces
 
-What you will be building is a web site for San Franciscos Privately Owned Public Spaces. You can read about them [here](https://sf.curbed.com/maps/sf-parks-private-popos-public-owned-spaces-downtown). This is a link to the [official website](https://sfpopos.com).
+What you will be building is a web site for San Francisco's Privately Owned Public Spaces. You can read about them [here](https://sf.curbed.com/maps/sf-parks-private-popos-public-owned-spaces-downtown). This is a link to the [official website](https://sfpopos.com).
 
 ## Learning Outcomes
 
@@ -43,7 +43,7 @@ You'll need to
 
 ## Create React App
 
-Let's get started by creating a new React App! Here you are installing the react starter project from the React Team at Facebook. 
+Let's get started by creating a new React App! Here you are installing the react starter project from the React team at Facebook. 
 
 > [action]
 >
@@ -88,7 +88,7 @@ Navigate into the project directory with:
 yarn start
 ```
 
-Alternatively you can use: `npm start`
+Alternatively, you can use: `npm start`
 
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
@@ -99,7 +99,7 @@ It should look like this:
 
 Here you ran a background service that processed your JavaScript Code, launched a local server, and opened the page in your browser. 
 
-React apps are not written in standard JavaScript. Instead they use newer extensions to the language which are not compatible with older browsers.
+React apps are not written in standard JavaScript. Instead, they use newer extensions to the language which are not compatible with older browsers.
 
 It's this background service that does the job of making your code compatible with all browsers. The service will also recompile your code and refresh the browser as you work any time you save a file. 
 
@@ -136,11 +136,20 @@ Take a look at `src`:
 
 These are the files that make up the app/website. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You won't ever need to edit this file.
 
-React apps are built with Components. Typically each Component is stored in a single file named after the Component. In the default `App.js` is a Component. Components usually begin with an uppercase letter. 
+React apps are built with Components. Typically each Component is stored in a single file named after the Component. Components might be things like headers, buttons, cards, and footers. They can also be things that display graphs and charts.
 
-If a Component has styles these can be placed in a CSS file with the same name as the Coponent. Here `App.css` contains the styles that are used by the `App.js` Component. 
+Components are typically named uppercase. So the Components mentioned above might be named:
 
-In the default project everything you see in the browser is defined in `App.js`, and styled with `App.css`.
+- Button
+- Card
+- Chart
+- Footer
+- Graph
+- Header
+
+If a Component has styles these can be placed in a CSS file with the same name as the Component. Here `App.css` contains the styles that are used by the `App.js` Component. 
+
+In the default project, everything you see in the browser is defined in `App.js` and styled with `App.css`.
 
 Take a look at `index.js`. You'll see that this file imports `App.js` at the top of the page:
 
@@ -154,7 +163,7 @@ Further down the code you'll see that the `App` Component, imported at the top, 
 
 `<App />` is telling React to render this Component as HTML. 
 
-The `App` Component is the top level Component in this project. Component can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of it's child Components. 
+The `App` Component is the top-level Component in this project. Components can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of its child Components. 
 
 ### App.js
 
@@ -168,9 +177,9 @@ import './App.css';
 
 These import the react library, the logo image, and App.css code. Each from the files named. 
 
-**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin begin with a `./`.
+**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin with a `./`.
 
-After the imports in `App.js` you'll see a single function that returns a block of what appears to be HTML. 
+After the imports in `App.js`, you'll see a single function that returns a block of what appears to be HTML. 
 
 Notice the HTML is not a string. This is **JSX**.
 
@@ -206,3 +215,4 @@ Now Go to GitHub and create a public repository called `REPO-NAME`, and now asso
 $ git remote add origin GITHUB-REPO-URL
 $ git push origin master -u
 ```
+
