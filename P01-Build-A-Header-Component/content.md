@@ -7,9 +7,11 @@ Let's make a new Component! This component will be a header for your page.
 
 > [action]
 >
-> Make a new file, `src/PageHeader.js`, and add the following:
+> Make a new file in the `/src` folder: `src/PageHeader.js`, and add the following code:
 >
 ```js
+// src/PageHeader.js
+>
 import React from 'react'
 >
 function PageHeader() {
@@ -27,7 +29,7 @@ export default PageHeader
 
 **A simple React Component is just a function that returns some JSX!**
 
-You must import `React` to use JSX! You may have noticed that `React` was not used in this file but it was imported anyway. `React` must be in scope when using JSX.
+You must import `React` to use JSX! You may have noticed that `React` was not used in this file but it was imported anyway. **`React` must be in scope when using JSX.**
 
 JSX must always have a top level node. For example, the code below produces an error:
 
@@ -51,11 +53,13 @@ If you are returning a multiline JSX statement, make sure to wrap it in the `(` 
 
 ```js
 function MyComp() {
-  return <h1>Hello World</h1> // Good! Single line
+  // Good! Single line
+  return <h1>Hello World</h1>
 }
->
+
 function MyComp() {
-  // Good! Multiline wrapped in ( ... ) also has a single top level node.
+  // Good! Multiline wrapped in ( ... )
+  // also has a single top level node.
   return (
     <div>
       <h1>Hello</h1>
@@ -76,18 +80,33 @@ Let's use the header!
 > In `App.js` import your Header:
 >
 ```js
-import PageHeader from './PageHeader'
+// src/App.js
+>
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+[bold]import PageHeader from './PageHeader';[/bold]
 ```
 
 Here you are importing the default export from `PageHeader.js`.
 
-The `.js` file extension is optional when using import. `import PageHeader from './PageHeader.js'` would also work here.
+> [info]
+> The `.js` file extension is optional when using import. `import PageHeader from './PageHeader.js'` would also work here.
+
+<!-- -->
 
 > [action]
 >
 > Now let's use the header inside the App component. In `App.js`, rewrite the existing component:
 >
 ```js
+// src/App.js
+>
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import PageHeader from './PageHeader';
+>
 function App() {
   return (
     <div className="App">
@@ -95,9 +114,11 @@ function App() {
     </div>
   );
 }
+>
+export default App;
 ```
 
-Here you imported your component and used that component the page.
+Here you imported your component and used that component on the page.
 
 Notice you imported `PageHeader` and used it as a component by writing it like an HTML tag like this: `<PageHeader />`
 
@@ -116,6 +137,8 @@ This system is good because it allows you to associate styles with components. R
 > Add a new File: `src/PageHeader.css`, and then add the following CSS styles to it:
 >
 ```css
+/*  src/PageHeader.css  */
+>
 .PageHeader {
   width: 100%;
   display: flex;
@@ -130,10 +153,10 @@ Now in `PageHeader.js`, we'll import the CSS code and add a class name to refere
 
 > [action]
 >
-> Import the CSS file at the top of the page:
+> Import the CSS file at the top of `src/PageHeader.js`:
 >
 ```js
-import './PageHeader.css'
+import './PageHeader.css';
 ```
 
 The build script will include styles that are imported into a component.
@@ -142,9 +165,13 @@ When assigning a class name to a JSX tag use the name `className` in place of `c
 
 > [action]
 >
-> Make sure your `PageHeader` function looks like the following:
+> Make sure your `PageHeader` function within `src/PageHeader.js` looks like the following:
 >
 ```js
+// src/PageHeader.js
+>
+...
+>
 function PageHeader() {
   return (
     <div className="PageHeader">

@@ -40,15 +40,16 @@ While you can install React manually, the boilerplate code installed by `create-
 >
 > For example, `nvm install 10.16` installs node 10.16 which was the latest version of Node at the time this was written
 >
-> Use nvm to select and use the a specific version of node: `nvm use 10.16` uses Node version 10.16.
+> Use nvm to select and use a specific version of node: `nvm use 10.16` uses Node version 10.16.
 
 # Run Your App
 
 > [action]
 >
-> Run your app! Navigate to the react project folder and the following command:
+> Run your app! Navigate to the react project folder and run the following command (replace `<name>` with the name of your project):
 >
 ```bash
+cd <name>
 npm start
 ```
 
@@ -83,7 +84,7 @@ Take a look in `src`:
   - `logo.svg`
   - `serviceWorker.js`
 
-These are the files that make up the app. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You don't ever need to edit this file.
+These are the files that make up the app. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. **You don't ever need to edit this file.**
 
 React Projects are built from Components. This default project has one Component: `App` which defined in the file `App.js`. This Component generates everything you are seeing in the browser.
 

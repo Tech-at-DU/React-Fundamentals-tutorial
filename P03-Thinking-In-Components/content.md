@@ -15,9 +15,11 @@ It would be really nice if the projects were arranged in a grid. Let's do this b
 
 > [action]
 >
-> Add a new file: `src/PageContent.css`, and add the following code to it:
+> Add a new css file: `src/PageContent.css`, and add the following code to it:
 >
 ```css
+/* src/PageContent.css */
+>
 .PageContent {
   width: 960px;
   margin: auto;
@@ -27,34 +29,48 @@ It would be really nice if the projects were arranged in a grid. Let's do this b
 }
 ```
 >
-> Nest, Import this stylesheet into the `PageContent` component.
+> Next, Import this stylesheet into `src/PageContent.js`:
 >
 `import './PageContent.css'`
 >
-> Then add the class name:
+> Then add the class name to `src/PageContent.js`:
 >
 ```js
+// src/PageContent.js
+>
+import './PageContent.css';
+>
+...
+>
 function PageContent() {
   return (
     <div className="PageContent">
+      // Rest of Project Components
       ...
-  )}
+  )
+}
+>
+...
 ```
+
+Your page should now look something similar to this (with different pictures and titles):
+
+![grid-kittens](./assets/grid_kittens.png)
 
 React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI.
 
 # Thinking in Components Pt. 2
 
-Style the Project component. The `Project` components could use some work. Add a style sheet and some styles to it.
+Style the `Project` component. Add a style sheet and some styles to it.
 
 > [action]
 >
 > Follow these steps on your own.
 >
-> - Make a new stylesheet: Create a new CSS file in the `src` directory
+> - Make a new stylesheet: Create a new CSS file in the `src` directory named `Project.css`
 > - Import the stylesheet: import the new CSS file into `Project.js`
 > - Add some styles: add some styles to the stylesheet
-> - Add some class names: Add a class name to elements in the Project component that you can target with your styles
+> - Add some class names: Add a class name to elements in the `Project` component that you can target with your styles
 
 # Making New Components
 
@@ -62,22 +78,22 @@ Your page needs a footer!
 
 > [action]
 >
-> Add a Footer Component. Do this on your own following the steps used previously. Keep the footer simple for now. Keep the content simple in the footer for now. Imagine it only needs to display your name and copyright with the year. For example:
+> Add a Footer Component! Do this on your own following the steps used previously. Keep the footer simple for now. Keep the content simple in the footer for now. Imagine it only needs to display your name and copyright with the year. For example:
 >
 > `Mitchell Hudson copyright 2019`
 >
-> - Make a new file for the new Component
+> - Make a new file for the new Component in `src` called `Footer.js`
 > - Define the footer in this file. Remember to export the footer as default
-> - Import the Footer Component into App and render it
+> - Import the Footer Component into `App.js` and render it
 
 Next let's style your Footer:
 
 > [action]
 >
-> Add a class name to elements in Footer
-> Make a new file for your footer css
-> Add styles to this file and style elements in Footer
-> Import the Footer Styles
+> - Add a class name to elements in Footer
+> - Make a new file in `src` called `Footer.css`
+> - Add styles to this file and style elements in Footer
+> - Import the Footer Styles
 
 Your site should look very similar to the finished product you saw in the first chapter.
 
