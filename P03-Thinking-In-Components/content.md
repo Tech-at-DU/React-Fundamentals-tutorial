@@ -5,13 +5,13 @@ slug: thinking-in-components
 
 Think of the page you created. It is built from Components. The Components are like Lego bricks, you can mix and match and reuse them to build a larger structure/system.
 
-When you edit your project you need only be concerned with the one component or the interaction between two components. In other words you'll often only be concerned with one or two components at a time while you work.
+When you edit your project you need only be concerned with the one component or the interaction between two components. In other words, you'll often only be concerned with one or two components at a time while you work.
 
-In this page `App` is the top level component. It displays the `PageHeader` and `PageContent` components. The `PageContent` Component displays a list of `Project` components.
+In this page `App` is the top-level component. It displays the `PageHeader` and `PageContent` components. The `PageContent` Component displays a list of `Project` components.
 
 To make changes to your project you'll need to think about which component is responsible for the area that you want to edit. You'll make the changes in the file that defines that component.
 
-It would be really nice if the projects were arranged in a grid. Let's do this by adding styles to the `PageContent` component. Remember, the `PageContent` component displays the `Project` components.
+It would be nice if the projects were arranged in a grid. Let's do this by adding styles to the `PageContent` component. Remember, the `PageContent` component displays the `Project` components.
 
 > [action]
 >
@@ -55,7 +55,7 @@ function PageContent() {
 
 Your page should now look something similar to this (with different pictures and titles):
 
-![grid-kittens](./assets/grid_kittens.png)
+![grid-kittens](./assets/grid-cats.png)
 
 React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI.
 
@@ -86,7 +86,7 @@ Your page needs a footer!
 > - Define the footer in this file. Remember to export the footer as default
 > - Import the Footer Component into `App.js` and render it
 
-Next let's style your Footer:
+Next, let's style your Footer:
 
 > [action]
 >
@@ -96,14 +96,6 @@ Next let's style your Footer:
 > - Import the Footer Styles
 
 Your site should look very similar to the finished product you saw in the first chapter.
-
-# Feedback and Review - 2 minutes
-
-**We promise this won't take longer than 2 minutes!**
-
-Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
-
-This allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.
 
 # Now Commit
 

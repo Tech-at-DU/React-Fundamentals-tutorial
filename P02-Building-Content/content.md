@@ -56,9 +56,9 @@ React uses a Component Architecture. Notice here how one component can contain a
 
 # Adding Content To The Container
 
-So we have an empty container, now we need to add content to it. Here the goal is to display a list of your projects in the content page. Each project will use the same component but will eventually display different information for each project.
+So we have an empty container, now we need to add content to it. Here the goal is to display a list of your projects on the content page. Each project will use the same component but will eventually display different information for each project.
 
-For now imagine each project has the following elements:
+For now, imagine each project has the following elements:
 
 - Image
 - Title
@@ -131,7 +131,7 @@ All of these components are wrapped up in the `PageContent` which is rendered by
 
 # Add some Local Image Files
 
-We have these projects, but there's no images attached to them. In order to create an images folder. This will need to be placed in the `public` folder. Your React project is run from the `public` folder after the source files are transpiled.
+We have these projects, but there are no images attached to them. This will need to be placed in the `public` folder. Your React project is run from the `public` folder after the source files are transpiled.
 
 **Images and other static files that your project will use must be referenced with the `public` directory as the root.**
 
@@ -169,7 +169,7 @@ function Project() {
 
 Your website should now look something similar to the following:
 
-![kittens](assets/kittens.png)
+![kittens](assets/kittens-row-content.png)
 
 > [info]
 >
@@ -182,15 +182,15 @@ This is great if you want to have purely static components, but let's aim a litt
 
 Components can be made dynamic by using props. **Props** are values (think properties) that are passed into the Component from outside.
 
-Above you created a list of `<Project />` component instances each of which displays exactly the same thing. The goal of this step is to make this component dynamic by adding props. _This will allow each instance to be configured differently._
+Above you created a list of `<Project />` component instances each of which displays the same thing. The goal of this step is to make this component dynamic by adding props. _This will allow each instance to be configured differently._
 
-Props is always an Object with properties. All of the values that you want to pass into a component will be attached to this Object.
+Props are always an object with properties. All of the values that you want to pass into a component will be attached to this Object.
 
 In the case of the `Project` Component there are three things that need to be dynamic:
 
 - title
-- image url
-- link url
+- image URL
+- link URL
 
 > [action]
 >
@@ -261,7 +261,7 @@ function PageContent() {
 
 The attribute name needs to match the name of the key on the props object, `title`, `link`, and `image` in this case.
 
-You now have a single Project Component which you can use as often as you like, and each instance can display any title, image, and link url. _This is the power of props_. Use Props to configure your components.
+You now have a single Project Component which you can use as often as you like, and each instance can display any title, image, and link URL. _This is the power of props_. Use Props to configure your components.
 
 You can assign props as key value pairs defined in JSX like attributes in HTML. For example: `<MyComp message="Hello World" value={42} />`
 
