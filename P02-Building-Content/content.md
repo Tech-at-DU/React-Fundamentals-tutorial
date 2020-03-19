@@ -10,7 +10,9 @@ Now we'll create a content container component. This is where we'll store our aw
 > Make a new file: `src/PageContent.js` and add the following code to it:
 >
 ```js
-import React from 'react'
+// src/PageContent.js
+>
+import React from 'react';
 >
 function PageContent() {
   return (
@@ -27,13 +29,19 @@ Import this file and use the new Component in `App.js`
 
 > [action]
 >
-> Add the following to the top of `App.js`:
+> Add the following to the top of `src/App.js`:
 >
 >`import PageContent from './PageContent'`
 >
 > Then use the new Component:
 >
 ```js
+// src/App.js
+>
+import PageContent from './PageContent'
+>
+...
+>
 function App() {
   return (
     <div className="App">
@@ -63,6 +71,8 @@ Let's make a component to show a project.
 > Make a new file: `src/Project.js` and add the following code to it:
 >
 ```js
+// src/Project.js
+>
 import React from 'react'
 >
 function Project() {
@@ -82,13 +92,19 @@ Now we can import and add a few Projects to your Content Page.
 
 > [action]
 >
-> In `PageContent.js` add import Project:
+> In `src/PageContent.js` add an import for `Project.js`:
 >
 `import Project from './Project'`
 >
 > Then add a few Projects:
 >
 ```js
+// src/PageContent.js
+>
+import Project from './Project'
+>
+...
+>
 function PageContent() {
   return (
     <div>
@@ -101,13 +117,15 @@ function PageContent() {
     </div>
   )
 }
+>
+...
 ```
 
 This should now show a list of 6 projects in PageContent which is displayed in the App.
 
-While this is working, it's less than ideal since all of the projects have the same title, image src, and link URL. You will address this in the coming steps.
+While this is working, it's less than ideal since all of the projects have the same title, image src (nothing), and link url. You will address this in the coming steps.
 
-Components can be reused and nested. You've used the `Project` component 6 times here. Each is a separate and unique instance of `Project.js`.
+Components can be reused and nested. You've used the `Project` component 6 times here! Each is a separate and unique instance of `Project.js`.
 
 All of these components are wrapped up in the `PageContent` which is rendered by the `App` component.
 
@@ -115,7 +133,7 @@ All of these components are wrapped up in the `PageContent` which is rendered by
 
 We have these projects, but there are no images attached to them. This will need to be placed in the `public` folder. Your React project is run from the `public` folder after the source files are transpiled.
 
-Images and other static files that your project will use must be referenced with the public directory as the root.
+**Images and other static files that your project will use must be referenced with the `public` directory as the root.**
 
 > [action]
 >
@@ -123,13 +141,17 @@ Images and other static files that your project will use must be referenced with
 >
 > Now find a couple images and place them in this folder.
 
-Now we can reference an image from your `Project` component.
+Now we can reference an image from your `Project` component:
 
 > [action]
 >
-> Do this by updating the project component with a path to one of your images.
+> Do this by updating `src/Project.js` with a path to one of your images:
 >
 ```js
+// src/Project.js
+>
+...
+>
 function Project() {
   return (
     <div>
@@ -140,13 +162,19 @@ function Project() {
     </div>
   )
 }
+>
+...
+>
 ```
 
 Your website should now look something similar to the following:
 
-![content](assets/content.png)
+![kittens](assets/kittens-row-content.png)
 
-Static files must either be imported into a component or stored in the `public` folder. The code you write in the `src` folder is not used directly. It is transpiled and the resulting bundle is run from the `public` folder.
+> [info]
+>
+> Static files must either be imported into a component or stored in the `public` folder. The code you write in the `src` folder is not used directly. It is transpiled and the resulting bundle is run from the `public` folder.
+
 
 This is great if you want to have purely static components, but let's aim a little higher...
 
@@ -166,9 +194,13 @@ In the case of the `Project` Component there are three things that need to be dy
 
 > [action]
 >
-> You'll need to define a key on the props object for each of these values. Do this in `Project.js` by making these changes:
+> You'll need to define a `key` on the props object for each of these values. Do this in `src/Project.js` by making these changes:
 >
 ```js
+// src/Project.js
+>
+...
+>
 function Project(props) {
   return (
     <div>
@@ -204,9 +236,13 @@ Each property assigned to props is set as an attribute in the JSX declaration.
 
 > [action]
 >
-> In `PageContent.js` make the following changes substituting `title` and `image` for your appropriate text/image paths:
+> In `src/PageContent.js` make the following changes substituting `title` and `image` for your appropriate text/image paths:
 >
 ```js
+// src/PageContent.js
+>
+...
+>
 function PageContent() {
   return (
     <div>
@@ -219,15 +255,17 @@ function PageContent() {
     </div>
   )
 }
+>
+...
 ```
 
 The attribute name needs to match the name of the key on the props object, `title`, `link`, and `image` in this case.
 
 You now have a single Project Component which you can use as often as you like, and each instance can display any title, image, and link URL. _This is the power of props_. Use Props to configure your components.
 
-You can assign props as key value pairs defined in JSX like attributes in HTML. For example: <MyComp message="Hello World" value={42} />`
+You can assign props as key value pairs defined in JSX like attributes in HTML. For example: `<MyComp message="Hello World" value={42} />`
 
-You can get props inside a component from the props object which is passed as a parameter, like so:
+You can get props inside a component from the `props` object which is passed as a parameter, like so:
 
 ```js
 function MyComp(props) {

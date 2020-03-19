@@ -15,7 +15,7 @@ By the end of this tutorial, you'll have a react site that looks similar to the 
 
 You can repurpose the code here by changing the images and other content, adding your styles to create a React web site of your design.
 
-The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will present a detail view of that item, with more information. 
+The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will present a detail view of that item, with more information.
 
 ## SF Privately Owned Public Spaces
 
@@ -30,20 +30,20 @@ By the end of this tutorial, you should be able to...
 
 ## Getting Started
 
-This tutorial assumes that you have installed Node. If you haven't you'll need to install it now: 
+This tutorial assumes that you have installed Node. If you haven't you'll need to install it now:
 
 https://nodejs.org/en/
 
-This tutorial will require that you use the terminal. You'll need to execute basic terminal commands. 
+This tutorial will require that you use the terminal. You'll need to execute basic terminal commands.
 
-You'll need to 
+You'll need to
 
-- navigate to directories 
+- navigate to directories
 - execute shell commands
 
 ## Create React App
 
-Let's get started by creating a new React App! Here you are installing the react starter project from the React team at Facebook. 
+Let's get started by creating a new React App! Here you are installing the react starter project from the React team at Facebook.
 
 > [action]
 >
@@ -53,7 +53,7 @@ Let's get started by creating a new React App! Here you are installing the react
 npx create-react-app <name>
 ```
 
-Replace `<name>` with the name of your project. This name should be lowercase and not contain any spaces or special characters. For example: 
+Replace `<name>` with the name of your project. This name should be lowercase and not contain any spaces or special characters. For example:
 
 ```bash
 npx create-react-app sfpopos
@@ -73,35 +73,35 @@ While you can install React manually, the boilerplate code installed by `create-
 
 ### Run Your App
 
-Navigate into the project directory with: 
+Navigate into the project directory with:
 
 > [action]
-> Navigate to into your project folder with: 
+> Navigate to into your project folder with:
 >
-`cd sfpopos`bash
-
-> [action]
+```bash
+cd sfpopos
+```
 >
-> Run your app with: 
+> Run your app with:
 >
 ```bash
 yarn start
 ```
 
-Alternatively, you can use: `npm start`
+Alternatively, you can use: `npm start`. If you don't have `yarn` installed, make sure to do so: `npm install -g yarn`
 
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
-It should look like this: 
+It should look like this:
 
 ![React Splash Page](assets/image-1.png)
 
-Here you ran a background service that processed your JavaScript Code, launched a local server, and opened the page in your browser. 
+Here you ran a background service that processed your JavaScript Code, launched a local server, and opened the page in your browser.
 
 React apps are not written in standard JavaScript. Instead, they use newer extensions to the language which are not compatible with older browsers.
 
-It's this background service that does the job of making your code compatible with all browsers. The service will also recompile your code and refresh the browser as you work any time you save a file. 
+It's this background service that does the job of making your code compatible with all browsers. The service will also recompile your code and refresh the browser as you work any time you save a file.
 
 ## Explore The App
 
@@ -114,7 +114,7 @@ Explore the project. Create React generates many files and arranges them in dire
 - `README.md`
 - `yarn.lock`
 
-`README.md` contains reference info about create React app. Use this to reference how to run the project. 
+`README.md` contains reference info about create React app. Use this to reference how to run the project.
 
 ### src directory
 
@@ -147,7 +147,7 @@ Components are typically named uppercase. So the Components mentioned above migh
 - Graph
 - Header
 
-If a Component has styles these can be placed in a CSS file with the same name as the Component. Here `App.css` contains the styles that are used by the `App.js` Component. 
+If a Component has styles these can be placed in a CSS file with the same name as the Component. Here `App.css` contains the styles that are used by the `App.js` Component.
 
 In the default project, everything you see in the browser is defined in `App.js` and styled with `App.css`.
 
@@ -155,19 +155,19 @@ Take a look at `index.js`. You'll see that this file imports `App.js` at the top
 
 `import App from './App';`
 
-When you want to include code from one fil, `App.js` for example, and use it on another file, `index.js` you'll `import from`. We will talk more about this coming up. 
+When you want to include code from one file, `App.js` for example, and use it on another file, `index.js` you'll `import from`. We will talk more about this coming up.
 
 Further down the code you'll see that the `App` Component, imported at the top, is used here:
 
 `ReactDOM.render(<App />, document.getElementById('root'));`
 
-`<App />` is telling React to render this Component as HTML. 
+`<App />` is telling React to render this Component as HTML.
 
-The `App` Component is the top-level Component in this project. Components can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of its child Components. 
+The `App` Component is the top-level Component in this project. Components can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of its child Components.
 
 ### App.js
 
-Take a look at `App.js`. You should see some import statements at the top. 
+Take a look at `App.js`. You should see some import statements at the top.
 
 ```JS
 import React from 'react';
@@ -175,19 +175,19 @@ import logo from './logo.svg';
 import './App.css';
 ```
 
-These import the react library, the logo image, and App.css code. Each from the files named. 
+These import the react library, the logo image, and App.css code. Each from the files named.
 
 **Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin with a `./`.
 
-After the imports in `App.js`, you'll see a single function that returns a block of what appears to be HTML. 
+After the imports in `App.js`, you'll see a single function that returns a block of what appears to be HTML.
 
 Notice the HTML is not a string. This is **JSX**.
 
 > [info]
 >
 > JSX is an extension of the JS language. JSX is transpiled into plain JS before the App is run. This transpiling process is handled by Webpack and it is why you build and run the app from the command line.
-> 
-JSX gives an alternative way to write our code that generates HTML. 
+>
+JSX gives an alternative way to write our code that generates HTML.
 
 ## Using Git/GitHub
 
