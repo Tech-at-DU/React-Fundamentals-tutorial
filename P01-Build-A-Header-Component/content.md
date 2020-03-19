@@ -240,6 +240,13 @@ Great work! You should now have a header for your page:
 
 ![header](assets/header.png)
 
+## Challenges 
+
+Try these challenegs to test your knowledge. 
+
+1. Add a subtitle to the Title component. Do this by adding a new tag below the h1 in the title component and including a text message. 
+2. 
+
 # Now Commit
 
 >[action]
