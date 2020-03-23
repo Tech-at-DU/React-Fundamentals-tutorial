@@ -246,7 +246,9 @@ Open `Title.css` and add some styles.
 
 This look better but you could do more! Currently the active link (the link that represents the current "page") is doesn't stand out from the other link. It should, this would help users understand where they are what they can do and improve the UX (User eXperience). 
 
-Luckily NavLink has a prop for this! Use the `activeClassName` prop/attribute to each of the NavLinks. This prop defines a class name that will be added to the eleme
+Luckily NavLink has a prop for this! Add the `activeClassName` prop/attribute to each of the NavLinks. This prop defines a class name that will be added to the element when that link is the currently link. 
+
+
 
 
 

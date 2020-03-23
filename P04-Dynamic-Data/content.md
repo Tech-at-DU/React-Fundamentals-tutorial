@@ -238,6 +238,31 @@ const spaces = data.map(( { title, address, images } ) => {
 
 This example deconstructs the object on the parameter to the callback. 
 
+### Keys and Lists 
+
+After you have the list displaying in your browser open the console. You should see a warning that read something like: 
+
+`Warning: Each child in a list should have a unique "key" prop.`
+
+This is specific to React and the it's Virtual DOM. For the Virtual DOM to be effecient it needs to know which items have been changed. In the case of a list it can't which items in the list have been changed, unless each item as something to identify ituniquely. 
+
+We use the key prop for this. A key cna be any value as long it is unqiue for each elment in a list.
+
+```JSX
+const spaces = data.map(( { title, address, images } ) => {
+  return (
+    <POPOSSpace 
+      key={title} // The title could be a key
+      name={title} 
+      address={address} 
+      image={images[0]} 
+    />
+  )
+})
+```
+
+You can use the title for a key seince all of the locations have a different title. 
+
 ## Adding Times 
 
 The new data has lots of extra information. 
