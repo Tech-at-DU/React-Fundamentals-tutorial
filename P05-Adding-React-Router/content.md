@@ -3,6 +3,263 @@ title: "Adding React Router"
 slug: adding-react-router
 ---
 
+The project you have built is described as a single page application but most web web pages we use daily are built as, or at least, act as multi-page applications. 
+
+A single page applicatio is just that: a single html page. Single page applications control the DOM by updating, adding, or removing elements. In this way they can function as multi-page applicqtions. 
+
+A single page application built with React can display different content through components. Components can represent whole pages of content in a React app. Conveniently someone has a made a library just for this purpose! 
+
+You will use that library in this step to add a sub-page for each of the locations. These sub-pages will show detailed information about each location. 
+
+## React Router 
+
+React Router is a library the purpose of which is to create a multipage experience in React. It does this by rendering and not rendering components. You'll define components that render at routes. A route is an address that appears in the address bar of the browser. 
+
+To work with React Router it helps to understand the terminology. 
+
+- **Router** - A parent component that manages Routes
+- **Route** - A component that displays another component
+
+Think of Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to it's descendant Routes. 
+
+A Route id responsible for displaying component. Routes each have a path property. When the path matches the URL in the address the Route displays their component, otherwise not. 
+
+Imortant! The two names: Router and Route are different by only a single character but they are very different in fucntion and must be used correctly. Watch your spelling! 
+
+### Getting started 
+
+The first step to using React Router is to import. Got to the terminal and run: 
+
+`npm install react-router-dom`
+
+This should import the React Router libraries as a dependency to your project. 
+
+In App.js you'll import `HashsRouter`. This a component that manages routes. 
+
+Quick note! `HashRouter` and `BrowserRouter` are two options. They act the same in our app and only differ in how they handle the URL. 
+
+HashRouter inlcudes a # in the URL, while BrowserRouter does not include the #.  
+
+For example a HashRouter URL might look like this: 
+
+`http://localhost:3000/#/about`
+
+The same URL in BrowserRouter would look like this: 
+
+`http://localhost:3000/about`
+
+Why use one or the other? In most cases they are interchangeable. Since I have this plan for you to publish your site to GitHub pages in future I chose HashRouter. GitHub pages doesn't work with BrowserRouter! 
+
+## Setting up the Router
+
+Router manages routes. It should be a top level component. For this reason you'll define your Router in App.js. 
+
+Open App.js. Import `HashRouter` and `Route` at the top. 
+
+`import { HashRouter as Router, Route } from 'react-router-dom'`
+
+Why `HashRouter as Route`? This is an alias. You're importing HashRouter but using it under the name Router instead. 
+
+Next, Wrap your entire App in the `<Router>` component. 
+
+```JSX
+function App() {
+  return (
+    <Router>
+
+      <div className="App">
+        <Title />
+        <POPOSList />
+      </div>
+
+    </Router>
+  );
+}
+```
+
+Notice how Router surrounds everything. 
+
+### Adding Routes
+
+A route displays a component at a path. You want the POPOSList to display at the `/` path. 
+
+```JSX
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Title />
+        <Route path="/" component={POPOSList}/>
+      </div>
+    </Router>
+  );
+}
+```
+
+Notice when you created the Route you used two props: path and component. Path defines the URL that will makes component display. 
+
+The `/` route is the root route. So the list should display now. In your browser add something to the end of the path in the address bar. Try this: 
+
+`http://localhost:3000/#/about`
+
+The list should still display. This is because the `/` is contained in the route above. 
+
+`http://localhost:3000/# / about`
+
+You can make the route an exact route. In the case the list would only display when the route matches exactly. 
+
+Make this change: 
+
+`<Route exact path="/" component={POPOSList}/>`
+
+Now try these paths in the address bar of the browser. 
+
+This should display the list:
+
+`http://localhost:3000/#/` 
+
+Using this address should not display the list, It's not an exact match.
+
+`http://localhost:3000/#/about`
+
+Notice the Title Component is displayed every time. It's not managed by a Route so it's always displayed. 
+
+### Adding another route
+
+Your site could use an About page. Create a new component. Make a new File: 
+
+`About.js`
+
+Add the following code here: 
+
+```JS
+import React from 'react'
+
+function About() {
+  return (
+    <div>
+      <h1>About SFPOPOS</h1>
+      <p>POPOS are publicly accessible spaces in 
+        forms of plazas, terraces, atriums, small 
+        parks, and even snippets which are provided 
+        and maintained by private developers. In San 
+        Francisco, POPOS mostly appear in the Downtown 
+        office district area.</p>
+    </div>
+  )
+}
+
+export default About
+```
+
+This is simple component that will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info, or a map. For now we are concerned with Routes. 
+
+Back in `App.js` import the `About` Component at the top. 
+
+`import About from './About'`
+
+Inside the Router add a new Route. 
+
+```JSX
+...
+<Router>
+  <div className="App">
+
+    <Title />
+
+    <Route exact path="/" component={POPOSList}/>
+    <Route path="/about" component={About} />
+
+  </div>
+</Router>
+...
+```
+
+Notice the new route as a path of `/about` and renders the `About` component. 
+
+Save your work and try it in the browser. Try these two paths in the address bar: 
+
+Should display teh list
+
+`http://localhost:3000/#/` 
+
+Should display the about page
+
+`http://localhost:3000/#/about`
+
+### Linking to Routes
+
+This is all working but we can't ask people to navigate to pages by typing the URL, people need something to click!
+
+React Router provdes a `NavLink` component. The NavLink sets the address in bar. It's like the `<a>` tag but specific to React Router. 
+
+Add two links to the Title Component. Open `Title.js`. Add this to the top of the page: 
+
+`import { NavLink } from 'react-router-dom'`
+
+here you imported `NavLink` from React Router Dom. 
+
+Now add two links 
+
+```JSX
+function Title() {
+  return (
+    <div className="Title">
+      <header>
+        <h1>SFPOPOS</h1>
+        <div className="Title-Subtitle">San Francisco Privately Owned Public Open Spaces</div>
+
+        <div>
+          <NavLink to="/">List</NavLink>
+          <NavLink to="/about">About</NavLink>
+        </div>
+
+      </header>
+    </div>
+  )
+}
+```
+
+Notice each NavLink has a `to` prop. This sets what path in the address bar will become when you click this link. 
+
+Try it out. 
+
+The navlinks need some style. NavLink translates to a regular anchor `<a>` tag in the DOM. You can treat these like any other tag/component. 
+
+Give the NavLinks a class name:
+
+```JSX
+<NavLink className="nav-link" to="/">List</NavLink>
+<NavLink className="nav-link" to="/about">About</NavLink>
+```
+
+Open `Title.css` and add some styles. 
+
+```CSS
+.nav-link {
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: #fff;
+  text-decoration: none;
+}
+```
+
+This look better but you could do more! Currently the active link (the link that represents the current "page") is doesn't stand out from the other link. It should, this would help users understand where they are what they can do and improve the UX (User eXperience). 
+
+Luckily NavLink has a prop for this! Use the `activeClassName` prop/attribute to each of the NavLinks. This prop defines a class name that will be added to the eleme
+
+
+
+
+
+
+
+
+
+
+
+
+
 Now you have a single page that shows a list of projects. What you wanted your single page website to display multiple pages. For example imagine you want to click on a project and show a page dedicated to that project.
 
 Simple web sites use different files loaded for each page of content. Single pages are just a single and are never reloaded.
