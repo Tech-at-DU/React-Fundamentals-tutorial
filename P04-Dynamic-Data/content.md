@@ -54,6 +54,7 @@ Here is a a breakdown of what is in each of these objects.
 
 - title - String - A short name/description
 - desc - String - A long detailed description
+- hours - String - A string showing the hours
 - address - String - The written address
 - geo - Object 
   - lat - Number - The geocoordinate lattitude
@@ -237,4 +238,68 @@ const spaces = data.map(( { title, address, images } ) => {
 
 This example deconstructs the object on the parameter to the callback. 
 
+## Adding Times 
 
+The new data has lots of extra information. 
+
+### Challenge 
+
+The goal of this challenge is to display the hours for each location. You will need to modify the `POPOSSpace` to display the hours and then modify the `POPOSList` component to pass the hours from the data as a prop. 
+
+Start in `POPOSList.js`. Get the hours property from your data. 
+
+You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` components using map. Roughly it might look something like: 
+
+`<POPOSSpace ... hours={hours} />`
+
+Then edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop. 
+
+### Solution 
+
+In `POPOSList.js` look for the section that maps your data to an array of Spaces. 
+
+```JSX
+// deconstruct hours here 
+const spaces = data.map(({ title, address, images, hours }) => {
+  
+  return (
+    <POPOSSpace 
+      name={title} 
+      address={address} 
+      image={images[0]} 
+      hours={hours} // add a new prop for hours here
+    />
+  )
+})
+```
+
+In `POPOSSpace.js` get the hours and display them. 
+
+```JSX
+function POPOSSpace(props) {
+  // Get the 
+  const { name, image, address, hours } = props
+  return (
+    <div className="POPOSSpace">
+      <h1>{name}</h1>
+      <img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
+      <div>{address}</div>
+      <div>{hours}</div> {/* Display hours here */}
+    </div>
+  )
+}
+```
+
+## Challenge 2 
+
+Add some styles. 
+
+# Now Commit
+
+>[action]
+>
+```bash
+$ git add .
+$ git commit -m 'dynamic content and footer'
+$ git push
+```
