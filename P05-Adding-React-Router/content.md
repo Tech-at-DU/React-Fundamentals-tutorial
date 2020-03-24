@@ -239,431 +239,247 @@ Open `Title.css` and add some styles.
 .nav-link {
   display: inline-block;
   padding: 0.5em 1em;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.835);
+  font-weight: bold;
   text-decoration: none;
 }
 ```
 
 This look better but you could do more! Currently the active link (the link that represents the current "page") is doesn't stand out from the other link. It should, this would help users understand where they are what they can do and improve the UX (User eXperience). 
 
-Luckily NavLink has a prop for this! Add the `activeClassName` prop/attribute to each of the NavLinks. This prop defines a class name that will be added to the element when that link is the currently link. 
+Luckily NavLink has a prop for this! Add the `activeClassName` prop/attribute to each of the NavLinks. This prop defines a class name that will be added to the element when that link is the currently link.
 
+**The `activeClassName` is applied by matching the path in the address bar.** It follows the same rules used for Routes. This means that the `/` will match all paths that contain a `/`. Use `exact` to prevent this behavior. 
 
+Your NavLinks should look something like this: 
 
+```JSX
+<NavLink 
+  className="nav-link" 
+  activeClassName="nav-link-active" 
+  exact 
+  to="/">List</NavLink>
 
-
-
-
-
-
-
-
-
-
-
-
-Now you have a single page that shows a list of projects. What you wanted your single page website to display multiple pages. For example imagine you want to click on a project and show a page dedicated to that project.
-
-Simple web sites use different files loaded for each page of content. Single pages are just a single and are never reloaded.
-
-If this is the case how does a single page site show multiple pages? With React this is done by creating components for each page and showing only the component for the currently visible page.
-
-React Router is a powerful tool that manages components to make your React projects act like mulitpage web sites. You should use it for your project!
-
-The first step is to import `React Router`.
-
-> [action]
->
-> In terminal run the command:
->
-```bash
-npm install react-router-dom --save
-```
->
-> Now go to `src/App.js` and import it at the top of the page
->
-```js
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+<NavLink 
+  className="nav-link" 
+  activeClassName="nav-link-active" 
+  to="/about">About</NavLink>
 ```
 
-For `React Router` to work, you need to **wrap the entire app in `Router`**.
+With these options the selected NavLink will have the class: `nav-link-active`. You should add a style for this. Open Title.css. 
 
-> [action]
->
-> Alter the return in your `src/App.js` component to look like the following:
-
-```js
-// src/App.js
->
-...
->
-function App() {
-  return (
-    <Router>
-        <div className="App">
-          <Title />
-          <PageContent />
-        </div>
-    </Router>
-  );
-}
-```
-Now you are all set up to use `React Router`!
-
-Let's start by learning to change the URL.
-
-The `<a>` loads a new page. This is an issue because you don't want the page to reload it would break your single page application.
-
-React Router gives us a solution.
-
-React Router gives us the `<Link>` component. This component acts just like an `<a>` tag, except without refreshing the page! `Link` only changes the URL without refreshing the page.
-
-**Make sure to set the `to` attribute rather than an `href` attribute when using `Link`:**
-
-```xml
-<Link to="/images/kitten-0.jpeg">
-```
-
-> [action]
->
-> At the top of `src/Project.js`, import `Link`:
->
-```js
-import { Link } from 'react-router-dom'
-```
->
-> Update the `Project` function to add a Link that will act as navigation. This link will navigate to a "Page" by showing a new component.
->
-```js
-function Project(props) {
-    // Note the added className as well
-    return (
-        <div className='project'>
-            <img src={props.image} width="300" height="200" />
-            <h3>{props.title}</h3>
-            <Link to={props.link}>Link to project</Link>
-        </div>
-    )
+```CSS
+.nav-link-active {
+  color: #fff;
+  border-bottom: 2px solid;
 }
 ```
 
-Now we need to add proper `link` attributes to the projects.
+## Details page Route Parameters
 
+Things are looking pretty good. Now let's tackle the detail page. The detail page will be a page that is dedeicated to a single location. It will show all of the information for that location. Right now we show all locations on the List Page but the information is minimal. The details page will be a page dedicated to just one location. 
 
-> [action]
->
-> In `src/PageContent.js`, change the `link` attributes on the `Project` components to be something like `/home` and `/signup`. These can be whatever you want as long as they start with a backslash.
+Currently there 11 spaces in our data list but there are a lot more spaces that might be added in the future. We don't want to make a component for each space. Instead you will make a single component and pass props to it containing the information that needs to display. 
 
-When you test the page and click the links, you see it updates the URL, but nothing on the page changes. To 'navigate to another "page" you need to create some `Routes`. You'll do that in an upcoming step. Before that you will make a few changes to the existing code.
+When you made the list of POPOSSpace components you passed all of the values the component displays into the component via props. You also made all of those components in the list with `map()`. 
 
-Notice in `src/PageContent.js` we repeat a similar line of code many times. It would be better to make a loop here.
+This time you'll take a different appraoch. In this situation you want to make a single component and you'll be displaying it with React Router as a Route. Router allows you to pass values to a Route through the URL/path. This is good for this use bcause the URL/path can be bookmarked, Which will allow visitors to book mark a detial page or return to it directly by enter it's URL. 
 
-> [action]
->
-> Download the images we will be using:
-> [images](https://drive.google.com/drive/folders/1x7vuBrK7riYPJaKCotfG9kF91vCcSlxv?usp=sharing)
->
-> Transfer the images to your `public/images` folder.
+### Making the Details Component
 
-Now we need to add some data. This data will that describe all of your `Projects`. In future projects, you might follow a similar pattern, but the data would be loaded from a server as JSON.
+This component will be a lot like the POPOSSpace component but will show more details let's call it POPOSDetails. 
 
+Where the POPOSpace component showed the image, title, and address.  The POPOSDetails component will show all of the images (remember images in the data is an array), title, address, description, hours, and features.
 
-> [action]
->
-> Now create a new file in the `src` folder called `data.js`. Inside `src/data.js`, add the following:
->
-```js
-// src/data.js
->
-// Theres a lot here, feel free to copy paste
-const data = [
-  {
-    title: '50 california',
-    image: '/images/50-california-st.png',
-    desc: 'A small plaza with groomed bushes and trees',
-  },
-  {
-    title: '100 pine',
-    image: '/images/100-pine.jpg',
-    desc: 'beautiful water fountain',
-  },
-  {
-    title: '101 california',
-    image: '/images/101-california.jpg',
-    desc: 'nice sitting area with plants',
-  },
-  {
-    title: '343 sansome roof garden',
-    image: '/images/343-sansome-roof-garden.jpg',
-    desc: 'unique roof garden',
-  },
-  {
-    title: '525 market street plaza',
-    image: '/images/525-market-street-plaza.jpg',
-    desc: 'large indoor plaza with a fountain',
-  },
-  {
-    title: 'citigroup center',
-    image: '/images/citigroup-center.jpg',
-    desc: 'neat sitting area with a fountain',
-  },
-  {
-    title: 'empire park',
-    image: '/images/empire-park.jpg',
-    desc: 'a green shady sitting area',
-  },
-  {
-    title: '150 california garden terrace',
-    image: 'images/garden-terrace-at-150-california.jpg',
-    desc: 'garden terrace with a sitting area',
-  },
-  {
-    title: 'transamerica redwood park',
-    image: '/images/transamerica-redwood-park.jpg',
-    desc: 'massive redwood park, with a fountain',
-  },
-]
-export default data
-```
+Remember all of the data is in the sfpopos-data.json file. Any of your components can import this file. As long a componen knows the index of the item in the data it can display it. 
 
-Now that your data is defined, let's use it in `PageContent`
+The goal then is to pass the index to POPOSDetails component and POPOSDetails will get the information it needs from the data. 
 
-> [action]
->
-> In `src/PageContent.js`, import your data at the top of the file:
->
-```js
-// src/PageContent.js
->
-import data from './data';
-```
->
-> Then remove all of the `<Project>` components in the `return` function
+Make a new file named: `POPOSDetails.js`
 
-You're going to use `array.map` to  transform the arrays of JavaScript objects in the data array into an array of components you can display.
-
-> [action]
->
-> In `src/PageContent.js`, update the `PageContent` function to be the following:
->
-```js
-// src/PageContent.js
->
-...
->
-function PageContent() {
-   return (
-       <div className="PageContent">
-           {
-               // place is the element in the array
-               // i is the index of the element
-               data.map((place, i) => { // data takes a function as a parameter
-                   return ( // Return a component
-                       <Project
-                           key={`${i}-${place.image}`}
-                           title={place.title}
-                           image={place.image}
-                           link={`${i}`}
-                       />
-                   )
-               })
-           }
-       </div>
-   )
-}
->
-...
-```
-
-Your project should now look like the following:
-
-![city-images](./assets/city-images.png)
-
-# Breaking Down the Map method
-
-There was a lot going on in that map method. Let's break it down:
-
-Take a look at the first line:
-
-```js
-data.map((place, i) => { ... })
-```
-
-The map method takes in a function as it's first parameter. It calls this function once for each item in the array (`data`)
-
-The example uses an arrow function. These are similar to the functions you've written before.
-
-Here is a function:
-
-```js
-const name = function(param) {
-  ...
-}
-```
-
-Here is the same function written as an arrow function:
-
-```js
-const name = (param) => {
-
-}
-```
-
-The sample code for uses this type of function.
-
-```js
-data.map((place, i) => { ... })
-```
-
-The function provided as a parameter to map is called once for each item in the array. This function takes two parameters. The first is `place` and will be one of the values from the array, the second parameter `i` will be the index of that value in the array.
-
-The function supplied to map needs to return values. Each value returned is added to a new array which is returned by `map()`. In this way `Array.map()` transforms an array of one type into an array of another type.  
-
-Take a look at the JSX returned inside the mapping function.
-
-```xml
-<Project
-  key={`${i}-${place.image}`}
-  title={place.title}
-  image={place.image}
-  link={`${i}`}
-/>
-```
-
-Here you are defining a new component using JSX and defining four attributes. The values for these attributes are taken from the places object.
-
-Take a look at the data array in `src/data.js`. You'll see all of the properties taken from `place` exist on each object in the array.
-
-Now it's time to create some routes!
-
-# Routes
-
-`<Route>` is a component that is rendered by React Router when the URL matches the path of the route.
-
-**Note: don't confuse Router and Route!** Router is a component that manages Routes.
-
-We can set the path of a route with the path attribute:
-
-```xml
-<Route path='/home' component={home} />
-```
-
-> [action]
->
-> In `src/App.js`, alter the `<PageContent>` component to be rendered by a path:
->
-```js
-// src/App.js
->
-...
->
-function App() {
-  return (
-    <Router>
-        <div className="App">
-          <Title />
-          <Route exact path='/' component={PageContent} />
-        </div>
-    </Router>
-  );
-}
-...
-```
-
-Now the `PageContent` component will be rendered only when the url is exactly `/`.
-
-# Selected Project
-
-Let's make a new Component to show a selected project. Clicking on a project will display the selected project and show details about that project.
-
-> [action]
->
-> At the top of `src/App.js`, import our data:
->
-```js
-// src/App.js
->
-import data from './data'
-```
-
-Now let's create a new component: `SelectedProject`
-
-> [action]
->
-> Create a new file: `src/SelectedProject.js`. Define a new component in this file:
->
-```js
-// src/SelectedProject.js
->
+```JSX
 import React from 'react'
-import {Link} from 'react-router-dom'
-import data from './data'
-import { Link, useParams } from 'react-router-dom'
->
-function SelectedProject(props) {
-  const { index } = useParams()
-  const place = data[index]
->
+
+import data from './sfpopos-data.json'
+
+function POPOSDetails(props) {
+  const { id } = props.match.params // Location index
+  const { images, title, desc, hours, features, geo } = data[id]
+
   return (
-    <div className='project'>
-      <img alt="" src={place.image} width="600" height="400" />
-      <h3>{place.title}</h3>
-      <p>{place.desc}</p>
-      <Link to='/'>Back to Home</Link>
+    <div>
+      <div>
+        <img src={`${process.env.PUBLIC_URL}images/${images[0]}`} />
+      </div>
+      
+      <div>
+        <h1>{ title }</h1>
+        <p>{ desc }</p>
+        <p>{ hours }</p>
+        <p>{ features }</p>
+        <p>{ geo.lat } { geo.lon }</p>
+      </div>
+      
     </div>
   )
 }
->
-export default SelectedProject
+
+export default POPOSDetails
 ```
 
-<!-- -->
+The code above is just like the other components you've made. One small change is at the top you've imported `sfpopos-data.js`. 
 
-> [info]
->
-> `useParams` allows you to grab all of the URL parameters in a route, in this case it will give you the value of `index`.
+Inside the function you defined a variable: `id` and set the value to `props.match.params`. 
 
-Notice the `Link` will take us back to the homepage, since it sets the url to `/`.
+`const { id } = props.match.params // Location index`
 
-> [action]
->
-> Import the new component in `app.js`.
->
+On the next line you're using the `id` to get the data for the location at the index. Using deconstruction we can break object at that index down int: `images`, `title`, `desc`, `hours`, `features`, and `geo` coordinates. 
+
+The rest of the component is similar to the other components you wrote previously. Feel free to modify this and add styles. Notice that `images` is an array to display the image at the top you're using `images[0]` to get the first image in this array. 
+
+### Details Route
+
+Set up a Route to display the details component. 
+
+Open App.js. 
+
+Import `POPOSDetails.js` at the top: 
+
+`import POPOSDetails from './POPOSDetails'`
+
+Then within the return block of the component make a new Route: 
+
+```JSX 
+<Route path="/:id" component={POPOSDetails} />
+```
+
+Place this below the existing Routes. 
+
+Notice the path here is different. `path="/:id"` it contains a `:`. This is a parameter. The value following the `/` is now a variable and can be anything. For example: 
+
+`http://localhost:3000/#/0` id would be 0
+
+or 
+
+`http://localhost:3000/#/42` id would be 42
+
+You have access to this value inside a Route with: `props.match.params.id`
+
+Take a look back at `POPOSDetails.js` somewhere around line 6 you have: 
+
+`const { id } = props.match.params` 
+
+Here you get the value of id. 
+
+You can test your work. 
+
+Try these addresses in your browser. 
+
+`http://localhost:3000/#/0`
+`http://localhost:3000/#/1`
+`http://localhost:3000/#/2`
+
+What's important here is you app can find a details page by entering a URL. A user now could go directly to a page by entering that address, they could also bookmark a page. 
+
+### Passing the id 
+
+To be able to link to something with an id we need to have that id. Here in this step you'll pass the id to a POPOSSpace from POPOSList. 
+
+Open `POPOSSpace.js`. Find the line where you mapped data to the `POPOSSpace`s. It should look like the code below. Notice that there are two small changes:  
+
 ```JS
-// src/App.js
->
-import SelectedProject from './SelectedProject';
->
-...
-```
->
-> Next let's Add a `Route` to display a selected project. Place it underneath the `Route` for `PageContent`
->
-```xml
-...
-<Route exact path='/' component={PageContent} />
-<Route path='/:index' component={SelectedProject} />
-...
+const spaces = data.map(({ title, address, images, hours }, i) => {
+  return (
+    <POPOSSpace 
+      id={i}
+      key={title}
+      name={title} 
+      address={address} 
+      image={images[0]} 
+      hours={hours}
+    />
+  )
+})
 ```
 
-Adding a colon in the path makes it a URL parameter.
+On the first line there is a second parameter to: `map(obj, i)`, or `map({ ... }, i)`. here is the whole line: 
 
-Earlier you used `place` in this block now it is defined!
+`const spaces = data.map(({ title, address, images, hours }, i) => {`
 
-```xml
-<div className='project'>
-  <img alt="" src={place.image} width="600" height="400" />
-  <h3>{place.title}</h3>
-  <p>{place.desc}</p>
-  <Link to='/'>Back to Home</Link>
-</div>
+The second change is the added prop `id={i}` in the `POPOSSpace` component. 
+
+```JSX
+<POPOSSpace 
+  id={i}
+  ...
+/>`
 ```
 
-Clicking on a project link should take you to a page that looks like the following:
+When using `map()` this method provides the index of the element as a second parameter. This is useful in many cases. 
 
-![selected-project](./assets/selected-project.png)
+You can now access this incde inside an instance of `POPOSSpace` as `props.id`.
 
-**Congratulations you should now be able to navigate to and from different locations!**
+### Linking to Details
+
+With the last piece in place you can get to the details Route. This is good but you really want visitors to be able to click a location in the list and show it's details. 
+
+For a page to link to it's details it needs to know the index in the array where it's data is stored. This will happen in POPOSList. 
+
+You can do this also by using a `<Link>` component. `<Link>` is a component provided by React Router for linking/navigating to different Routes. 
+
+`Link` is different from `NavLink` in that `NavLink` is used for top level navigation that would be visible on all pages. `Link` on the other hand is for general navigation that might appear anywhere else. The big difference is `NavLink` offers the extra feature of `activeClassName` and `Link` doesn't have this. 
+
+Make some links in the POPOSSpace. It's probably best if people can click both the title and image to link to the detail page.
+
+Import the Link component at the top. 
+
+`import { Link } from 'react-router-dom'`
+
+Since id should now be passed as a prop you can access it with: 
+
+`props.id` 
+
+or deconstruct it with: 
+
+`const { id } = props`
+
+Or if you're already deconstructing props just add it to the list: 
+
+`const { name, image, address, hours, id } = props`
+
+Now wrap the image in a `Link`. You should have something like: 
+
+```JSX
+<img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
+```
+
+Change this to: 
+
+```JSX
+<Link to={`/${id}`}>
+  <img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
+</Link>
+```
+
+Notice the path! `<Link to={`/${id}`}>` remember the path will look for a parm following the `/`. Here the param will be the id! 
+
+Do the same with the title. Yoiu have something like: 
+
+```JSX
+<h1>{name}</h1>
+```
+
+Change this to something like: 
+
+```JSX
+<h1>
+  <Link to={`/${id}`}>
+    {name}
+  </Link>
+</h1>
+```
+
+Check your work! Clicking a link should take you to the detail page for that location. 
 
 # Feedback and Review - 2 minutes
 
