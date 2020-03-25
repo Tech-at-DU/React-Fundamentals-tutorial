@@ -350,7 +350,7 @@ Import `POPOSDetails.js` at the top:
 Then within the return block of the component make a new Route: 
 
 ```JSX 
-<Route path="/:id" component={POPOSDetails} />
+<Route path="/details/:id" component={POPOSDetails} />
 ```
 
 Place this below the existing Routes. 
@@ -375,9 +375,9 @@ You can test your work.
 
 Try these addresses in your browser. 
 
-`http://localhost:3000/#/0`
-`http://localhost:3000/#/1`
-`http://localhost:3000/#/2`
+`http://localhost:3000/#/details/0`
+`http://localhost:3000/#/details/1`
+`http://localhost:3000/#/details/2`
 
 What's important here is you app can find a details page by entering a URL. A user now could go directly to a page by entering that address, they could also bookmark a page. 
 
@@ -456,12 +456,12 @@ Now wrap the image in a `Link`. You should have something like:
 Change this to: 
 
 ```JSX
-<Link to={`/${id}`}>
+<Link to={`/derails/${id}`}>
   <img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
 </Link>
 ```
 
-Notice the path! `<Link to={`/${id}`}>` remember the path will look for a parm following the `/`. Here the param will be the id! 
+Notice the path! `<Link to={`/details/${id}`}>` remember the path will look for a parm following the `/`. Here the param will be the id! 
 
 Do the same with the title. Yoiu have something like: 
 
@@ -473,7 +473,7 @@ Change this to something like:
 
 ```JSX
 <h1>
-  <Link to={`/${id}`}>
+  <Link to={`/details/${id}`}>
     {name}
   </Link>
 </h1>
