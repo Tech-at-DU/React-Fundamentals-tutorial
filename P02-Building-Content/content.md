@@ -3,40 +3,41 @@ title: "Building Content"
 slug: building-content
 ---
 
-So far you have just been practicing with React to learn it's work flow, structure, and syntax. Now you will use these ideas to put together a web site. 
+So far you have just been practicing with React to learn its work flow, structure, and syntax. Now you will use these ideas to put together a web site.
 
-Before making a site you should have an idea of what you making. The goal of this tutorial is to make a site for SFPOPOS (San Francisco Privately Owned Public Open Spaces). 
+Before making a site you should have an idea of what you are making. **The goal of this tutorial is to make a site for SFPOPOS (San Francisco Privately Owned Public Open Spaces).**
 
-Here is what the city says: 
+Here is what the city says:
 
+>
 > POPOS are publicly accessible spaces in forms of plazas, terraces, atriums, small parks, and even snippets which are provided and maintained by private developers. In San Francisco, POPOS mostly appear in the Downtown office district area.
 
-These public spaces are nice places to visit, eat your lunch, meet with friends, or do some work outside the office. The problem is many of these spaces are hard to find or people don't know they exist. This new site is going to solve this problem by showing an image of the space, the name and address of the space, and more information such as the hours the space is open, a description and facilities available these would be things like coffee, bathroom, art, indoors or outdoors etc. 
+These public spaces are nice places to visit, eat your lunch, meet with friends, or do some work outside the office. The problem is many of these spaces are hard to find or people don't know they exist. This new site is going to solve this problem by showing an image of the space, the name and address of the space, and more information such as the hours the space is open, a description and facilities available these would be things like coffee, bathroom, art, indoors or outdoors etc.
 
-People visiting this site could be almost anyone of alomost any age. 
+People visiting this site could be almost anyone of almost any age.
 
 - As a user I want to find all of the POPOS
 - As a user I want to find POPOS near me
 - As a user I want to view details about POPOS
 
-With these user stories in mind we can start building the project. 
+With these user stories in mind we can start building the project.
 
-For the first user story you can build a Component that displays all of the spaces. Imagine this as a grid with each cell or card in the grid displaying a single POPOS with it's picture and address. 
+For the first user story you can build a Component that displays all of the spaces. Imagine this as a grid with each cell or card in the grid displaying a single POPOS with it's picture and address.
 
-To do this you'll need to build a couple components. 
+To do this you'll need to build a couple components.
 
-One Component will display a POPOS location with a picture, name, address, etc. Let's call this `POPOSSpace`. This component represents a single space at an address. 
+One Component will display a POPOS location with a picture, name, address, etc. Let's call this `POPOSSpace`. This component represents a single space at an address.
 
-The other component will display a list of spaces. Let's call this: `POPOSList`. This component will display a list of spaces. 
+The other component will display a list of spaces. Let's call this: `POPOSList`. This component will display a list of spaces.
 
-Build the list first. 
+Build the list first.
 
 > [action]
 >
 > Make a new file: `src/POPOSList.js` and add the following code to it:
 >
 ```js
-// src/PageContent.js
+// src/POPOSList.js
 >
 import React from 'react';
 >
@@ -51,22 +52,18 @@ function POPOSList() {
 export default POPOSList
 ```
 
-Test out your list. 
+Test out your list.
 
 Import this file and use the new Component in `App.js`
 
 > [action]
 >
-> Add the following to the top of `src/App.js`:
->
->`import POPOSList from './POPOSList'`
->
-> Then use the new Component:
+> Add the following to the top of `src/App.js`, then use the new Component:
 >
 ```js
 // src/App.js
 >
-import POPOSList from './POPOSList'
+import POPOSList from './POPOSList';
 >
 ...
 >
@@ -78,15 +75,15 @@ function App() {
     </div>
   );
 }
-``` 
+```
 
-Testing your app at this point you'll see just the message: **"Content here..."**. This is just a place holder for the content you will add later. 
+Testing your app at this point you'll see just the message: **"Content here..."**. This is just a place holder for the content you will add later.
 
 React uses a Component Architecture. Notice here how one component can contain another component and the App is built from many components each designed to display a single UI element.
 
-# Creating the POPOSSpace Comnponent
+# Creating the POPOSSpace Component
 
-Currently the POPOSList doesn't display a list you'll be wokring on that. The goal is display a list of POPOSSpace components here, to do that you'll need to make a new Component. 
+Currently the POPOSList doesn't display a list, but you'll be working on that! The goal is display a list of POPOSSpace components here, to do that you'll need to make a new Component.
 
 For now, imagine each project has the following elements:
 
@@ -118,22 +115,18 @@ function POPOSSpace() {
 export default POPOSSpace
 ```
 
-There are a few things missing here but you will revisit this shortly and pick up those details. 
+There are a few things missing here but you will revisit this shortly and pick up those details.
 
 For now import `POPOSSpace` into to your `POPOSList`.
 
 > [action]
 >
-> In `src/POPOSList.js` add an import for `POPOSSpace.js`:
->
-`import POPOSSpace from './POPOSSpace'`
->
-> Then add a few Projects:
+> In `src/POPOSList.js` add an import for `POPOSSpace.js`, then add a few Projects:
 >
 ```js
-// src/PageContent.js
+// src/POPOSList.js
 >
-import POPOSSpace from './POPOSSpace'
+import POPOSSpace from './POPOSSpace';
 >
 ...
 >
@@ -151,13 +144,13 @@ function POPOSList() {
 ...
 ```
 
-Your project should now show a list of 6 POPOS Spaces. Currently the images are missing, the names and addresses are just placeholders. You're going to take of that soon. 
+Your project should now show a list of 6 POPOS Spaces. Currently the images are missing, the names and addresses are just placeholders. You're going to take care of that soon.
 
-What's important to understand here is that you can reuse a component as often as needed. In this case you're using `POPOSSpace` six times. 
+What's important to understand here is that you can reuse a component as often as needed. In this case you're using `POPOSSpace` six times.
 
-Also, notice how your project is structured. 
+Also, notice how your project is structured.
 
-- App 
+- App
     - Title
     - POPOSList
       - POPOSSpace
@@ -168,25 +161,25 @@ If you imagine your project as file structure you can see that you have componen
 
 # Add some Local Image Files
 
-This would look a lot better with some images. Down load the images here: 
+This would look a lot better with some images. Download the images here:
 
 [SFPOPOS-images](assets/SFPOPOS-images.zip)
 
-React projects are **transpiled**. The code you write is not run directly. Instead the code you wrote is converted into vanilla JS. The project is served from the public directory. 
+React projects are **transpiled**. The code you write is not run directly. Instead the code you wrote is converted into vanilla JS. The project is served from the public directory.
 
 **Images and other static files that your project will use must be referenced with the `public` directory as the root.**
 
 > [action]
 >
-> Unzip the SFPOPOS-images.zip and move the images folder into the public directory of this project. 
+> Unzip the SFPOPOS-images.zip and move the images folder into the public directory of this project.
 >
 
-Now edit `SFPOPOSSpace.js`. 
+Now edit `SFPOPOSSpace.js`.
 
 > [action]
 >
 ```js
-// src/Project.js
+// src/SFPOPOSSpace.js
 >
 ...
 >
@@ -212,15 +205,15 @@ Your website should now look something similar to the following:
 >
 > Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is transpiled and the resulting bundle is run from the `public` folder.
 
-Take a close look at the img tag. 
+Take a close look at the img tag.
 
-```jsx
+```html
 ...
 <img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} />
 ...
 ```
 
-You are putting a path together from two parts. Let's walk through how this line was derived. 
+You are putting a path together from two parts. Let's walk through how this line was derived.
 
 When using an expression in JSX you must wrap it in `{}`.
 
@@ -228,21 +221,27 @@ When using an expression in JSX you must wrap it in `{}`.
 
 We want to make a string that ends with 'images/50-california-st.jpg':
 
+```html
 `<img src={`images/50-california-st.jpg`} />`
+```
 
-The string needs to begin with the path to the public directory. React has an environment variable, `process.env.PUBLIC_URL`, that provides this. To use concatenate a variable with a string you'll use `${}` within the ``. 
+The string needs to begin with the path to the public directory. React has an environment variable, `process.env.PUBLIC_URL`, that provides this. To use concatenate a variable with a string you'll use `${}` within the \``.
 
+```html
 `<img src={`${}images/50-california-st.jpg`} />`
+```
 
 Last, put the variable inside `${}`:
 
+```html
 `<img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} />`
+```
 
 # Making Dynamic Components with Props
 
-Everything is working but it could be better yet! All of the public spaces show the same name, address, and image. You want them all to be different, without having to make a new component for each. 
+Everything is working but it could be better yet! All of the public spaces show the same name, address, and image. You want them all to be different, without having to make a new component for each.
 
-Components take a parameter called: 'props'. Props is always an object. **Props allows you as a devleoper to configure components.** In this project you can use props to pass the name, address, and image into each instance of the POPOSSpace component which will allow each to display unique values. 
+Components take a parameter called: 'props'. Props is always an object. **Props allows you as a developer to configure components.** In this project you can use props to pass the name, address, and image into each instance of the POPOSSpace component which will allow each to display unique values.
 
 In the case of the `POPOSSpace` Component there are three things that need to be dynamic:
 
@@ -250,9 +249,9 @@ In the case of the `POPOSSpace` Component there are three things that need to be
 - image URL
 - address
 
-Start by defining `props`. Props is passed as a parameter to a component. 
-
 > [action]
+>
+> Start by defining `props`. Props is passed as a parameter to a component.
 >
 ```js
 // src/POPOSSpace.js
@@ -264,21 +263,15 @@ function POPOSSpace(props) {
 }
 ```
 
-Props is alway an object. Objects have properties you can access using the dot. For example: 
+Props is alway an object. Objects have properties you can access using the dot. For example:
 
 - props.name
 - props.image
 - props.address
 
-You can also deconstruct objects into variables like this: 
-
-`const { name, image, address } = props`
-
-You should apply this to the POPOSSpace component. 
-
-> [info]
+> [action]
 >
-> You can also deconstruct the function this way, if you like:
+> Add the following line to `function POPOSSpace(props)` in `src/POPOSSpace.js`:
 >
 ```js
 function POPOSSpace(props) {
@@ -297,19 +290,20 @@ Testing at this point will not show anything since the values for: name, image, 
 
 > [action]
 >
+> Edit your `POPOSList` function in `src/POPOSList.js` to the following:
 >
 ```js
-// src/PageContent.js
+// src/POPOSList.js
 >
 ...
 >
 function POPOSList() {
   return (
-    <div className="POPOSList*">
-      <POPOSSpace 
-        name="50 California Street" 
-        address="50 California St." 
-        image="50-california-st.jpg" 
+    <div className="POPOSList">
+      <POPOSSpace
+        name="50 California Street"
+        address="50 California St."
+        image="50-california-st.jpg"
       />
       <POPOSSpace />
       <POPOSSpace />
@@ -323,15 +317,15 @@ function POPOSList() {
 ...
 ```
 
-The values for props are defined as attributes. The names here must match the names used within the component! Earlier you used: name, image, and address. These are the names that must be used here. 
+The values for props are defined as attributes. The names here must match the names used within the component! Earlier you used: name, image, and address. These are the names that must be used here.
 
 ### Props and Components
 
 You now have a single Component which you can use as often as needed, and each instance of the component can display a different name, image, and address. _This is the power of props_. Props are used to configure your components.
 
-You can assign props as key value pairs defined in JSX like attributes in HTML. For example: 
+You can assign props as key value pairs defined in JSX like attributes in HTML. For example:
 
-```JSX
+```html
 <MyComp message="Hello World" value={42} />
 ```
 
@@ -348,47 +342,51 @@ function MyComp(props) {
 
 JS expression inside JSX must be placed in the `{}`. For example: `<PI value={22/7} />`
 
-### Challenge
 
-Set the props: name, image, and address for the other components. The name, and address can be anything you like for now. For image be sure to use the file name of one of the images in the images folder. 
+> [action]
+>
+> Set the props: name, image, and address for the other components in `src/POPOSList.js`. The name, and address can be anything you like for now. For image, be sure to use the file name of one of the images in the images folder.
 
-### Challenge Solution 
+**Attempt the challenge before viewing the solution below!** You'll gain a lot more from typing the code yourself rather than just copy/pasting. Give it a try first!
 
-When completed your component might look like this: 
 
-```JSX 
+> [solution]
+>
+> When completed your component might look like this:
+>
+```js
 function POPOSList() {
   return (
-    <div className="POPOSList*">
-      <POPOSSpace 
-        name="50 California Street" 
-        address="50 California St." 
-        image="50-california-st.jpg" 
+    <div className="POPOSList">
+      <POPOSSpace
+        name="50 California Street"
+        address="50 California St."
+        image="50-california-st.jpg"
       />
-      <POPOSSpace 
-        name="100 Pine Street" 
-        address="100 Pine St." 
-        image="100-pine.jpg" 
+      <POPOSSpace
+        name="100 Pine Street"
+        address="100 Pine St."
+        image="100-pine.jpg"
       />
-      <POPOSSpace 
-        name="101 California Street" 
-        address="101 California" 
-        image="101-california.jpg" 
+      <POPOSSpace
+        name="101 California Street"
+        address="101 California"
+        image="101-california.jpg"
       />
-      <POPOSSpace 
-        name="343 Sansome Roof Garden" 
-        address="343 Sansome St." 
-        image="343-sansome-roof-garden.jpg" 
+      <POPOSSpace
+        name="343 Sansome Roof Garden"
+        address="343 Sansome St."
+        image="343-sansome-roof-garden.jpg"
       />
-      <POPOSSpace 
-        name="525 Market Street Plaza" 
-        address="525 Market St." 
-        image="525-market-street-plaza.jpg" 
+      <POPOSSpace
+        name="525 Market Street Plaza"
+        address="525 Market St."
+        image="525-market-street-plaza.jpg"
       />
-      <POPOSSpace 
-        name="Citigroup Center" 
-        address="1 Sansome St." 
-        image="citigroup-center.jpg" 
+      <POPOSSpace
+        name="Citigroup Center"
+        address="1 Sansome St."
+        image="citigroup-center.jpg"
       />
     </div>
   )

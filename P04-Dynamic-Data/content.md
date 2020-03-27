@@ -3,21 +3,21 @@ title: "Dynamic Data"
 slug: dynamic-data
 ---
 
-Currently your web site us static. The information is fixed and cannot change. Web sites can also be dynamic with data that changes over time. For example what new public spaces could be added to the site the new spaces would show up on the list. Or what if you could search for a public space by name or address and the list showed only results that matched your search. 
+Currently your web site us static. The information is fixed and cannot change. Web sites can also be dynamic with data that changes over time. For example what new public spaces could be added to the site the new spaces would show up on the list. Or what if you could search for a public space by name or address and the list showed only results that matched your search.
 
-To handle these situations you'll need store the data that we see on the screen outside of components themselves. 
+To handle these situations you'll need store the data that we see on the screen outside of components themselves.
 
-You'll need a data structure to hold this data. A common option is JSON. JSON or JavaScript Object Notation is a plain text format that translates to standard JavaScript Objects and Arrays. 
+You'll need a data structure to hold this data. A common option is JSON. JSON or JavaScript Object Notation is a plain text format that translates to standard JavaScript Objects and Arrays.
 
 ## Take a look at the JSON file
 
-It looks a lot like a JS array of Objects. If you look at the top level of the array it looks like this: 
+It looks a lot like a JS array of Objects. If you look at the top level of the array it looks like this:
 
 `[{ ... }, { ... }, ...]`
 
-At the top level you have an array, and each element of the array is an object. 
+At the top level you have an array, and each element of the array is an object.
 
-Take a look at the first object: 
+Take a look at the first object:
 
 ```JSON
 [
@@ -44,36 +44,38 @@ Take a look at the first object:
 
 This first element has the same properties as the others. The information here describes a location. Some of the values are strings, some are numbers, others are objects and arrays.
 
-### Challenge! 
+### Challenge!
 
-Identify which values are strings, which are numbers, which are objects, and arrays. 
+> [action]
+>
+> Identify which values are strings, which are numbers, which are objects, and arrays in the `JSON` above.
 
-### Continue! 
+### Continue!
 
-Here is a a breakdown of what is in each of these objects. 
+Here is a a breakdown of what is in each of these objects.
 
 - title - String - A short name/description
 - desc - String - A long detailed description
 - hours - String - A string showing the hours
 - address - String - The written address
-- geo - Object 
-  - lat - Number - The geocoordinate lattitude
+- geo - Object
+  - lat - Number - The geocoordinate latitude
   - lon - Number - The geocoordinate longitude
 - images - Array - A list of file name strings
-  - String 
-- website - String  - A url string 
+  - String
+- website - String  - A url string
 - features - Array - A list of strings describing features of the location
   - String
 
-Each object has the same properties though some might have more or fewer items. For example, some locations may have more or fewer features. 
+Each object has the same properties though some might have more or fewer items. For example, some locations may have more or fewer features.
 
-## Using JSON 
+## Importing JSON
 
-You can import JSON from a file if you are using the the create react app starter code. Just import it at the top of a file like this: 
+You can import JSON from a file if you are using the the create react app starter code. Just import it at the top of a file like this:
 
 `import data from './sfpopos-data.js'`
 
-From here you could get at any of the elements using standard JS syntax. For example: 
+From here you could get at any of the elements using standard JS syntax. For example:
 
 ```JS
 data[0].title       // Transamerica Redwood Park
@@ -84,35 +86,48 @@ data[1].features[1] // art
 
 ## Using JSON
 
-You can use the JSON object to generate POPOSSpace components. Originally you created a list of these manually. We could say you "hard coded" all of the values to create static elements. In this step you will use the JSON data to create dycnamic elements. 
+You can use the JSON object to generate POPOSSpace components. Originally you created a list of these manually. We could say you "hard coded" all of the values to create static elements. In this step you will use the JSON data to create dynamic elements.
 
-The easiest way to do this is with Array.map(). Map is used to transform an array. Use it when you have an array of one kind type that you'd like to transform into another type. 
+The easiest way to do this is with Array.map(). Map is used to transform an array. Use it when you have an array of one kind type that you'd like to transform into another type.
 
-The first step is to load the JSON data in your POPOSList component. 
+The first step is to load the JSON data in your POPOSList component.
 
-Add the Following at the top. 
+> [action]
+>
+> Download the [sfpopos-data.json](./assets/sfpopos-data.json) file and put it in your `src` directory
 
-`import data from './sfpopos-data.json'`
+Now let's test out printing the JSON to console:
+> [action]
+>
+> Add the Following at the top of `POPOSList.js`
+>
+```js
+import data from './sfpopos-data.json'
+```
 
-Use the console to practice with `Array.map()`. You can add the code here to the POPOSList component.
+Use the console to practice with `Array.map()`.
 
+> [action]
+>
+> Add the code here to `POPOSList.js`, after the `POPOSList` function:
+>
 ```JS
 const titles = data.map((obj) => {
   return obj.title
 })
-
+>
 console.log(titles)
 ```
 
-Check the console. This should log an array of all of the titles from the data array. 
+Go to your browser and inspect the page. Then check the console. You should see an array of all of the titles from the data array:
 
 `["Transamerica Redwood Park", "Empire Park", ... ]`
 
-What happened here? You called the `map()` method on the `data` array, `map()` returned an array of strings. 
+What happened here? You called the `map()` method on the `data` array, `map()` returned an array of strings.
 
-How does it work? The `map()` method takes a callback/function and calls this once for each item in the array. Your callback function decides what should be included in new array created by `map()`. In this example the callback/function returned the title from each obj in the original array. 
+How does it work? The `map()` method takes a callback/function and calls this once for each item in the array. Your callback function decides what should be included in new array created by `map()`. In this example the callback/function returned the title from each obj in the original array.
 
-Here is another experiment. Try this: 
+Here is another experiment. Try this:
 
 ```JS
 const titles = data.map((obj) => {
@@ -120,11 +135,21 @@ const titles = data.map((obj) => {
 })
 ```
 
-This time you made an array of Components (blocks of JSX). The text inside each `<h1>` is the title string. 
+This time you made an array of Components (blocks of JSX). The text inside each `<h1>` is the title string.
 
-In the `POPOSList` component make this change: 
-
+> [action]
+>
+> In the `src/POPOSList.js` component make this change:
+>
 ```JS
+...
+>
+import data from './sfpopos-data.json'
+>
+const titles = data.map((obj) => {
+  return <h1>{obj.title}</h1>
+})
+>
 function POPOSList() {
   return (
     <div className="POPOSList">
@@ -134,58 +159,71 @@ function POPOSList() {
 }
 ```
 
-Here you put an array of JSX/Components inside a block of JSX code. When React sees this it will automatically display all elements in the list. You should now see the titles of each place in your page. 
+Here you put an array of JSX/Components inside a block of JSX code. When React sees this it will automatically display all elements in the list. You should now see the titles of each place in your page.
 
 **Your goal here is to turn the array of objects into an array of components.**
 
-You can remove the codde from the last example. Be sure to keep the the line that imports the JSON data. 
-
-`import data from './sfpopos-data.json'`
-
-Edit the `POPOSList` component to look like this: 
-
-```JSX
+> [action]
+>
+> Remove the code from the last example, but **be sure to keep the the line that imports the JSON data:**
+>
+```js
+import data from './sfpopos-data.json'
+```
+>
+> Edit `src/POPOSList.js` to look like this:
+>
+```js
+// src/POPOSList.js
+>
+import React from 'react';
+import POPOSSpace from './POPOSSpace';
+import './POPOSList.css';
+import data from './sfpopos-data.json'
+>
 function POPOSList() {
-  
+>
   const spaces = data.map((obj) => {
     return (
-      <POPOSSpace 
-        name={obj.title} 
-        address={obj.address} 
-        image={obj.images[0]} 
+      <POPOSSpace
+        name={obj.title}
+        address={obj.address}
+        image={obj.images[0]}
       />
     )
   })
-
+>
   return (
     <div className="POPOSList">
       { spaces }
     </div>
   )
 }
+>
+export default POPOSList
 ```
 
-Now you should see one POPOSSpace for each object in the data array. 
+Now you should see one POPOSSpace for each object in the data array.
 
-## Deconstructing properties
+# Deconstructing properties
 
-Objects and arrays are essential tools you will use them a lot. They complicate your syntax which can lead to errors. Take a look at the snippet from the last change. 
+Objects and arrays are essential tools you will use them a lot. They complicate your syntax which can lead to errors. Take a look at the snippet from the last change.
 
-We can refactor this code to make it easier to read and less prone to error. 
+We can refactor this code to make it easier to read and less prone to error. Let's look at this snippet from `POPOSList.js`:
 
 ```JS
 const spaces = data.map((obj) => {
   return (
-    <POPOSSpace 
-      name={obj.title} 
-      address={obj.address} 
-      image={obj.images[0]} 
+    <POPOSSpace
+      name={obj.title}
+      address={obj.address}
+      image={obj.images[0]}
     />
   )
 })
 ```
 
-Notice you had to write `obj.` in three places. Consider this: 
+Notice you had to write `obj.` in three places. Consider this:
 
 ```JS
 const spaces = data.map((obj) => {
@@ -194,130 +232,148 @@ const spaces = data.map((obj) => {
   const images = obj.images
 
   return (
-    <POPOSSpace 
-      name={title} 
-      address={address} 
-      image={images[0]} 
+    <POPOSSpace
+      name={title}
+      address={address}
+      image={images[0]}
     />
   )
 })
 ```
 
-This is a small improvement. Here you have made three intermediate variables to hold the values from properties on `obj`. The downside is you had to add three new lines of code. 
+This is a small improvement. Here you have made three intermediate variables to hold the values from properties on `obj`. The downside is you had to add three new lines of code.
 
-Deconstruction allows what the previous example does in a single line of code. 
+Deconstruction allows what the previous example does in a single line of code.
 
 ```JS
 const spaces = data.map((obj) => {
   const { title, address, images } = obj
 
   return (
-    <POPOSSpace 
-      name={title} 
-      address={address} 
-      image={images[0]} 
+    <POPOSSpace
+      name={title}
+      address={address}
+      image={images[0]}
     />
   )
 })
 ```
 
-Now your code is short and concise. As an option you can even deconstruct as a parameter. 
+Now your code is short and concise. As an option you can even deconstruct as a parameter.
 
-```JSX
+```js
 const spaces = data.map(( { title, address, images } ) => {
-  
+
   return (
-    <POPOSSpace 
-      name={title} 
-      address={address} 
-      image={images[0]} 
+    <POPOSSpace
+      name={title}
+      address={address}
+      image={images[0]}
     />
   )
 })
 ```
 
-This example deconstructs the object on the parameter to the callback. 
+This example deconstructs the object on the parameter to the callback.
 
-### Keys and Lists 
+> [action]
+>
+> Update your code with this deconstruction in `/src/POPOSList.js`
 
-After you have the list displaying in your browser open the console. You should see a warning that read something like: 
+### Keys and Lists
+
+After you have the list displaying in your browser open the console. You should see a warning that read something like:
 
 `Warning: Each child in a list should have a unique "key" prop.`
 
-This is specific to React and the it's Virtual DOM. For the Virtual DOM to be effecient it needs to know which items have been changed. In the case of a list it can't which items in the list have been changed, unless each item as something to identify ituniquely. 
+This is specific to React and it's Virtual DOM. For the Virtual DOM to be efficient, it needs to know which items have been changed. In the case of a list, it does not know which items in the list have been changed, unless each item has something to identify it uniquely.
 
-We use the key prop for this. A key cna be any value as long it is unqiue for each elment in a list.
+We use the key prop for this. A key can be any value as long it is unique for each element in a list.
 
-```JSX
+For example, see how we assign the `title` to be the `key` for `POPOSSpace`:
+
+```js
 const spaces = data.map(( { title, address, images } ) => {
   return (
-    <POPOSSpace 
+    <POPOSSpace
       key={title} // The title could be a key
-      name={title} 
-      address={address} 
-      image={images[0]} 
+      name={title}
+      address={address}
+      image={images[0]}
     />
   )
 })
 ```
 
-You can use the title for a key seince all of the locations have a different title. 
+You can use the title for a key since all of the locations have a different title.
 
-## Adding Times 
+> [action]
+>
+> Add `key={title}` to the `POPOSSpace` in `src/POPOSList.js`
 
-The new data has lots of extra information. 
+# Adding Times
 
-### Challenge 
+The new data has lots of extra information.
 
-The goal of this challenge is to display the hours for each location. You will need to modify the `POPOSSpace` to display the hours and then modify the `POPOSList` component to pass the hours from the data as a prop. 
+## Challenge
 
-Start in `POPOSList.js`. Get the hours property from your data. 
+The goal of this challenge is to display the hours for each location. You will need to modify the `POPOSSpace` to display the hours and then modify the `POPOSList` component to pass the hours from the data as a prop.
 
-You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` components using map. Roughly it might look something like: 
+Start in `POPOSList.js`. Get the hours property from your data.
+
+You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` components using map. Roughly it might look something like:
 
 `<POPOSSpace ... hours={hours} />`
 
-Then edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop. 
+Then edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop.
 
-### Solution 
+> [action]
+>
+> Follow the guidance above to complete the challenge! Do your best, and try to work through it before viewing the solution below.
 
-In `POPOSList.js` look for the section that maps your data to an array of Spaces. 
+### Solution
 
-```JSX
-// deconstruct hours here 
+> [solution]
+>
+> In `POPOSList.js` look for the section that maps your data to an array of Spaces. Add an `hours` property there:
+>
+```js
+// deconstruct hours here
 const spaces = data.map(({ title, address, images, hours }) => {
-  
+>
   return (
-    <POPOSSpace 
-      name={title} 
-      address={address} 
-      image={images[0]} 
+    <POPOSSpace
+      name={title}
+      address={address}
+      image={images[0]}
       hours={hours} // add a new prop for hours here
     />
   )
 })
 ```
-
-In `POPOSSpace.js` get the hours and display them. 
-
-```JSX
+>
+> In `POPOSSpace.js` get the hours and display them. We also moved the name to be above the image
+>
+```js
 function POPOSSpace(props) {
-  // Get the 
+  // Get the
   const { name, image, address, hours } = props
   return (
     <div className="POPOSSpace">
       <h1>{name}</h1>
       <img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
       <div>{address}</div>
-      <div>{hours}</div> {/* Display hours here */}
+      <div>{hours}</div>
     </div>
   )
 }
 ```
 
-## Challenge 2 
+## Stretch Challenge
 
-Add some styles. 
+> [challenge]
+>
+> Add some custom styles to the hours! Maybe make it italic, or use a different font or font size!
 
 # Now Commit
 
