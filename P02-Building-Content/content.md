@@ -161,9 +161,11 @@ If you imagine your project as file structure you can see that you have componen
 
 # Add some Local Image Files
 
-This would look a lot better with some images. Download the images here:
+This would look a lot better with some images.
 
-[SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
+> [action]
+>
+> Download the images here: [SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
 
 React projects are **transpiled**. The code you write is not run directly. Instead the code you wrote is converted into vanilla JS. The project is served from the public directory.
 
