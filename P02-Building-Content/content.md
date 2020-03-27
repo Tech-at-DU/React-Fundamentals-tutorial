@@ -163,7 +163,7 @@ If you imagine your project as file structure you can see that you have componen
 
 This would look a lot better with some images. Download the images here:
 
-[SFPOPOS-images](assets/SFPOPOS-images.zip)
+[SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
 
 React projects are **transpiled**. The code you write is not run directly. Instead the code you wrote is converted into vanilla JS. The project is served from the public directory.
 

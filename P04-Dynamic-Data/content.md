@@ -94,7 +94,7 @@ The first step is to load the JSON data in your POPOSList component.
 
 > [action]
 >
-> Download the [sfpopos-data.json](./assets/sfpopos-data.json) file and put it in your `src` directory
+> Download the [sfpopos-data.json](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) file and put it in your `src` directory
 
 Now let's test out printing the JSON to console:
 > [action]
