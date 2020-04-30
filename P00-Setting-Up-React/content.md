@@ -145,7 +145,7 @@ Components are typically named uppercase. So the Components mentioned above migh
 - Graph
 - Header
 
-If a Component has styles these can be placed in a CSS file with the same name as the Component. Here `App.css` contains the styles that are used by the `App.js` Component.
+If a Component has styles these can be placed in a CSS file with the same name as the Component. Here, `App.css` contains the styles that are used by the `App.js` Component.
 
 In the default project, everything you see in the browser is defined in `App.js` and styled with `App.css`.
 

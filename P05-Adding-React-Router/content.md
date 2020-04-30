@@ -3,7 +3,7 @@ title: "Adding React Router"
 slug: adding-react-router
 ---
 
-The project you have built is described as a **single page application** but most web web pages we use daily are built as, or at least, act as multi-page applications.
+The project you have built is described as a **single page application** but most web pages we use daily are built as, or at least act as, multi-page applications.
 
 A single page application is just that: a single html page. Single page applications control the DOM by updating, adding, or removing elements. In this way they can function as multi-page applications.
 
@@ -13,16 +13,16 @@ You will use that library in this step to add a sub-page for each of the locatio
 
 # React Router
 
-React Router is a library the purpose of which is to create a multipage experience in React. It does this by rendering and not rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser.
+**React Router** is a library that can create a multipage experience in React. It does this by rendering and not rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser. Recall your early BEW classes where you learned how to build these!
 
 To work with React Router it helps to understand the terminology.
 
 - **Router** - A parent component that manages Routes
 - **Route** - A component that displays another component
 
-Think of Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to it's descendant Routes.
+Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes.
 
-A Route is responsible for displaying components. Routes each have a path property. When the path matches the URL in the address, the Route displays the appropriate component, otherwise not.
+A Route is responsible for displaying components. Routes have a path property: when the path matches the URL in the address, the Route displays the appropriate component, otherwise not.
 
 **Important!** The two names: Router and Route are different by only a single character, but they are very different in function and must be used correctly. Watch your spelling!
 
@@ -44,7 +44,7 @@ Coming up, you'll import `HashRouter` into `App.js`. This is a component that ma
 >
 > Quick note! `HashRouter` and `BrowserRouter` are two options. They act the same in our app and only differ in how they handle the URL.
 >
-> HashRouter inlcudes a # in the URL, while BrowserRouter does not include the #.  
+> HashRouter includes a # in the URL, while BrowserRouter does not include the #.  
 >
 > For example a HashRouter URL might look like this:
 >
@@ -93,7 +93,7 @@ Notice how Router surrounds everything.
 
 ### Adding Routes
 
-A route displays a component at a path. You want the POPOSList to display at the `/` path.
+A route displays a component as a path. You want the `POPOSList` to display at the `/` path.
 
 > [action]
 >
@@ -112,15 +112,15 @@ function App() {
 }
 ```
 
-Notice when you created the Route you used two props: path and component. Path defines the URL that will makes component display.
+Notice when you created the Route you used two props: path and component. Path defines the URL that will make the component display.
 
-The `/` route is the root route. So the list should display now. In your browser add something to the end of the path in the address bar. Try this:
+The `/` route is the root route. So the list should display now at `http://localhost:3000/`. In your browser, add something to the end of the path in the address bar, and see what happens when you try to navigate to it. Try this as an example:
 
 `http://localhost:3000/#/about`
 
 The list should still display. This is because the `/` is contained in the route above.
 
-You can make the route an exact route. In the case the list would only display when the route matches exactly.
+You can make the route an exact route. In this case the list would only display when the route matches exactly.
 
 > [action]
 >
@@ -130,7 +130,7 @@ You can make the route an exact route. In the case the list would only display w
 <Route exact path="/" component={POPOSList}/>
 ```
 
-Now try these paths in the address bar of the browser.
+Now try these paths in the address bar of the browser:
 
 This should display the list:
 
@@ -140,7 +140,7 @@ Using this address should not display the list, It's not an exact match.
 
 `http://localhost:3000/#/about`
 
-Notice the Title Component is displayed every time. It's not managed by a Route so it's always displayed.
+Notice the `Title` Component is displayed every time. It's not managed by a Route so it's always displayed.
 
 ## Adding another route
 
@@ -170,7 +170,7 @@ function About() {
 export default About
 ```
 
-This is simple component that will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info, or a map. For now we are concerned with Routes.
+This is simple component that will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info like a map. For now we are concerned with Routes.
 
 > [action]
 >
@@ -213,7 +213,7 @@ Should display the about page
 
 This is all working but we can't ask people to navigate to pages by typing the URL, people need something to click!
 
-React Router provides a `NavLink` component. The NavLink sets the address in bar. It's like the `<a>` tag but specific to React Router.
+React Router provides a `NavLink` component. The `NavLink` sets the address to navigate to in our browser's URL bar, and navigates the user to that address. It's like the `<a>` tag but specific to React Router.
 
 > [action]
 >
@@ -223,11 +223,11 @@ React Router provides a `NavLink` component. The NavLink sets the address in bar
 import { NavLink } from 'react-router-dom'
 ```
 
-here you imported `NavLink` from React Router Dom.
+here you've imported `NavLink` from React Router DOM.
 
 > [action]
 >
-> Now add two links to your `Title` in `Title.js`. Note below we also have the subtitle from an earlier stretch challenge:
+> Now add two links to your `Title` in `src/Title.js`. Note below we also have the subtitle from an earlier stretch challenge:
 >
 ```js
 function Title() {
@@ -248,22 +248,22 @@ function Title() {
 }
 ```
 
-Notice each NavLink has a `to` prop. This sets what path in the address bar will become when you click this link.
+Notice that each `NavLink` has a `to` prop. This sets what the path in the address bar will become when you click this link.
 
 Try it out in your browser!
 
-The navlinks need some style. NavLink translates to a regular anchor `<a>` tag in the DOM. You can treat these like any other tag/component.
+The `NavLink`s need some style. `NavLink` translates to a regular anchor `<a>` tag in the DOM. You can treat these like any other tag/component:
 
 > [action]
 >
-> In `Title.js`, give the NavLinks a class name:
+> In `src/Title.js`, give the NavLinks a class name:
 >
 ```html
 <NavLink className="nav-link" to="/">List</NavLink>
 <NavLink className="nav-link" to="/about">About</NavLink>
 ```
 >
-> Then, open `Title.css` and add some styles.
+> Then, open `src/Title.css` and add some styles.
 >
 ```CSS
 .nav-link {
@@ -275,16 +275,16 @@ The navlinks need some style. NavLink translates to a regular anchor `<a>` tag i
 }
 ```
 
-This look better but you could do more! Currently the active link (the link that represents the current "page") doesn't stand out from the other link. It should, this would help users understand where they are what they can do and improve the UX (User eXperience).
+This looks better, but you could do more! Currently the active link (the link that represents the current "page") doesn't stand out from the other links. It should, as this would help users understand where they are what they can do, thereby improving the UX (User eXperience).
 
-Luckily NavLink has a prop for this! The `activeClassName` prop/attribute defines a class name that will be added to the element when that link is the current link.
+Luckily, `NavLink` has a prop for this! The `activeClassName` prop/attribute defines a class name that will be added to the element when that link is the current link.
 
 **The `activeClassName` is applied by matching the path in the address bar.** It follows the same rules used for Routes. This means that the `/` will match all paths that contain a `/`. Use `exact` to prevent this behavior.
 
 
 > [action]
 >
-> Edit your `NavLink`s in `Title.js` to be the folllowing:
+> Edit your `NavLink`s in `src/Title.js` to be the following:
 >
 ```js
 <NavLink
@@ -299,11 +299,11 @@ Luckily NavLink has a prop for this! The `activeClassName` prop/attribute define
   to="/about">About</NavLink>
 ```
 
-With these options the selected NavLink will have the class: `nav-link-active`. You should add a style for this!
+With these options, the selected `NavLink` will have the class: `nav-link-active`. You should add a style for this!
 
 > [action]
 >
-> Add the following to `Title.css`:
+> Add the following to `src/Title.css`:
 >
 ```CSS
 .nav-link-active {
@@ -314,9 +314,9 @@ With these options the selected NavLink will have the class: `nav-link-active`. 
 
 # Details page Route Parameters
 
-Things are looking pretty good. Now let's tackle the detail page. The detail page will be a page that is dedicated to a single location. It will show all of the information for that location. Right now we show all locations on the List Page but the information is minimal. The details page will be a page dedicated to just one location.
+Things are looking pretty good. Now let's tackle the details page. The details page will be a page that is dedicated to a single location. It will show all of the information for that location. Right now we show all locations on the List Page but the information is minimal. The details page will be a page dedicated to just one location.
 
-Currently there are 11 spaces in our data list, but there are a lot more spaces that might be added in the future. We don't want to make a component for each space. Instead you will make a single component and pass props to it containing the information that needs to display.
+Currently there are only a small number of spaces in our data list, but there are a lot more spaces that might be added in the future. We don't want to make a component for each space. Instead you will make a single component and pass props to it containing the information that needs to display.
 
 When you made the list of `POPOSSpace` components, you passed all of the values the component displays into the component via props. You also made all of those components in the list with `map()`.
 
@@ -326,17 +326,19 @@ This time you'll take a different approach. In this situation you want to make a
 
 This component will be a lot like the `POPOSSpace` component but will show more details. Let's call it `POPOSDetails`.
 
-Where the `POPOSpace` component showed the image, title, and address.  The `POPOSDetails` component will show all of the images (remember images in the data is an _array_), title, address, description, hours, and features.
+Where the `POPOSpace` component showed the image, title, and address.  The `POPOSDetails` component will show all of the images (remember images in the data is an _array_), title, address, description, hours, and features of a single space.
 
-Remember all of the data is in the `sfpopos-data.json` file? Any of your components can import this file. As long a component knows the index of the item in the data it can display it.
+Remember how all of the data is in the `sfpopos-data.json` file? Any of your components can import this file. As long as a component knows the index of the item in the data, it can display it.
 
-The goal then is to pass the index to `POPOSDetails` component and `POPOSDetails` will get the information it needs from the data.
+The goal then is to pass the index to the `POPOSDetails` component, and `POPOSDetails` will get the information it needs from the data.
 
 > [action]
 >
 > Make a new file named: `src/POPOSDetails.js`, and add the following code to it:
 >
 ```js
+// src/POPOSDetails.js
+>
 import React from 'react'
 >
 import data from './sfpopos-data.json'
@@ -372,9 +374,9 @@ Inside the function you defined a variable: `id` and set the value to `props.mat
 
 `const { id } = props.match.params // Location index`
 
-On the next line you're using the `id` to get the data for the location at the index. Using deconstruction we can break object at that index down int: `images`, `title`, `desc`, `hours`, `features`, and `geo` coordinates.
+On the next line you're using the `id` to get the data for the location at the index. Using deconstruction we can break object at that index down into: `images`, `title`, `desc`, `hours`, `features`, and `geo` coordinates.
 
-The rest of the component is similar to the other components you wrote previously. Feel free to modify this and add styles. Notice that `images` is an array to display the image at the top you're using `images[0]` to get the first image in this array.
+The rest of the component is similar to the other components you wrote previously. Feel free to modify this and add styles. Notice that `images` is an array to display images. For example, you're using `images[0]` to get the first image in this array.
 
 ### Details Route
 
@@ -404,21 +406,19 @@ or
 
 You have access to this value inside a Route with: `props.match.params.id`
 
-Take a look back at `POPOSDetails.js` somewhere around line 6 you have:
+Take a look back at `src/POPOSDetails.js` somewhere around line 6 you should have:
 
 `const { id } = props.match.params`
 
 Here you get the value of id.
 
-You can test your work.
-
-Try these addresses in your browser.
+You can test your work by trying these addresses in your browser:
 
 `http://localhost:3000/#/details/0`
 `http://localhost:3000/#/details/1`
 `http://localhost:3000/#/details/2`
 
-What's important here is you app can find a details page by entering a URL. A user now could go directly to a page by entering that address, they could also bookmark a page.
+What's important here is your app can find a details page by entering a URL. A user now could go directly to a page by entering that address, they could also bookmark a page.
 
 ### Passing the id
 
@@ -474,7 +474,7 @@ Let's make some links in the `POPOSSpace`. It's probably best if people can clic
 
 > [action]
 >
-> In `POPOSpace.js`, import the Link component at the top.
+> In `src/POPOSpace.js`, import the Link component at the top.
 >
 ```js
 import { Link } from 'react-router-dom'
@@ -494,7 +494,7 @@ Or if you're already deconstructing props just add it to the list:
 
 > [action]
 >
-> In `POPOSpace.js`, first add `id` to your props. Then wrap the `img` in a `Link`. You should have something like this:
+> In `src/POPOSpace.js`, first add `id` to your props. Then wrap the `img` in a `Link`. You should have something like this:
 >
 ```js
 const { name, image, address, hours, id } = props
@@ -510,7 +510,7 @@ Notice the `to` path! Remember the path will look for a param following the `/`.
 
 > [action]
 >
-> In `POPOSpace.js`, do the same with the title:
+> In `src/POPOSpace.js`, do the same with the title:
 >
 ```js
 <h1>

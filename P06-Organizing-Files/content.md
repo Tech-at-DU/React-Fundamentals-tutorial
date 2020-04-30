@@ -9,7 +9,7 @@ The project is starting to grow in size. This is when some organization would he
 
 Components are self contained and represent UI elements. When possible you'd like your components to be portable. That is you'd like to take the components with you to new places so you don't have to write them over and over again each time you need a button or a nav bar.
 
-In some cases a component will be very specific to a project. The POPOSDetails component is very specific to this project. The Title component on the other hand could be used anywhere.
+In some cases a component will be very specific to a project. The `POPOSDetails` component is very specific to this project. The `Title` component on the other hand could be used anywhere.
 
 In order to be portable a component might have other files that it requires. For example the `Title` Component imports `Title.css` and `NavLink` from `React Router Dom`.
 
@@ -21,7 +21,7 @@ Organizing components and their dependencies in folders is one way to keep compo
 >
 > Create a new folder in the `src` folder name it `components`.
 >
-> Move all of your components into this folder. It should includea all of the following files:
+> Move all of your components into this folder. It should include all of the following files:
 >
 > - src
 >   - About.js
@@ -72,7 +72,7 @@ This is telling us that the system can't find `App.js`. This would make sense si
 
 > [action]
 >
-> Open index.js. Notice that App is imported here.
+> Open `index.js`. Notice that App is imported here.
 >
 > `import App from './App';`
 >
@@ -90,7 +90,7 @@ This message is telling us that the Component `POPOSDetails.js` failed to compil
 
 > [action]
 >
-> Open `POPOSDetails.js`. Find the import statement near the top:
+> Open `src/POPOSDetails.js`. Find the import statement near the top:
 >
 > `import data from './sfpopos-data.json'`
 >
@@ -128,7 +128,7 @@ Moving the files into new folders will create errors in your import statements t
 
 > [action]
 >
-> Make a folder for each of the Components you created and move that component and it's CSS file into the folder. **Give the folder the same name as the component**.
+> Make a folder for each of the Components you created and move that component and its CSS file into the folder. **Give the folder the same name as the component**. Be sure to fix the errors and import statements as needed.
 
 After these changes, your `src` directory should look like this:
 

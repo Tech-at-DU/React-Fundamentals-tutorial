@@ -17,9 +17,9 @@ To make changes to your project you'll need to think about which component is re
 
 It would be nice if the projects were arranged in a grid.
 
-CSS Grid is a set of CSS properties made for arranging elements in rows and columns. When declare an element `display: grid` that element arranges all of children in a grid.
+CSS Grid is a set of CSS properties made for arranging elements in rows and columns. When declaring an element as `display: grid`, that element arranges all of its children in a grid.
 
-In your case `POPOSList` is the parent and the `POPOSSpace`s are the children.
+In your case, `POPOSList` is the parent and the `POPOSSpace`s are the children.
 
 As you saw earlier the React way to handle styles is to create a stylesheet for each component and name that stylesheet with the same name as the component it styles.
 
@@ -43,9 +43,9 @@ Add a new stylesheet.
 }
 ```
 
-Here you calculated the width of this element to 100% the width of the container less 80px. With margin set to auto the browser will make the margins equal on both sides. You should now have 40px margins on the left and the right.
+Here you calculated the width of this element to 100% the width of the container minus 80px. With margin set to auto, the browser will make the margins equal on both sides. You should now have 40px margins on the left and the right (40px left margin + 40px right margin = 80px total).
 
-To display the the spaces in a grid you defined the display as grid. Then gave the grid three template columns. Each column is 1fr. An fr is a unit that represent a fraction of the space available. Last you set the gap between columns to 40px.
+To display the spaces in a grid, you defined the display as grid, and then gave the grid three template columns. Each column is 1fr. A `fr` is a unit that represent a fraction of the space available. Finally, you set the gap between columns to 40px.
 
 > [action]
 >
@@ -72,7 +72,7 @@ Your page should now look something similar to this (with different pictures and
 
 ![css grid](./assets/css-grid.png)
 
-React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI. Here `POPOSList` is responsible for rendering it's children.
+React is a library for creating user interfaces. Components represent UI elements. Understanding your React projects is about understanding which component is responsible for which part of the UI. Here, `POPOSList` is responsible for rendering its children.
 
 # Thinking in Components Pt. 2
 
@@ -91,7 +91,7 @@ Add a new stylesheet.
 
 Using the same name for everything might seem odd at first. It keeps the spelling errors down and makes it easier to reason about your work since there are fewer names to remember.
 
-Here are some styles for `POPOSSpace.css`
+Here are some sample styles for `POPOSSpace.css`:
 
 ```CSS
 .POPOSSpace {
@@ -107,11 +107,11 @@ Here are some styles for `POPOSSpace.css`
 
 These styles start to make our page responsive.
 
-The first rule makes each `div.POPOSSpace` expand to the width of its grid cell. The width of the grid container is a percentage of the window width so these cells expand and contract with the window.
+The first rule makes each `div.POPOSSpace` expand to the width of its grid cell. The width of the grid container is a percentage of the window width, so these cells expand and contract with the window.
 
-The second rule sets the width `img` tags within the `div.POPOSSpace` to 100% of the available space. With this the images match the width of their container. The second property here `height: auto` makes images maintain their aspect ratio as they scale.
+The second rule sets the width `img` tags within the `div.POPOSSpace` to 100% of the available space. With this, the images match the width of their container. The second property here `height: auto` makes images maintain their aspect ratio as they scale.
 
-The page should look something like this at this point.
+The page should look something like this at this point, if you used our sample styles above:
 
 ![Spaces Styled](assets/spaces-styled.png)
 

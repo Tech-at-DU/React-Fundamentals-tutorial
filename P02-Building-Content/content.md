@@ -3,7 +3,7 @@ title: "Building Content"
 slug: building-content
 ---
 
-So far you have just been practicing with React to learn its work flow, structure, and syntax. Now you will use these ideas to put together a web site.
+So far you have just been practicing with React to learn its work flow, structure, and syntax. Now you will use these ideas to put together a website.
 
 Before making a site you should have an idea of what you are making. **The goal of this tutorial is to make a site for SFPOPOS (San Francisco Privately Owned Public Open Spaces).**
 
@@ -14,7 +14,7 @@ Here is what the city says:
 
 These public spaces are nice places to visit, eat your lunch, meet with friends, or do some work outside the office. The problem is many of these spaces are hard to find or people don't know they exist. This new site is going to solve this problem by showing an image of the space, the name and address of the space, and more information such as the hours the space is open, a description and facilities available these would be things like coffee, bathroom, art, indoors or outdoors etc.
 
-People visiting this site could be almost anyone of almost any age.
+People visiting this site could be almost anyone of almost any age. Recall the user stories you learned to write in SPD. Let's write some for possible users of our site:
 
 - As a user I want to find all of the POPOS
 - As a user I want to find POPOS near me
@@ -24,7 +24,7 @@ With these user stories in mind we can start building the project.
 
 For the first user story you can build a Component that displays all of the spaces. Imagine this as a grid with each cell or card in the grid displaying a single POPOS with it's picture and address.
 
-To do this you'll need to build a couple components.
+To do this, you'll need to build a couple of components.
 
 One Component will display a POPOS location with a picture, name, address, etc. Let's call this `POPOSSpace`. This component represents a single space at an address.
 
@@ -176,12 +176,12 @@ React projects are **transpiled**. The code you write is not run directly. Inste
 > Unzip the SFPOPOS-images.zip and move the images folder into the public directory of this project.
 >
 
-Now edit `SFPOPOSSpace.js`.
+Now edit `POPOSSpace.js`.
 
 > [action]
 >
 ```js
-// src/SFPOPOSSpace.js
+// src/POPOSSpace.js
 >
 ...
 >
@@ -207,7 +207,7 @@ Your website should now look something similar to the following:
 >
 > Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is transpiled and the resulting bundle is run from the `public` folder.
 
-Take a close look at the img tag.
+Take a close look at the `img` tag.
 
 ```html
 ...
@@ -241,7 +241,7 @@ Last, put the variable inside `${}`:
 
 # Making Dynamic Components with Props
 
-Everything is working but it could be better yet! All of the public spaces show the same name, address, and image. You want them all to be different, without having to make a new component for each.
+Everything is working but it could still be better! All of the public spaces show the same name, address, and image. You want them all to be different, without having to make a new component for each.
 
 Components take a parameter called: 'props'. Props is always an object. **Props allows you as a developer to configure components.** In this project you can use props to pass the name, address, and image into each instance of the POPOSSpace component which will allow each to display unique values.
 

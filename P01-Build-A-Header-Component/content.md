@@ -78,7 +78,7 @@ export default Title
 
 Besides the import and export statements at the top and bottom, you have written a plain JS function.
 
-Looking closely the function returns a block of what looks like HTML. Looking closer still you'll this HTML-like block is not in a string. This is JSX.
+Looking closely, the function returns a block of what looks like HTML. Looking closer still you'll this HTML-like block is not in a string. **This is JSX!**
 
 JSX is an extension of the HTML language. It uses the XML language syntax and in a React project can be written alongside your regular JavaScript.
 

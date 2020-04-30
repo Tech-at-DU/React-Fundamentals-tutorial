@@ -3,11 +3,11 @@ title: "Dynamic Data"
 slug: dynamic-data
 ---
 
-Currently your web site us static. The information is fixed and cannot change. Web sites can also be dynamic with data that changes over time. For example what new public spaces could be added to the site the new spaces would show up on the list. Or what if you could search for a public space by name or address and the list showed only results that matched your search.
+Currently your web site is static. The information is fixed and cannot change. Web sites can also be dynamic with data that changes over time. For example what new public spaces could be added to the site the new spaces would show up on the list. Or what if you could search for a public space by name or address and the list showed only results that matched your search.
 
 To handle these situations you'll need store the data that we see on the screen outside of components themselves.
 
-You'll need a data structure to hold this data. A common option is JSON. JSON or JavaScript Object Notation is a plain text format that translates to standard JavaScript Objects and Arrays.
+You'll need a data structure to hold this data. A common option is JSON. **JSON or JavaScript Object Notation is a plain text format that translates to standard JavaScript Objects and Arrays.**
 
 ## Take a look at the JSON file
 
@@ -86,15 +86,15 @@ data[1].features[1] // art
 
 ## Using JSON
 
-You can use the JSON object to generate POPOSSpace components. Originally you created a list of these manually. We could say you "hard coded" all of the values to create static elements. In this step you will use the JSON data to create dynamic elements.
+You can use the JSON object to generate `POPOSSpace` components. Originally you created a list of these manually. We could say you "hard coded" all of the values to create static elements. In this step you will use JSON data to create dynamic elements.
 
-The easiest way to do this is with Array.map(). Map is used to transform an array. Use it when you have an array of one kind type that you'd like to transform into another type.
+The easiest way to do this is with `Array.map()`. `Map` is used to transform an array. Use it when you have an array of one kind type that you'd like to transform into another type.
 
-The first step is to load the JSON data in your POPOSList component.
+The first step is to load the JSON data in your `POPOSList` component.
 
 > [action]
 >
-> Download the [sfpopos-data.json](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) file and put it in your `src` directory
+> Download this [sfpopos-data.json file](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) and put it in your `src` directory
 
 Now let's test out printing the JSON to console:
 > [action]
@@ -125,7 +125,7 @@ Go to your browser and inspect the page. Then check the console. You should see 
 
 What happened here? You called the `map()` method on the `data` array, `map()` returned an array of strings.
 
-How does it work? The `map()` method takes a callback/function and calls this once for each item in the array. Your callback function decides what should be included in new array created by `map()`. In this example the callback/function returned the title from each obj in the original array.
+How does it work? The `map()` method takes a callback/function and calls this once for each item in the array. Your callback function decides what should be included in new array created by `map()`. In this example the callback/function returned the `title` from each `obj` in the original array.
 
 Here is another experiment. Try this:
 
@@ -165,7 +165,7 @@ Here you put an array of JSX/Components inside a block of JSX code. When React s
 
 > [action]
 >
-> Remove the code from the last example, but **be sure to keep the the line that imports the JSON data:**
+> Remove the code from the last example, **but be sure to keep the the line that imports the JSON data:**
 >
 ```js
 import data from './sfpopos-data.json'
@@ -203,11 +203,11 @@ function POPOSList() {
 export default POPOSList
 ```
 
-Now you should see one POPOSSpace for each object in the data array.
+Now you should see one `POPOSSpace` for each object in the data array.
 
 # Deconstructing properties
 
-Objects and arrays are essential tools you will use them a lot. They complicate your syntax which can lead to errors. Take a look at the snippet from the last change.
+Objects and arrays are essential tools you will use a lot. However, they can complicate your syntax which can lead to errors. Take a look at the snippet from the last change.
 
 We can refactor this code to make it easier to read and less prone to error. Let's look at this snippet from `POPOSList.js`:
 
@@ -259,7 +259,7 @@ const spaces = data.map((obj) => {
 })
 ```
 
-Now your code is short and concise. As an option you can even deconstruct as a parameter.
+Now your code is short and concise. As an option you can even use deconstruct as a parameter.
 
 ```js
 const spaces = data.map(( { title, address, images } ) => {
@@ -315,23 +315,21 @@ You can use the title for a key since all of the locations have a different titl
 
 The new data has lots of extra information.
 
-## Challenge
-
-The goal of this challenge is to display the hours for each location. You will need to modify the `POPOSSpace` to display the hours and then modify the `POPOSList` component to pass the hours from the data as a prop.
+The goal here is to display the hours for each location. You will need to modify the `POPOSSpace` to display the hours and then modify the `POPOSList` component to pass the hours from the data as a prop.
 
 Start in `POPOSList.js`. Get the hours property from your data.
 
-You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` components using map. Roughly it might look something like:
+You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` components using map. Roughly, it might look something like:
 
 `<POPOSSpace ... hours={hours} />`
 
-Then edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop.
+Then you will need to edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop.
 
 > [action]
 >
 > Follow the guidance above to complete the challenge! Do your best, and try to work through it before viewing the solution below.
 
-### Solution
+## Solution
 
 > [solution]
 >
