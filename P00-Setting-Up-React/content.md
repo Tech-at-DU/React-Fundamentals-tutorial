@@ -13,7 +13,7 @@ By the end of this tutorial, you'll have a react site that looks similar to the 
 
 You can repurpose the code here by changing the images and other content, adding your styles to create a React web site of your design.
 
-The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will present a detail view of that item, with more information.
+The code presented here will create a Content Detail pattern. The site will present a list of content items, that might include a name and picture, clicking a content item will show a detail view with more information.
 
 ## SF Privately Owned Public Spaces
 
@@ -21,7 +21,7 @@ What you will be building is a web site for San Francisco's Privately Owned Publ
 
 ## Learning Outcomes
 
-By the end of this tutorial, you should be able to...
+By the end of this tutorial, you should be able to:
 
 1. Understand how to set up a React project
 1. Create basic React components
@@ -36,7 +36,7 @@ This tutorial will require that you use the terminal. You'll need to execute bas
 
 You'll need to
 
-- navigate to directories
+- use `cd` to navigate to directories
 - execute shell commands
 
 ## Create React App
@@ -71,10 +71,10 @@ While you can install React manually, the boilerplate code installed by `create-
 
 ### Run Your App
 
-Navigate into the project directory with:
+Navigate to the project directory with:
 
 > [action]
-> Navigate to into your project folder with:
+> Navigate to your project folder with:
 >
 ```bash
 cd sfpopos
@@ -88,6 +88,17 @@ yarn start
 
 Alternatively, you can use: `npm start`. If you don't have `yarn` installed, make sure to do so: `npm install -g yarn`
 
+> [info] **Note!** If you see this error message: 
+>
+> If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
+That will permanently disable this message but you might encounter other issues.
+>
+> If you see this you may have a different version of of something than something is recommended. You can get around this by: 
+> 
+> - Add a new file named `.env`
+> - Add `SKIP_PREFLIGHT_CHECK=true` to the file and save
+> - Run `yarn start` or `npm start`
+>
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
@@ -134,26 +145,32 @@ Take a look at `src`:
 
 These are the files that make up the app/website. Running the default project you should see a web page that is generated at `index.js`. Think of this as the entry point of the app. You won't ever need to edit this file.
 
+### App Structure
+
 React apps are built with Components. Typically each Component is stored in a single file named after the Component. Components might be things like headers, buttons, cards, and footers. They can also be things that display graphs and charts.
 
 Components are typically named uppercase. So the Components mentioned above might be named:
 
-- Button
-- Card
-- Chart
-- Footer
-- Graph
-- Header
+- Card - `Card.js`
+- Chart - `Chart.js`
+- Footer - `Footer.js`
+- Header - `Header.js`
+
+### Styles
 
 If a Component has styles these can be placed in a CSS file with the same name as the Component. Here, `App.css` contains the styles that are used by the `App.js` Component.
 
 In the default project, everything you see in the browser is defined in `App.js` and styled with `App.css`.
 
+### Using Modules
+
 Take a look at `index.js`. You'll see that this file imports `App.js` at the top of the page:
 
 `import App from './App';`
 
-When you want to include code from one file, `App.js` for example, and use it on another file, `index.js` you'll `import from`. We will talk more about this coming up.
+When you want to include code from one file, `App.js` for example, and use it in another file, `index.js` you'll `import from`. We will talk more about this coming up.
+
+You can see this file also imports `./index.css` to include the CSS with this file.
 
 Further down the code you'll see that the `App` Component, imported at the top, is used here:
 
