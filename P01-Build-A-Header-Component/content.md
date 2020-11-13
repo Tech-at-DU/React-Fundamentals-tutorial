@@ -9,24 +9,17 @@ React projects are built with Components. To build web applications with React y
 
 **React would best be described as a library for creating user interfaces.** Think of Components as the elements of user interfaces. For example, your site might be made up of the following Components:
 
-- App
-- Header
-- Logo
-- NavBar
-- NavLink
-- Content
-- Card
-- Footer
+App, Header, Logo, NavBar, NavLink, Content, Card, Footer
 
-Each of these elements would be separate Components, and you would define a file for each.
+Each of these elements would be separate Components, and you would define a file for each. Component files are always named after the component they contain: `App.js`, `Header.js`, `Logo.js`, `NavBar.js`, `NavLink.js`, `Content.js`, `Card.js`, and `Footer.js`. 
 
 Components can be nested. That is one Component can be the child of another Component. Rendering the parent would render the child. The components from the list above might be nested in this way:
 
 - App
   - Header
     - Logo
-  - NavBar
-    - NavLink
+    - NavBar
+      - NavLink
   - Content
     - Card
   - Footer
@@ -37,16 +30,15 @@ Components can also be reused. Rather than writing a new NavLink for each link, 
   - Header
     - Logo
   - NavBar
-    - NavLink
-    - NavLink
-    - NavLink
+    - **NavLink**
+    - **NavLink**
+    - **NavLink**
   - Content
-    - Card
-    - Card
-    - Card
-    - Card
+    - **Card**
+    - **Card**
+    - **Card**
+    - **Card**
   - Footer
-
 
 The best way to understand Components is to make one for yourself!
 
@@ -96,25 +88,27 @@ It doesn't look too much different, but it is a lot harder to understand what is
 
 **What is the purpose of JSX?** JSX translates to HTML code that looks more or less like the JSX you have written. In the Non-JSX version of the code, it's hard to tell what the HTML output is.
 
-Besides being easier to read it's also easier to write.
+Besides being easier to read than the JavaScript the JSX version is also easier to write.
 
-React is a library for creating user interfaces. The Components you write translate to atomic pieces of those interfaces. For the web interfaces are written in HTML. In React Components generate HTML elements.
+React is a library for creating user interfaces. The Components you write translate to atomic pieces of those interfaces. In React Components generate HTML elements.
 
 **A React Component is just a function that returns some JSX!**
 
-You may have noticed that `React` was not used in this file but it was imported anyway.
+You may have noticed that `React`, the variable imported at the top of the page, was not used in this file but it was imported anyway.
 
 `import React from 'react'`
 
-`React` must be in scope when using JSX.
+`React` must be in scope when using JSX. It's doing some secret stuff behind the scenes. You'll always `import React from 'react'` in every component you create.
 
 ### JSX Rules and Syntax
 
 JSX has rules of syntax that come with it.
 
-JSX must always have a top level node. For example, the code below produces an error:
+**Rule** JSX must always have a top level node. 
 
-```html
+For example, the code below produces an error:
+
+```JSX
 // Error! Sibling nodes
 <h1>Hello</h1>
 <p>World</p>
@@ -122,7 +116,7 @@ JSX must always have a top level node. For example, the code below produces an e
 
 Whereas this code will not produce an error:
 
-```html
+```JSX
 // Good! has a single top level element
 <div>
   <h1>Hello</h1>
@@ -150,8 +144,6 @@ function MyComp() {
 }
 ```
 
-
-
 In `Title.js`, you exported the `Title` function as the _default export_.
 
 `export default Title`
@@ -174,6 +166,7 @@ import logo from './logo.svg';
 import './App.css';
 [bold]import Title from './Title';[/bold]
 ```
+>
 
 Here you are importing the default export from `Title.js`.
 
@@ -186,7 +179,7 @@ The `.js` file extension is optional when using import.
 
 > [action]
 >
-> Now let's use the `Title` Component inside the `App` Component. In `App.js`, rewrite the existing component to look like:
+> Now use the `Title` Component inside the `App` Component. In `App.js`, rewrite the existing component to look like:
 >
 ```js
 // src/App.js
@@ -213,7 +206,26 @@ Notice you imported `Title` and used it as a Component by writing it like an HTM
 
 Since the Component doesn't have any child Components you can use a self-closing tag (`<TagName />` instead of `<TagName>...</TagName>`).
 
-This is another rule of the JSX Language. Empty tags can be written as a single tag ending with `/`.
+This is another **rule** of the JSX Language. Empty tags can be written as a single tag ending with `/`.
+
+**Challenge:** If you're not running your React project do it now and check out your work in the browser. 
+
+- Using the terminal navigate to your project directory. 
+- In terminal run: `yarn start`bash
+
+You should only see the page title at the top, it's the only thing your App component is rendering at the moment. 
+
+**Challenge:** Add the logo to the page. 
+
+To do this you'll need to add a new tag. Add an `<img />` tag. Notice the tag ends with a `/`. 
+
+Add the src attribute and set the value to logo. 
+
+```JSX
+<img src={logo} />
+```
+
+**Rule** a JavaScript expression in JSX must be wrpped in the curly braces. In this case `logo` was imported near the top, it's variable referencing an image file.
 
 ### Styling a Component
 
@@ -232,6 +244,7 @@ The Create React boilerplate project allows styles to be imported into a Compone
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: baseline;
   padding: 1em;
   margin-bottom: 2em;
   background-color: rgb(192, 45, 26);
@@ -253,22 +266,26 @@ When assigning a class name to a JSX tag use `className` in place of `class`.
 
 > [action]
 >
-> Make sure your `Title` function looks like the following:
+> Your `Title` component might look like the following:
 >
 ```js
 // src/Title.js
 >
 ...
 >
+import React from 'react'
+import './Title.css';
+>
 function Title() {
   return (
     <div className="Title">
-      <header>
-        <h1>SFPOPOS</h1>
-      </header>
+      <h1>SFPOPOS</h1>
+			<div className="Title-Subtitle">San Franciscos Privately Owned Public Spaces</div>
     </div>
   )
 }
+
+export default Title
 ```
 
 Great work! You should now have a header for your page:
