@@ -54,26 +54,26 @@ This first element has the same properties as the others. The information here d
 
 Here is a a breakdown of what is in each of these objects.
 
-- title - String - A short name/description
-- desc - String - A long detailed description
-- hours - String - A string showing the hours
-- address - String - The written address
-- geo - Object
-  - lat - Number - The geocoordinate latitude
-  - lon - Number - The geocoordinate longitude
-- images - Array - A list of file name strings
-  - String
-- website - String  - A url string
-- features - Array - A list of strings describing features of the location
-  - String
+- title - `String` - A short name/description
+- desc - `String` - A long detailed description
+- hours - `String` - A string showing the hours
+- address - `String` - The written address
+- geo - `Object`
+  - lat - `Number` - The geocoordinate latitude
+  - lon - `Number` - The geocoordinate longitude
+- images - `Array` - A list of file name strings
+  - `String`
+- website - `String` - A url string
+- features - `Array` - A list of strings describing features of the location
+  - `String`
 
-Each object has the same properties though some might have more or fewer items. For example, some locations may have more or fewer features.
+Each object has the same properties though the values will be different for each.
 
 ## Importing JSON
 
 You can import JSON from a file if you are using the the create react app starter code. Just import it at the top of a file like this:
 
-`import data from './sfpopos-data.js'`
+`import data from './my-data.json'`
 
 From here you could get at any of the elements using standard JS syntax. For example:
 
@@ -125,7 +125,9 @@ Go to your browser and inspect the page. Then check the console. You should see 
 
 What happened here? You called the `map()` method on the `data` array, `map()` returned an array of strings.
 
-How does it work? The `map()` method takes a callback/function and calls this once for each item in the array. Your callback function decides what should be included in new array created by `map()`. In this example the callback/function returned the `title` from each `obj` in the original array.
+How does it work? The `map()` method takes a callback function and calls this once for each item in the array. Your callback function gets one of the things from the original array and should return something to be included in the output array. In this example the callback function returned the `title` from each `obj` in the original array.
+
+You started with an array of Objects and map output an array Strings. This is what map is used for. Converting an array one type into an array of something else.
 
 Here is another experiment. Try this:
 
@@ -159,7 +161,7 @@ function POPOSList() {
 }
 ```
 
-Here you put an array of JSX/Components inside a block of JSX code. When React sees this it will automatically display all elements in the list. You should now see the titles of each place in your page.
+Here you put an array of JSX/Components inside a block of JSX code. When React sees this it will automatically display all elements in the Array. You should now see the titles of each place in your page.
 
 **Your goal here is to turn the array of objects into an array of components.**
 
@@ -207,7 +209,7 @@ Now you should see one `POPOSSpace` for each object in the data array.
 
 # Deconstructing properties
 
-Objects and arrays are essential tools you will use a lot. However, they can complicate your syntax which can lead to errors. Take a look at the snippet from the last change.
+Objects and arrays are essential tools you will use a often. However, they can complicate your syntax which can lead to errors.
 
 We can refactor this code to make it easier to read and less prone to error. Let's look at this snippet from `POPOSList.js`:
 
@@ -227,13 +229,14 @@ Notice you had to write `obj.` in three places. Consider this:
 
 ```JS
 const spaces = data.map((obj) => {
+  // Make a variable for each property
   const title = obj.title
   const address = obj.address
   const images = obj.images
 
   return (
     <POPOSSpace
-      name={title}
+      name={title} // no need for obj. here
       address={address}
       image={images[0]}
     />
@@ -247,6 +250,7 @@ Deconstruction allows what the previous example does in a single line of code.
 
 ```JS
 const spaces = data.map((obj) => {
+  // Deconstruct obj into properties
   const { title, address, images } = obj
 
   return (
@@ -263,7 +267,6 @@ Now your code is short and concise. As an option you can even use deconstruct as
 
 ```js
 const spaces = data.map(( { title, address, images } ) => {
-
   return (
     <POPOSSpace
       name={title}
@@ -286,11 +289,13 @@ After you have the list displaying in your browser open the console. You should 
 
 `Warning: Each child in a list should have a unique "key" prop.`
 
-This is specific to React and it's Virtual DOM. For the Virtual DOM to be efficient, it needs to know which items have been changed. In the case of a list, it does not know which items in the list have been changed, unless each item has something to identify it uniquely.
+This is specific to React and it's Virtual DOM. The virtual DOM is used to manage your components and the browser's DOM.
 
-We use the key prop for this. A key can be any value as long it is unique for each element in a list.
+For the Virtual DOM to be efficient, it needs to know which items have been changed. In the case of a list, it does not know which items in the list have been changed, unless each item has something to identify it uniquely.
 
-For example, see how we assign the `title` to be the `key` for `POPOSSpace`:
+Use the key prop for this. A key can be *any* value as long it is *unique for each element in a list*.
+
+The `title` is unique to each element in the list making it a good choice for a key. 
 
 ```js
 const spaces = data.map(( { title, address, images } ) => {
@@ -341,6 +346,7 @@ const spaces = data.map(({ title, address, images, hours }) => {
 >
   return (
     <POPOSSpace
+      key={title}
       name={title}
       address={address}
       image={images[0]}
