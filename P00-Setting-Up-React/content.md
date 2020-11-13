@@ -170,15 +170,21 @@ Take a look at `index.js`. You'll see that this file imports `App.js` at the top
 
 When you want to include code from one file, `App.js` for example, and use it in another file, `index.js` you'll `import from`. We will talk more about this coming up.
 
-You can see this file also imports `./index.css` to include the CSS with this file.
+You can see `index.js` also imports `./index.css` to include the CSS with this file.
 
-Further down the code you'll see that the `App` Component, imported at the top, is used here:
+```js
+import './index.css'
+```
+
+Notice that `App` is imported into `index.js`. You'll that `App` is used later in the file here: 
 
 `ReactDOM.render(<App />, document.getElementById('root'));`
 
 `<App />` is telling React to render this Component as HTML.
 
 The `App` Component is the top-level Component in this project. Components can be nested. You'll create and define new Components and put these into `App`. When the program runs it will render App and all of its child Components.
+
+The code in `index.js` is 'boilerplate' code and you'll usually never need to edit this. You'll begin your work in `App.js`
 
 ### App.js
 
@@ -192,7 +198,9 @@ import './App.css';
 
 These import the react library, the logo image, and App.css code. Each from the files named.
 
-**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin with a `./`.
+**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. 
+
+Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin with a `./`.
 
 After the imports in `App.js`, you'll see a single function that returns a block of what appears to be HTML.
 
@@ -203,6 +211,7 @@ Notice the HTML is not a string. This is **JSX**.
 > JSX is an extension of the JS language. JSX is transpiled into plain JS before the App is run. This transpiling process is handled by Webpack and it is why you build and run the app from the command line.
 >
 JSX gives an alternative way to write our code that generates HTML.
+>
 
 ## Using Git/GitHub
 
