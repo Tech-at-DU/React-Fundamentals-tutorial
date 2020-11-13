@@ -16,9 +16,9 @@ These public spaces are nice places to visit, eat your lunch, meet with friends,
 
 People visiting this site could be almost anyone of almost any age. Recall the user stories you learned to write in SPD. Let's write some for possible users of our site:
 
-- As a user I want to find all of the POPOS
-- As a user I want to find POPOS near me
-- As a user I want to view details about POPOS
+- As a user I want to find all of the public open spaces in San Francisco
+- As a user I want to find a public open space near me
+- As a user I want to view details about pupblic open spaces I might want to visit.
 
 With these user stories in mind we can start building the project.
 
@@ -44,7 +44,7 @@ import React from 'react';
 function POPOSList() {
   return (
     <div>
-      <h1>Content here...</h1>
+      <h1>Keep your eye on this space for future content...</h1>
     </div>
   )
 }
@@ -77,9 +77,9 @@ function App() {
 }
 ```
 
-Testing your app at this point you'll see just the message: **"Content here..."**. This is just a place holder for the content you will add later.
+Testing your app at this point you'll see just the message: **"Keep your eye on this space..."**. This is just a place holder for the content you will add later.
 
-React uses a Component Architecture. Notice here how one component can contain another component and the App is built from many components each designed to display a single UI element.
+React uses a Component Architecture. Notice how one component can contain another component and the App is built from many components each designed to display a single UI element.
 
 # Creating the POPOSSpace Component
 
@@ -101,11 +101,12 @@ Let's make a component to show a project.
 // src/Project.js
 >
 import React from 'react'
+import logo from './logo.svg'
 >
 function POPOSSpace() {
   return (
     <div>
-      <img src="" width="300" height="300" alt="Hello" />
+      <img src={logo} width="300" height="300" alt="Hello" />
       <h1>Name...</h1>
       <div>Address...</div>
     </div>
@@ -115,7 +116,7 @@ function POPOSSpace() {
 export default POPOSSpace
 ```
 
-There are a few things missing here but you will revisit this shortly and pick up those details.
+There are a few things missing here but you will revisit this shortly and pick up those details. You used the React Logo as a place holder for images that will come in the future. 
 
 For now import `POPOSSpace` into to your `POPOSList`.
 
@@ -144,7 +145,7 @@ function POPOSList() {
 ...
 ```
 
-Your project should now show a list of 6 POPOS Spaces. Currently the images are missing, the names and addresses are just placeholders. You're going to take care of that soon.
+Your project should now show a list of 6 POPOS Spaces.
 
 What's important to understand here is that you can reuse a component as often as needed. In this case you're using `POPOSSpace` six times.
 
@@ -157,7 +158,7 @@ Also, notice how your project is structured.
       - POPOSSpace
       - POPOSSpace
 
-If you imagine your project as file structure you can see that you have components nested within components.
+If you imagine your project as tree structure you can see that you have components nested within components similar to the HTML DOM. 
 
 # Add some Local Image Files
 
@@ -167,9 +168,9 @@ This would look a lot better with some images.
 >
 > Download the images here: [SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
 
-React projects are **transpiled**. The code you write is not run directly. Instead the code you wrote is converted into vanilla JS. The project is served from the public directory.
+The code you write is not run directly. Instead the code you wrote is converted into vanilla JS and project is served from the public directory.
 
-**Images and other static files that your project will use must be referenced with the `public` directory as the root.**
+**Images and other static files that your project will use will often be referenced with the `public` directory as the root.**
 
 > [action]
 >
@@ -188,7 +189,11 @@ Now edit `POPOSSpace.js`.
 function POPOSSpace() {
   return (
     <div>
-      <img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} width="300" height="300" alt="Hello" />
+      <img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`}     
+        width="300" 
+        height="300" 
+        alt="50 Califonia St." 
+      />
       <h1>Name...</h1>
       <div>Address...</div>
     </div>
@@ -199,13 +204,15 @@ function POPOSSpace() {
 >
 ```
 
+Note! Here you set the path to an image by combing a variable and a string. This is a JavaScript expression and must be enclosed in `{...}`. 
+
 Your website should now look something similar to the following:
 
 ![Screen Shot](assets/Screen-shot-1.png)
 
 > [info]
 >
-> Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is transpiled and the resulting bundle is run from the `public` folder.
+> Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is processed and the resulting bundle is run from the `public` folder.
 
 Take a close look at the `img` tag.
 
@@ -235,15 +242,20 @@ The string needs to begin with the path to the public directory. React has an en
 
 Last, put the variable inside `${}`:
 
-```html
-`<img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} />`
+```JSX
+<img 
+  src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} 
+  width="300" 
+  height="300" 
+  alt="Hello" 
+/>
 ```
 
 # Making Dynamic Components with Props
 
 Everything is working but it could still be better! All of the public spaces show the same name, address, and image. You want them all to be different, without having to make a new component for each.
 
-Components take a parameter called: 'props'. Props is always an object. **Props allows you as a developer to configure components.** In this project you can use props to pass the name, address, and image into each instance of the POPOSSpace component which will allow each to display unique values.
+Components take a parameter called: 'props'. Props is always an object. **Props allows you to configure components.** In this project you can use props to pass the name, address, and image into each instance of the POPOSSpace component which will allow each to display unique values.
 
 In the case of the `POPOSSpace` Component there are three things that need to be dynamic:
 
@@ -260,7 +272,7 @@ In the case of the `POPOSSpace` Component there are three things that need to be
 >
 ...
 >
-function POPOSSpace(props) {
+function POPOSSpace(props) { // Add props here!
   ...
 }
 ```
@@ -280,7 +292,12 @@ function POPOSSpace(props) {
   const { name, image, address } = props
   return (
     <div>
-      <img src={`${process.env.PUBLIC_URL}images/${image}`} width="300" height="300" alt="Hello" />
+      <img 
+        src={`${process.env.PUBLIC_URL}images/${image}`} 
+        width="300" 
+        height="300" 
+        alt="Hello" 
+      />
       <h1>{name}</h1>
       <div>{address}</div>
     </div>
@@ -288,7 +305,7 @@ function POPOSSpace(props) {
 }
 ```
 
-Testing at this point will not show anything since the values for: name, image, and address have not been defined. You'll define values for props where the component instance was created. This happens in `POPOSList.js`.
+Testing at this point will not show anything since the values for: name, image, and address have not been defined yet. You'll define values for props where the component instance is created. This happens in `POPOSList.js`.
 
 > [action]
 >
@@ -321,19 +338,41 @@ function POPOSList() {
 
 The values for props are defined as attributes. The names here must match the names used within the component! Earlier you used: name, image, and address. These are the names that must be used here.
 
+Compare the two components: 
+
+
+
+```JSX
+// In POPOSList.js
+<POPOSSpace
+  name="50 California Street" // name
+  address="50 California St." // address
+  image="50-california-st.jpg"// image
+/>
+```
+```JSX 
+// In POPOSSpace.js
+function POPOSSpace(props) {
+  // The attributes above set the values of these properties
+  const { name, image, address } = props
+  ...
+}
+```
+
+
 ### Props and Components
 
-You now have a single Component which you can use as often as needed, and each instance of the component can display a different name, image, and address. _This is the power of props_. Props are used to configure your components.
+You now have a single Component which you can use as often as needed, and each instance of the component can display a different name, image, and address, _this is the power of props_. Props are used to configure your components.
 
-You can assign props as key value pairs defined in JSX like attributes in HTML. For example:
+You can assign props as key value pairs defined in JSX like attributes in HTML. Props can be any value strings, numbers, objects, arrays etc. For example:
 
 ```html
-<MyComp message="Hello World" value={42} />
+<MyComp message="Hello World" value={42} data={[1,2,3]} />
 ```
 
 You can access props inside a component from the `props` object which is passed as a parameter, like so:
 
-```js
+```JSX
 function MyComp(props) {
   <div>
     <h1>{props.message}</h1> // Hello World
@@ -343,7 +382,6 @@ function MyComp(props) {
 ```
 
 JS expression inside JSX must be placed in the `{}`. For example: `<PI value={22/7} />`
-
 
 > [action]
 >
