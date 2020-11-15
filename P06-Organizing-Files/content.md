@@ -3,7 +3,7 @@ title: "Organizing Files"
 slug: organizing-files
 ---
 
-The project is starting to grow in size. This is when some organization would help you manage and grow your application.
+The project is starting to grow in size. This is a point when some organization would help you manage and grow your application.
 
 ## Components
 
@@ -118,7 +118,7 @@ This time the error is in `POPOSList.js` and it can't resolve `./sfpopos-data.js
 >
 > `import data from '../sfpopos-data.json'`
 
-With these changes, you should have everything working in the example project.
+With these changes, you should have everything working in the example project. You might have to refresh the browser page after these changes. 
 
 ### Grouping Components
 
@@ -155,5 +155,9 @@ After these changes, your `src` directory should look like this:
   - serviceWorker.js
   - setupTests.js
   - sfpopos-data.json
+
+Note you will need to update your imoport statements after moving your files. This includes statements that import the component into `App.js` and places where you may have imported `sfpopos-data.json`. 
+
+Read thee error any error messages and these will usually tell you where a path fails to locate something. 
 
 **CONGRATS!** You have successfully completed the React Fundamentals tutorial! Keep practicing with React, and we're excited to teach you more!
