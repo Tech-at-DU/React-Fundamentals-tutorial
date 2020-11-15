@@ -7,22 +7,39 @@ The project you have built is described as a **single page application** but mos
 
 A single page application is just that: a single html page. Single page applications control the DOM by updating, adding, or removing elements. In this way they can function as multi-page applications.
 
-A single page application built with React can display different content through components. Components can represent whole pages of content in a React app. Conveniently someone has a made a library just for this purpose!
+A single page application built with React can display different content through components. Components can represent whole pages of content in a React app.
 
-You will use that library in this step to add a sub-page for each of the locations. These sub-pages will show detailed information about each location.
+You can use the React Router library to make your React apps function like multi-page apps. You'll add a sub-page for each public space location. These sub-pages will show detailed information about each location.
 
 # React Router
 
-**React Router** is a library that can create a multipage experience in React. It does this by rendering and not rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser. Recall your early BEW classes where you learned how to build these!
+**React Router** is a library that can create a multipage experience in React. It does this by selectively rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser.
 
-To work with React Router it helps to understand the terminology.
+To work with React Router it helps to understand some terminology.
 
 - **Router** - A parent component that manages Routes
 - **Route** - A component that displays another component
 
-Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes.
+Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes. 
+
+Imagine a website with three pages built with React using React Router. The Router and Route components might be arranged like this: 
+
+- Router
+  - Route - Home Page
+  - Route - About Page
+  - Route - Map Page
 
 A Route is responsible for displaying components. Routes have a path property: when the path matches the URL in the address, the Route displays the appropriate component, otherwise not.
+
+In code this might look like: 
+
+```JSX
+<Router>
+  <Route path='/home' ... />
+  <Route path='/about' ... />
+  <Route path='/home' ... />
+</Router>
+```
 
 **Important!** The two names: Router and Route are different by only a single character, but they are very different in function and must be used correctly. Watch your spelling!
 
@@ -42,7 +59,7 @@ Coming up, you'll import `HashRouter` into `App.js`. This is a component that ma
 
 > [info]
 >
-> Quick note! `HashRouter` and `BrowserRouter` are two options. They act the same in our app and only differ in how they handle the URL.
+> Quick note! `HashRouter` and `BrowserRouter` are two options. They act the same in our app and only differ in how they handle the URL/Path.
 >
 > HashRouter includes a # in the URL, while BrowserRouter does not include the #.  
 >
@@ -54,7 +71,7 @@ Coming up, you'll import `HashRouter` into `App.js`. This is a component that ma
 >
 > `http://localhost:3000/about`
 >
-> Why use one or the other? In most cases they are interchangeable. Since we have this plan to publish this site to GitHub pages in the future, we're using HashRouter because GitHub pages doesn't work with BrowserRouter!
+> Why use one or the other? In most cases they are interchangeable. Since we plan to publish the completed site to GitHub pages in the future, we're using HashRouter because GitHub pages doesn't work with BrowserRouter!
 
 ## Setting up the Router
 
@@ -68,7 +85,7 @@ Router manages routes. It should be a top level component. For this reason you'l
 import { HashRouter as Router, Route } from 'react-router-dom'
 ```
 
-Why `HashRouter as Router`? This is an alias. You're importing HashRouter but using it under the name Router instead.
+Why `HashRouter as Router`? This is an alias. You're importing HashRouter but using it under the name `Router` instead. This will make it easier to make changes in the future if needed. 
 
 > [action]
 >
@@ -89,7 +106,7 @@ function App() {
 }
 ```
 
-Notice how Router surrounds everything.
+Notice how Router surrounds everything. Routes must be children of a Router!
 
 ### Adding Routes
 
@@ -112,7 +129,7 @@ function App() {
 }
 ```
 
-Notice when you created the Route you used two props: path and component. Path defines the URL that will make the component display.
+Notice when you created the Route you used two props: `path` and `component`. Path defines the URL that will make the component display.
 
 The `/` route is the root route. So the list should display now at `http://localhost:3000/`. In your browser, add something to the end of the path in the address bar, and see what happens when you try to navigate to it. Try this as an example:
 
@@ -170,7 +187,7 @@ function About() {
 export default About
 ```
 
-This is simple component that will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info like a map. For now we are concerned with Routes.
+This component will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info like a map. For now we are concerned with Routes.
 
 > [action]
 >
@@ -211,7 +228,7 @@ Should display the about page
 
 # Linking to Routes
 
-This is all working but we can't ask people to navigate to pages by typing the URL, people need something to click!
+This is working but we can't ask people to navigate to pages by typing the URL, people need something to click!
 
 React Router provides a `NavLink` component. The `NavLink` sets the address to navigate to in our browser's URL bar, and navigates the user to that address. It's like the `<a>` tag but specific to React Router.
 
@@ -266,7 +283,7 @@ The `NavLink`s need some style. `NavLink` translates to a regular anchor `<a>` t
 > Then, open `src/Title.css` and add some styles.
 >
 ```CSS
-.nav-link {
+.Title .nav-link {
   display: inline-block;
   padding: 0.5em 1em;
   color: rgba(255, 255, 255, 0.835);
@@ -284,7 +301,7 @@ Luckily, `NavLink` has a prop for this! The `activeClassName` prop/attribute def
 
 > [action]
 >
-> Edit your `NavLink`s in `src/Title.js` to be the following:
+> *Edit* your `NavLink`s in `src/Title.js` to be the following:
 >
 ```js
 <NavLink
@@ -306,7 +323,7 @@ With these options, the selected `NavLink` will have the class: `nav-link-active
 > Add the following to `src/Title.css`:
 >
 ```CSS
-.nav-link-active {
+.Title .nav-link-active {
   color: #fff;
   border-bottom: 2px solid;
 }
@@ -398,11 +415,11 @@ import POPOSDetails from './POPOSDetails'
 
 Notice the path here is different. `path="/:id"` it contains a `:`. This is a parameter. The value following the `/` is now a variable and can be anything. For example:
 
-`http://localhost:3000/#/0` id would be 0
+`http://localhost:3000/#/0` `id` would be 0
 
 or
 
-`http://localhost:3000/#/42` id would be 42
+`http://localhost:3000/#/42` `id` would be 42
 
 You have access to this value inside a Route with: `props.match.params.id`
 
@@ -443,7 +460,11 @@ const spaces = data.map(({ title, address, images, hours }, i) => {
 })
 ```
 
-On the first line there is a second parameter to: `map(obj, i)`, or `map({ ... }, i)`. here is the whole line:
+On the first line there is a second parameter to: 
+
+`map(obj, i)`, or 
+
+`map({ ... }, i)`. here is the whole line as it is shown above:
 
 `const spaces = data.map(({ title, address, images, hours }, i) => {`
 
@@ -451,12 +472,12 @@ The second change is the added prop `id={i}` in the `POPOSSpace` component.
 
 ```html
 <POPOSSpace
-  id={i}
+  id={i} // added new prop id here!
   ...
 />
 ```
 
-When using `map()` this method provides the index of the element as a second parameter. This is useful in many cases.
+When using `map()` this method provides the index of the element as a second parameter. This is useful in many cases, you're using it here as the index of the data from our JSON data.
 
 You can now access this index inside an instance of `POPOSSpace` as `props.id`.
 
@@ -523,6 +544,8 @@ Notice the `to` path! Remember the path will look for a param following the `/`.
 Check your work! Clicking a link should take you to the detail page for that location.
 
 # Feedback and Review - 2 minutes
+
+If you found any technical issues or spelling errors, or just think of a good suggestions to improve the code shown in the tutorial post an issue to the GitHub repo: 
 
 **We promise this won't take longer than 2 minutes!**
 
