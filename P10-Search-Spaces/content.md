@@ -142,10 +142,9 @@ data.filter(obj => /* return true if obj.title includes query
 
 Let's break this function down into a longer form: 
 
-
 ```JS
 data.filter((obj) => {
-	// true is query is in title
+	// true if query is in title
 	const inTitle = obj.title.includes(query)
 	// true if query is in address
 	const inAddress = obj.address.includes(query)
@@ -155,6 +154,67 @@ data.filter((obj) => {
 		...
 	})
 ```
+
+The search should be working pretty good by now. You will notice that the search is case sensitive. For example: 
+
+```JS
+'empire' !== 'Empire'
+```
+
+Try this search for names beginning with upper and lowercase letters. Til you're satisfied you're seeing the issue. 
+
+You may want to keep search case senstive. This might be important for some types of search. You may also want to avoid case sesnsitive search.
+
+One way to avoid case sensitive search would be to convert the search query and the search text to lowercase. Here is a solution: 
+
+```JS
+const spaces = data.filter((obj) => {
+	// true if query is in title
+	const inTitle = obj.title.toLowerCase().includes(query.toLowerCase())
+	// true if query is in address
+	const inAddress = obj.address.toLowerCase().includes(query.toLowerCase())
+	// return true if either is true
+	return inTitle || inAddress
+}).map((obj, i) => {
+	...
+})
+```
+
+### Style the search field
+
+Here are a few ideas to style the search field. What you do here depends on where you positioned the search field. In my example code it ended up in the first grid cell in the list and I decided to go with it. 
+
+Here are the styles I added. 
+
+> [info]
+> 
+> Edit `POPOSList.css` add the following:
+> 
+```css
+.POPOSList form {
+	display: flex;
+	align-items: flex-start;
+}
+>
+.POPOSList form input, .POPOSList form button {
+	padding: 0.5em;
+	margin: 0;
+	border: 1px solid;
+	font-size: 1;
+}
+>
+.POPOSList form input {
+	flex: 1;
+	border-top-left-radius: 0.5em;
+	border-bottom-left-radius: 0.5em;
+}
+>
+.POPOSList form button {
+	border-top-right-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+```
+>
 
 
 
