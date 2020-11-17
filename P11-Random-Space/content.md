@@ -110,4 +110,32 @@ I imported `useHistory`. `useHistory` is a 'hook' that we can use with React Rou
 
 I also imported `sfpopos-data.json` as `data` since I'll need to know the length of the list. 
 
-The code here handles a click on the button with `onClick`
+The code here handles a click on the button with `onClick`. Without all of the extra code the button might look like: 
+
+```JS
+<button onClick={() => {
+	// run some code here when the clicked
+}}>Show me a random Space</button>
+```
+
+The code above uses an arrow function. These are similar to regular functions: 
+
+```JS
+// Old school function
+function(a,b,c) {
+
+}
+
+// Arrow function
+(a,b,c) => {
+
+}
+```
+
+Inside the onClick function the code gets a random number from 0 to the length - 1 as id. Then uses `history.push()` to navigate to the details page with the random id.  
+
+```JS
+const id = Math.floor(Math.random() * data.length)
+history.push(`/details/${id}`)
+```
+
