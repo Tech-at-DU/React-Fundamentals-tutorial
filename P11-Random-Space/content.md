@@ -139,3 +139,44 @@ const id = Math.floor(Math.random() * data.length)
 history.push(`/details/${id}`)
 ```
 
+### Use the new RandomSpace component
+
+Use the new component like any other component. 
+
+- Import 
+- then put it in your JSX
+
+Lets add a RandomSpace button to the Title (😑). 
+
+> [info] 
+> 
+> Edit `Title.js`. Add the following at the top and adjust the path to fit your arrangement of files. 
+> 
+```JS
+import RandomSpace from '../RandomSpace/RandomSpace'
+```
+> 
+> Inside the function that defines the component find a place to add the new button component: 
+> 
+```JS
+function Title() {
+  return (
+    <div className="Title">
+      <header>
+        ...
+        <div>
+          ...
+          <RandomSpace />
+        </div>
+      </header>
+    </div>
+  )
+}
+```
+>
+
+I put the random space button after the list of NavLinks. You could put it anywhere. 
+
+### Style the RandomSpace button 
+
+Add a style sheet and style the RandomSpace button. 
