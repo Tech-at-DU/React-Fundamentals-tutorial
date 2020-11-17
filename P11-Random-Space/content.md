@@ -53,4 +53,61 @@ Or we could break that up across several lines to make it easier to read:
 const length = data.length
 const randomNumber = Math.random() * length
 const index = Math.floor(randomNumber)
+// get a random space with: data[index]
 ```
+
+Since we're using react Router and have a route to show a detail page with an index if we generate a route with that index we can show the page. For example: `http://localhost:3000/?#/details/2` if the 2 were a random number it would display a random page. 
+
+```JS
+const length = data.length
+const randomNumber = Math.random() * length
+const id = Math.floor(randomNumber)
+// Router could work with this:
+// /details/:id
+```
+
+A quick aside, I'm regretting naming the the compoennt Title, when that component became the Header or PageHeader. This would a good place to rename these! For this dicussion I'm going to stick with the original name: Title. 
+
+### React Router History
+
+Displaying a new random page requires we use React Router. Remember React Router manages the "Pages" in our Single Page Site. 
+
+The method I chose was `history`. Using history will allow random searches to be tracked by the history and users will be able to use the back button in the browser to go back to the previous space they viewed. 
+
+Now we need a button or link to initiate the action. I added a button to the `Title` (😑) component. You could put this button anywhere. So our strategy will be to make a component that is just the button that loads a random space and then we can import that button where ever we might want to use it. 
+
+> [info]
+> 
+> Make a new folder: `components/RandomSpace/`
+> 
+> Next make a new file: `RandomSpace/RandomSpace.js`
+>
+> Now add the following to `RandomSpace.js`: 
+>
+```JS
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import './RandomSpace.css';
+import data from '../../sfpopos-data.json'
+>
+function RandomSpace() {
+	const history = useHistory()
+  return (
+		<button onClick={(e) => {
+			const id = Math.floor(Math.random() * data.length)
+			history.push(`/details/${id}`)
+		}}>Show me a random space</button>
+  )
+}
+>
+export default RandomSpace
+```
+>
+
+This creates a component that outputs a single button. 
+
+I imported `useHistory`. `useHistory` is a 'hook' that we can use with React Router to navigate to a new page. You'll call this method in your component function to get the history object.
+
+I also imported `sfpopos-data.json` as `data` since I'll need to know the length of the list. 
+
+The code here handles a click on the button with `onClick`
