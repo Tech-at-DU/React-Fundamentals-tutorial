@@ -95,3 +95,6 @@ Now add some styles for these elements.
 
 ```
 >
+
+The main container was given row-reverse to move the information to the left and the picture to the right. Since the image came first in the html it would have been on the left otherwise. Margin auto here centers the section by making the margins equal on the left and right side. 
+
