@@ -179,4 +179,8 @@ I put the random space button after the list of NavLinks. You could put it anywh
 
 ### Style the RandomSpace button 
 
-Add a style sheet and style the RandomSpace button. 
+Add a style sheet and style the RandomSpace button. You style the button. Follow these steps: 
+
+- create a style sheet `RandomSpace.css`
+- import your style sheet into `RandomSpace.js` 
+- add some styles...
