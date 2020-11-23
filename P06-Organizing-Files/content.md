@@ -24,22 +24,22 @@ Organizing components and their dependencies in folders is one way to keep compo
 > Move all of your components into this folder. It should include all of the following files:
 >
 > - src
->   - About.js
->   - App.css
->   - App.js
->   - App.test.js
->   - index.css
->   - index.js
->   - POPOSDetails.js
->   - POPOSList.css
->   - POPOSList.js
->   - POPOSSpace.css
->   - POPOSSpace.js
->   - serviceWorker.js
->   - setupTests.js
->   - sfpopos-data.json
->   - Title.css
->   - Title.js
+>   - components
+>       - About.js
+>       - App.css
+>       - App.js
+>       - App.test.js
+>       - index.css
+>       - index.js
+>       - POPOSDetails.js
+>       - POPOSList.css
+>       - POPOSList.js
+>       - POPOSSpace.css
+>       - POPOSSpace.js
+>       - serviceWorker.js
+>       - setupTests.js
+>       - Title.css
+>       - Title.js
 
 All of your components should now be in the `components` folder, **except for index.js and index.css**. After this change, your folder structure should look like the following:
 
@@ -118,7 +118,7 @@ This time the error is in `POPOSList.js` and it can't resolve `./sfpopos-data.js
 >
 > `import data from '../sfpopos-data.json'`
 
-With these changes, you should have everything working in the example project. You might have to refresh the browser page after these changes. 
+With these changes, you should have everything working in the example project. You might have to refresh the browser page after these changes.
 
 ### Grouping Components
 
@@ -156,8 +156,8 @@ After these changes, your `src` directory should look like this:
   - setupTests.js
   - sfpopos-data.json
 
-Note you will need to update your imoport statements after moving your files. This includes statements that import the component into `App.js` and places where you may have imported `sfpopos-data.json`. 
+Note you will need to update your imoport statements after moving your files. This includes statements that import the component into `App.js` and places where you may have imported `sfpopos-data.json`.
 
-Read thee error any error messages and these will usually tell you where a path fails to locate something. 
+Read thee error any error messages and these will usually tell you where a path fails to locate something.
 
 **CONGRATS!** You have successfully completed the React Fundamentals tutorial! Keep practicing with React, and we're excited to teach you more!
