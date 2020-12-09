@@ -108,7 +108,7 @@ JSX has rules of syntax that come with it.
 
 For example, the code below produces an error:
 
-```JSX
+```JS
 // Error! Sibling nodes
 <h1>Hello</h1>
 <p>World</p>
@@ -116,7 +116,7 @@ For example, the code below produces an error:
 
 Whereas this code will not produce an error:
 
-```JSX
+```JS
 // Good! has a single top level element
 <div>
   <h1>Hello</h1>
