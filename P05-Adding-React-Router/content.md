@@ -33,7 +33,7 @@ A Route is responsible for displaying components. Routes have a path property: w
 
 In code this might look like: 
 
-```JSX
+```js
 <Router>
   <Route path='/home' ... />
   <Route path='/about' ... />

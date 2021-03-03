@@ -11,7 +11,7 @@ React projects are built with Components. To build web applications with React y
 
 App, Header, Logo, NavBar, NavLink, Content, Card, Footer
 
-Each of these elements would be separate Components, and you would define a file for each. Component files are always named after the component they contain: `App.js`, `Header.js`, `Logo.js`, `NavBar.js`, `NavLink.js`, `Content.js`, `Card.js`, and `Footer.js`. 
+Each of these elements would be separate Components, and you would define a file for each. Component files are always named after the component they contain: `App.js`, `Header.js`, `Logo.js`, `NavBar.js`, `NavLink.js`, `Content.js`, `Card.js`, and `Footer.js`.
 
 Components can be nested. That is one Component can be the child of another Component. Rendering the parent would render the child. The components from the list above might be nested in this way:
 
@@ -104,11 +104,11 @@ You may have noticed that `React`, the variable imported at the top of the page,
 
 JSX has rules of syntax that come with it.
 
-**Rule** JSX must always have a top level node. 
+**Rule** JSX must always have a top level node.
 
 For example, the code below produces an error:
 
-```JSX
+```js
 // Error! Sibling nodes
 <h1>Hello</h1>
 <p>World</p>
@@ -116,7 +116,7 @@ For example, the code below produces an error:
 
 Whereas this code will not produce an error:
 
-```JSX
+```js
 // Good! has a single top level element
 <div>
   <h1>Hello</h1>
@@ -208,20 +208,20 @@ Since the Component doesn't have any child Components you can use a self-closing
 
 This is another **rule** of the JSX Language. Empty tags can be written as a single tag ending with `/`.
 
-**Challenge:** If you're not running your React project do it now and check out your work in the browser. 
+**Challenge:** If you're not running your React project do it now and check out your work in the browser.
 
-- Using the terminal navigate to your project directory. 
+- Using the terminal navigate to your project directory.
 - In terminal run: `yarn start`bash
 
-You should only see the page title at the top, it's the only thing your App component is rendering at the moment. 
+You should only see the page title at the top, it's the only thing your App component is rendering at the moment.
 
-**Challenge:** Add the logo to the page. 
+**Challenge:** Add the logo to the page.
 
-To do this you'll need to add a new tag. Add an `<img />` tag. Notice the tag ends with a `/`. 
+To do this you'll need to add a new tag. Add an `<img />` tag. Notice the tag ends with a `/`.
 
-Add the src attribute and set the value to logo. 
+Add the src attribute and set the value to logo.
 
-```JSX
+```js
 <img src={logo} />
 ```
 

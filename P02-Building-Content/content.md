@@ -116,7 +116,7 @@ function POPOSSpace() {
 export default POPOSSpace
 ```
 
-There are a few things missing here but you will revisit this shortly and pick up those details. You used the React Logo as a place holder for images that will come in the future. 
+There are a few things missing here but you will revisit this shortly and pick up those details. You used the React Logo as a place holder for images that will come in the future.
 
 For now import `POPOSSpace` into to your `POPOSList`.
 
@@ -158,7 +158,7 @@ Also, notice how your project is structured.
       - POPOSSpace
       - POPOSSpace
 
-If you imagine your project as tree structure you can see that you have components nested within components similar to the HTML DOM. 
+If you imagine your project as tree structure you can see that you have components nested within components similar to the HTML DOM.
 
 # Add some Local Image Files
 
@@ -190,9 +190,9 @@ function POPOSSpace() {
   return (
     <div>
       <img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`}     
-        width="300" 
-        height="300" 
-        alt="50 Califonia St." 
+        width="300"
+        height="300"
+        alt="50 Califonia St."
       />
       <h1>Name...</h1>
       <div>Address...</div>
@@ -204,7 +204,7 @@ function POPOSSpace() {
 >
 ```
 
-Note! Here you set the path to an image by combing a variable and a string. This is a JavaScript expression and must be enclosed in `{...}`. 
+Note! Here you set the path to an image by combing a variable and a string. This is a JavaScript expression and must be enclosed in `{...}`.
 
 Your website should now look something similar to the following:
 
@@ -242,12 +242,12 @@ The string needs to begin with the path to the public directory. React has an en
 
 Last, put the variable inside `${}`:
 
-```JSX
-<img 
-  src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`} 
-  width="300" 
-  height="300" 
-  alt="Hello" 
+```js
+<img
+  src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`}
+  width="300"
+  height="300"
+  alt="Hello"
 />
 ```
 
@@ -292,11 +292,11 @@ function POPOSSpace(props) {
   const { name, image, address } = props
   return (
     <div>
-      <img 
-        src={`${process.env.PUBLIC_URL}images/${image}`} 
-        width="300" 
-        height="300" 
-        alt="Hello" 
+      <img
+        src={`${process.env.PUBLIC_URL}images/${image}`}
+        width="300"
+        height="300"
+        alt="Hello"
       />
       <h1>{name}</h1>
       <div>{address}</div>
@@ -338,11 +338,11 @@ function POPOSList() {
 
 The values for props are defined as attributes. The names here must match the names used within the component! Earlier you used: name, image, and address. These are the names that must be used here.
 
-Compare the two components: 
+Compare the two components:
 
 
 
-```JSX
+```js
 // In POPOSList.js
 <POPOSSpace
   name="50 California Street" // name
@@ -350,7 +350,7 @@ Compare the two components:
   image="50-california-st.jpg"// image
 />
 ```
-```JSX 
+```js
 // In POPOSSpace.js
 function POPOSSpace(props) {
   // The attributes above set the values of these properties
@@ -372,7 +372,7 @@ You can assign props as key value pairs defined in JSX like attributes in HTML. 
 
 You can access props inside a component from the `props` object which is passed as a parameter, like so:
 
-```JSX
+```js
 function MyComp(props) {
   <div>
     <h1>{props.message}</h1> // Hello World
