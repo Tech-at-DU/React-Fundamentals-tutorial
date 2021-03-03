@@ -23,23 +23,26 @@ Organizing components and their dependencies in folders is one way to keep compo
 >
 > Move all of your components into this folder. It should include all of the following files:
 >
-> - src
->   - components
->       - About.js
->       - App.css
->       - App.js
->       - App.test.js
->       - index.css
->       - index.js
->       - POPOSDetails.js
->       - POPOSList.css
->       - POPOSList.js
->       - POPOSSpace.css
->       - POPOSSpace.js
->       - serviceWorker.js
->       - setupTests.js
->       - Title.css
->       - Title.js
+```
+- src
+  - App.css
+  - App.js
+  - App.test.js
+  - components
+    - About.js
+    - POPOSDetails.js
+    - POPOSList.css
+    - POPOSList.js
+    - POPOSSpace.css
+    - POPOSSpace.js
+    - serviceWorker.js
+    - setupTests.js
+    - Title.css
+    - Title.js
+  - index.css
+  - index.js
+```
+>
 
 All of your components should now be in the `components` folder, **except for index.js and index.css**. After this change, your folder structure should look like the following:
 

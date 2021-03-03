@@ -180,6 +180,114 @@ const spaces = data.filter((obj) => {
 })
 ```
 
+### ids out sync
+
+At this point the List page will show the search results. Filter is returning a new array with the spaces that match your search results **the index of these new items won't match the position of those items in the data array.** 
+
+For example: 
+
+```JS 
+const data = ['100 Pine', '50 Market', '101 California']
+// Note the indexes
+// 0:'100 Pine', 1:'50 Market', 2:'101 California'
+
+const filteredData = data.filter((item) => item.includes('1'))
+// Note the indexes - Notice 50 market is removed and 101 California is now index 1! 
+// 0:'100 Pine', 1:'101 California'
+```
+
+The code in our detail page relies on the index to find the information in the source data. 
+
+In the example code above if we use the index from the filtered data the details page would show 50 market instead of 101 California. 
+
+To fix this let's add an id property to our data. 
+
+> [info] 
+> 
+> Add a new file: `sfpopos-data.js` put this in the same folder as `sfpopos-data.json`.
+>
+> Add the following code to `sfpopos-data.js`:
+> 
+```JS
+import data from './sfpopos-data.json'
+
+data.forEach((obj, i) => {
+	obj.id = i
+})
+
+export default data
+```
+>
+
+What happened here? This file imports `./sfpopos-data.json`, loops over the data and adds a new id property to each object. Where the objects originally looked like this: 
+
+```JS
+{
+	title: 'Transamerica Redwood Park',
+	desc: 'Located in the shadow of the Transamerica Pyramid ...',
+	address: '600 Montgomery St San ...',
+	...
+}
+```
+
+The objects now all look like this: 
+
+```js
+{
+	id: 0, // NEW id added here matches the index of this element! 
+	title: 'Transamerica Redwood Park',
+	desc: 'Located in the shadow of the Transamerica Pyramid ...',
+	address: '600 Montgomery St San ...',
+	...
+}
+```
+
+The last line exports the data. Our other files can now import the data from this file. You'll need to edit any of the files that import `./sfpopos-data.json` and change the import to `./sfpopos-data.js` (notice the difference `.json` to `.js`.)
+
+> [info]
+>
+> Edit the following follows changing: 
+```JS 
+// Change
+import data from '../../sfpopos-data.json'
+// to
+import data from '../../sfpopos-data.js'
+```
+> 
+> `components/RandomSpace.js`
+> `POPOSDetails.js`
+> `POPOSList.js`
+>
+
+> [info]
+> 
+> Use the id from data rather than the index from map as the id for each space. 
+> 
+> Edit `./components/POPOSList.js`
+> 
+```JS
+const spaces = data.filter(({ features, title, address }) => {
+	...
+	}).map((obj) => { // remove i here
+			// Add id here! 
+			const { id, title, address, images, hours, features } = obj
+		return (
+			<POPOSSpace
+				id={id} // use id here
+				key={`${title}-${id}`} // use id here
+        name={title}
+        address={address}
+				image={images[0]}
+				hours={hours}
+      />
+		)
+	})
+	...
+```
+>
+
+Here you replaced the index of the element in the array with the id of that element. Where the index might change when the array is filtered each object will always use the same value for the id. 
+
 ### Style the search field
 
 Here are a few ideas to style the search field. What you do here depends on where you positioned the search field. In my example code it ended up in the first grid cell in the list and I decided to go with it. 

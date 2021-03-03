@@ -99,7 +99,7 @@ Give it a try!
 > Edit `POPOSSpace.css `, set the position property of the parent element to relative.
 > 
 ```CSS
-.POPOSSpace-title {
+.POPOSSpace {
 	position: relative;
 }
 ```

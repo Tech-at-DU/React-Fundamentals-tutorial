@@ -20,9 +20,9 @@ To work with React Router it helps to understand some terminology.
 - **Router** - A parent component that manages Routes
 - **Route** - A component that displays another component
 
-Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes. 
+Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes.
 
-Imagine a website with three pages built with React using React Router. The Router and Route components might be arranged like this: 
+Imagine a website with three pages built with React using React Router. The Router and Route components might be arranged like this:
 
 - Router
   - Route - Home Page
@@ -31,7 +31,7 @@ Imagine a website with three pages built with React using React Router. The Rout
 
 A Route is responsible for displaying components. Routes have a path property: when the path matches the URL in the address, the Route displays the appropriate component, otherwise not.
 
-In code this might look like: 
+In code this might look like:
 
 ```js
 <Router>
@@ -85,7 +85,7 @@ Router manages routes. It should be a top level component. For this reason you'l
 import { HashRouter as Router, Route } from 'react-router-dom'
 ```
 
-Why `HashRouter as Router`? This is an alias. You're importing HashRouter but using it under the name `Router` instead. This will make it easier to make changes in the future if needed. 
+Why `HashRouter as Router`? This is an alias. You're importing HashRouter but using it under the name `Router` instead. This will make it easier to make changes in the future if needed.
 
 > [action]
 >
@@ -460,9 +460,9 @@ const spaces = data.map(({ title, address, images, hours }, i) => {
 })
 ```
 
-On the first line there is a second parameter to: 
+On the first line there is a second parameter to:
 
-`map(obj, i)`, or 
+`map(obj, i)`, or
 
 `map({ ... }, i)`. here is the whole line as it is shown above:
 
