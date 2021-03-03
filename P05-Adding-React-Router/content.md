@@ -552,3 +552,7 @@ Give us general feedback on the tutorial, **we promise this won't take longer th
 Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
 
 This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
+
+# Note on remaining chapters
+
+The remaining chapters are optional, and meant for those who want some extra practice with React. At this point you're ready to take on the rest of your course, but if you want some more practice, keep going!
