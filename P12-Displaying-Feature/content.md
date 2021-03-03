@@ -5,24 +5,24 @@ slug: displaying-features
 
 ## Displaying Features - Detail page
 
-Each of the spaces has a list of features. The features describe the location as indoors or outdoors, whether there is coffee, art, or a bathroom available. 
+Each of the spaces has a list of features. The features describe the location as indoors or outdoors, whether there is coffee, art, or a bathroom available.
 
-We could display these as text but it might be more fun and easier for people to understand if we displayed them with icons or emojis. 
+We could display these as text but it might be more fun and easier for people to understand if we displayed them with icons or emojis.
 
 We have two choices to work with
 
 - Emoji
-- Images 
+- Images
 
-Emojis are built in and require no extra libraries or files. They are also fairly compatible across systems today. 
+Emojis are built in and require no extra libraries or files. They are also fairly compatible across systems today.
 
-Images represent a lot of things, but using images would require more files, and more work on our part but possible be more compatible. Font Awesome would be a good choice here. 
+Images represent a lot of things, but using images would require more files, and more work on our part but possible be more compatible. Font Awesome would be a good choice here.
 
-Let's give emoji a try. 
+Let's give emoji a try.
 
 ## Convert words to emoji
 
-Looking through the base data there are five features: 
+Looking through the base data there are five features:
 
 - outdoors
 - coffee
@@ -30,7 +30,7 @@ Looking through the base data there are five features:
 - toilet
 - power
 
-We need an emoji for each of these. 
+We need an emoji for each of these.
 
 - 🌲 - outdoors
 - ☕️ - coffee
@@ -38,23 +38,23 @@ We need an emoji for each of these.
 - 🚽 - toilet
 - 🔌 - power
 
-Now we need to convert an array of words to an array of emoji. Array.map is the tool for the job. Map is meant for transforming an array of one type into an array of another type. Here you'd be converting an array of text strings into an array of emoji strings. 
+Now we need to convert an array of words to an array of emoji. Array.map is the tool for the job. Map is meant for transforming an array of one type into an array of another type. Here you'd be converting an array of text strings into an array of emoji strings.
 
 Make a component that displays the emoji!
 
-> [info]
-> 
+> [action]
+>
 > Make a new file: `POPOSFeature.js`.
-> 
-> Define a component: 
-> 
+>
+> Define a component:
+>
 ```JS
 import React from 'react'
 import './POPOSFeature.css'
 >
 function getFeature(str) {
 	switch(str) {
-		case 'outdoors': 
+		case 'outdoors':
 			return '🌲'
 		case 'coffee':
 			return '☕️'
@@ -64,10 +64,10 @@ function getFeature(str) {
 			return '🚽'
 		case 'power':
 			return '🔌'
-		default: 
+		default:
 			return '？'
 	}
-}	
+}
 >
 function POPOSFeature(props) {
 	const emoji = getFeature(props.name)
@@ -76,32 +76,31 @@ function POPOSFeature(props) {
 >
 export default POPOSFeature
 ```
->
 
-This component will require a prop: name. You might create a instance like this: 
+This component will require a prop: name. You might create a instance like this:
 
 ```JS
 <POPOSFeature name="coffee" />
 ```
 
-Internally the component translates the word to an emoji using the `getFeature(str)` function. 
+Internally the component translates the word to an emoji using the `getFeature(str)` function.
 
-The `switch` block is like an if else block. The switch tries to match the supplied value agains one of it's cases. If `str` matches the function returns an emoji string. 
+The `switch` block is like an if else block. The switch tries to match the supplied value agains one of it's cases. If `str` matches the function returns an emoji string.
 
-Add a stylessheet. 
+Add a stylessheet.
 
-> [info]
-> 
+> [action]
+>
 > Create a new file: `POPOSFeature.css`
 >
 > Import this new stylesheet at the top `POPOSFeature.js`
-> 
+>
 ```JS
 import './POPOSFeature.css'
 ```
 >
 > Add the follow code at the top `POPOSFeature.css`:
-> 
+>
 ```CSS
 .POPOSFeature {
 	font-size: 2em;
@@ -111,22 +110,22 @@ import './POPOSFeature.css'
 	background-color: #eee;
 }
 ```
->
 
-This sets the font size, adds some padding and marging, sets the border radius, and sets a background color. 
+
+This sets the font size, adds some padding and marging, sets the border radius, and sets a background color.
 
 ## Feature list
 
-The SFPOPOS data provides a list of 0 or more strings of features. This means we need to display a list of these `POPOSFeature` components. 
+The SFPOPOS data provides a list of 0 or more strings of features. This means we need to display a list of these `POPOSFeature` components.
 
-Time to make a component! This new component will take an array of strings and return an array of `POPOSFeature` components. 
+Time to make a component! This new component will take an array of strings and return an array of `POPOSFeature` components.
 
-> [info]
-> 
+> [action]
+>
 > Create a new file: `POPOSFeatureList`.
-> 
-> Add the following code here to define the new component. 
-> 
+>
+> Add the following code here to define the new component.
+>
 ```JS
 import React from 'react'
 import POPOSFeature from './POPOSFeature'
@@ -141,61 +140,61 @@ function POPOSFeatureList(props) {
 >
 export default POPOSFeatureList
 ```
-> 
 
-This component imports the `POPOSFeature` component. 
 
-This component expects an array of strings named features. We get the array on props as: `props.features`. 
+This component imports the `POPOSFeature` component.
 
-The component maps the array of strings into an array `POPOSFeature` components setting the name of each to a feature string from the array. 
+This component expects an array of strings named features. We get the array on props as: `props.features`.
 
-Add a style sheet. 
+The component maps the array of strings into an array `POPOSFeature` components setting the name of each to a feature string from the array.
 
-> [info]
-> 
-> Add a new file: `POPOSFeatureList.css`. 
-> 
+Add a style sheet.
+
+> [action]
+>
+> Add a new file: `POPOSFeatureList.css`.
+>
 > Import your styles in `POPOSFeatureList.js`:
-> 
+>
 ```JS
 import './POPOSFeatureList.css'
 ```
 >
 > Then add some styles.
-> 
+>
 ```CSS
 .POPOSFeatureList {
 	display: flex;
 }
 ```
->
 
-The only style here is flex which should line up all of the elements in a row. 
 
-You could add more styles if you like. 
+The only style here is flex which should line up all of the elements in a row.
+
+You could add more styles if you like.
 
 ## Use the POPOSFeatureList
 
-Use the feature list and feature components. 
+Use the feature list and feature components.
 
-To use the `POPOSFeature` component you make an instance and set the name prop, fro example: 
+To use the `POPOSFeature` component you make an instance and set the name prop, fro example:
 
 ```JS
 <POPOSFeature name="art" />
 ```
 
-To use the POPOSFeatureList component you need to include an array of strings as the features prop, for example: 
+To use the POPOSFeatureList component you need to include an array of strings as the features prop, for example:
 
 ```JS
 <POPOSFeatureList features={['coffee', 'art']} />
 ```
 
-Put this to work in the details page. 
+Put this to work in the details page.
 
-> [info]
-> 
+> [action]
+>
 > Edit `POPOSFeatureList.js`
-> 
+>
 ```JS
 ...
 import POPOSFeatureList from '../POPOSFeatures/POPOSFeatureList'
@@ -217,10 +216,16 @@ function POPOSDetails(props) {
 >
 > Be sure to adjust the path to your `POPOSFeatureList` component, it may be in a different location than where I placed mine!
 >
-> Be sure to remove the previous tag that displayed the features. 
->
+> Be sure to remove the previous tag that displayed the features.
 
-What happened here? First we imported the POPOSFeatureList component. 
+What happened here? First we imported the POPOSFeatureList component.
 
-Next, make an instance of `POPOSFeatureList` and set the feature proper to the array of feature strings that came from the data source. 
+Next, make an instance of `POPOSFeatureList` and set the feature proper to the array of feature strings that came from the data source.
 
+# Feedback and Review - 2 minutes
+
+**We promise this won't take longer than 2 minutes!**
+
+Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/h36b2CH9G6HNHQyPA)
+
+his allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.

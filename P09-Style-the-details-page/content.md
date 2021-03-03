@@ -5,22 +5,22 @@ slug: style-the-details-page
 
 ## Style the details page
 
-Follow the ideas from the presvious pages. 
+Follow the ideas from the presvious pages.
 
-> [info] 
-> 
+> [info]
+>
 > Create a new CSS file: `POPOSDetails.css`
-> 
-> In `POPOSDetails.js` import your new stylesheet. 
-> 
+>
+> In `POPOSDetails.js` import your new stylesheet.
+>
 ```JS
 import './POPOSDetails.css'
 ```
 >
 
-I'm going to place the information on the left and the image on the right and divide the space in 1/3 and 2/3 proportion. 
+I'm going to place the information on the left and the image on the right and divide the space in 1/3 and 2/3 proportion.
 
-There are several pieces of information here: 
+There are several pieces of information here:
 
 - Title
 - Description
@@ -28,12 +28,12 @@ There are several pieces of information here:
 - Features
 - geo coordinates
 
-It would be nice to give each of these elements their own style. To do that you'll need to add some class names. 
+It would be nice to give each of these elements their own style. To do that you'll need to add some class names.
 
-> [info] 
-> 
-> Edit `POPOSDetails.js`: 
-> 
+> [action]
+>
+> Edit `POPOSDetails.js`:
+>
 ```JS
 function POPOSDetails(props) {
   const { id } = props.match.params // Location index
@@ -56,12 +56,12 @@ function POPOSDetails(props) {
 ```
 >
 
-Now add some styles for these elements. 
+Now add some styles for these elements.
 
-> [info]
-> 
+> [action]
+>
 > Add the following to `POPOSDetails.css`
-> 
+>
 ```css
 .POPOSDetails {
 	display: flex;
@@ -92,9 +92,6 @@ Now add some styles for these elements.
 .POPOSDetails .POPOSDetails-hours {
 	font-size: 1.5em;
 }
-
 ```
 >
-
-The main container was given row-reverse to move the information to the left and the picture to the right. Since the image came first in the html it would have been on the left otherwise. Margin auto here centers the section by making the margins equal on the left and right side. 
-
+> The main container was given row-reverse to move the information to the left and the picture to the right. Since the image came first in the html it would have been on the left otherwise. Margin auto here centers the section by making the margins equal on the left and right side.

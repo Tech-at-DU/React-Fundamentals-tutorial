@@ -5,13 +5,13 @@ slug: styling-spaces
 
 ## Styling Spaces
 
-The POPOSSpace component displays a a single Public space in the list of public spaces on the home page. Each of these displays an image, the name of the space, it's address, and hours. 
+The POPOSSpace component displays a a single Public space in the list of public spaces on the home page. Each of these displays an image, the name of the space, it's address, and hours.
 
 ## Using ancestor selector
 
-Styles have been divided between several style sheets. To keep these styles from conflicting you'll use the strategy of assigning the root element in a component class name that matches the component name. The Component names should be unique like class names. You should also use this class name as the ancestor for other styles applied within the component. For example: 
+Styles have been divided between several style sheets. To keep these styles from conflicting you'll use the strategy of assigning the root element in a component class name that matches the component name. The Component names should be unique like class names. You should also use this class name as the ancestor for other styles applied within the component. For example:
 
-```CSS 
+```CSS
 .POPOSSpace {
 	/* Styles for the root element */
 }
@@ -21,29 +21,29 @@ Styles have been divided between several style sheets. To keep these styles from
 }
 ```
 
-The second style above styles img tags but only if they are descendants of an element with the class name: POPOSSpace. This way the styles here don't affect img tags elsewhere on the page. 
+The second style above styles img tags but only if they are descendants of an element with the class name: POPOSSpace. This way the styles here don't affect img tags elsewhere on the page.
 
 ## Styling POPOSSpace
 
-Create a new stylesheet if you having. This should be a in the same folder as the `POPOSSpace.js` file. 
+Create a new stylesheet if you having. This should be a in the same folder as the `POPOSSpace.js` file.
 
-> [info]
-> 
-> Create a new file named: `POPOSSpace.css`. This should be in the same folder as the `POPOSSPace.js` file. 
-> 
+> [action]
+>
+> Create a new file named: `POPOSSpace.css`. This should be in the same folder as the `POPOSSPace.js` file.
+>
 
-Import the CSS and add the class name: 
+Import the CSS and add the class name:
 
-> [info]
-> 
+> [action]
+>
 > Add the following at the top of `POPOSSpace.js`:
-> 
+>
 ```JS
 import './POPOSSpace.css'
 ```
-> 
-> Now add the class to the root element: 
-> 
+>
+> Now add the class to the root element:
+>
 ```JS
 function POPOSSpace(props) {
   ...
@@ -54,33 +54,31 @@ function POPOSSpace(props) {
   )
 }
 ```
+
+Now you'll add some styles to style the elements here.
+
+It would be nice if the images were flexible. The columns of the grid change size as the page changes sizes.
+
+> [action]
 >
-
-Now you'll add some styles to style the elements here. 
-
-It would be nice if the images were flexible. The columns of the grid change size as the page changes sizes. 
-
-> [info]
-> 
 > Add the following to: `POPOSSpace.css`:
-> 
+>
 ```CSS
 .POPOSSpace img {
 	width: 100%;
 	height: auto;
 }
 ```
->
 
-You might have to refresh to make sure the changes to CSS show up when testing. 
+You might have to refresh to make sure the changes to CSS show up when testing.
 
-With this change the images in POPOSSpace should have a width of 100% of the available space. 
+With this change the images in POPOSSpace should have a width of 100% of the available space.
 
 ## Have some fun with the title
 
-Let's move the title to the upper left corner of the picture. To do this you'll use relative and absolute position. 
+Let's move the title to the upper left corner of the picture. To do this you'll use relative and absolute position.
 
-The structure of the POPOSpace is: 
+The structure of the POPOSpace is:
 
 - div.POPOSSpace
 	- Link
@@ -90,33 +88,32 @@ The structure of the POPOSpace is:
 	- div (address)
 	- div (hours)
 
-By making the parent component `div.POPOSSpace` position relative it will become the positioning context for any children that use absolute position. When an element uses absolute position you can position it by it's left and top edges. To figure where the top and left are the element looks up the DOM tree for an element that has `position: relative`. 
+By making the parent component `div.POPOSSpace` position relative it will become the positioning context for any children that use absolute position. When an element uses absolute position you can position it by it's left and top edges. To figure where the top and left are the element looks up the DOM tree for an element that has `position: relative`.
 
-Give it a try! 
+Give it a try!
 
-> [info]
-> 
+> [action]
+>
 > Edit `POPOSSpace.css `, set the position property of the parent element to relative.
-> 
+>
 ```CSS
 .POPOSSpace {
 	position: relative;
 }
 ```
-> 
 
-Now add a new classname to the title element. This is in a Link component, you'll need to assign this a className. 
+Now add a new classname to the title element. This is in a Link component, you'll need to assign this a className.
 
-> [info]
+> [action]
 >
-> In `POPOSSpace.js` find the name in it's Link tag and add a new class name. 
-> 
+> In `POPOSSpace.js` find the name in it's Link tag and add a new class name.
+>
 ```JS
 function POPOSSpace(props) {
   ...
   return (
     ...
-			<Link 
+			<Link
 				className="POPOSSpace-title" // add a class name!
 				to={`/details/${id}`}>
 				<h1>{name}</h1>
@@ -125,14 +122,13 @@ function POPOSSpace(props) {
   )
 }
 ```
-> 
 
-Next style the new class. 
+Next style the new class.
 
-> [info] 
-> 
-> In `POPOSSpace.css` add some new style rules: 
-> 
+> [action]
+>
+> In `POPOSSpace.css` add some new style rules:
+>
 ```CSS
 .POPOSSpace .POPOSSpace-title {
 	display: block;
@@ -150,14 +146,14 @@ Next style the new class.
 }
 ```
 
-This should move the title to the upper left corner and give it some font styles. 
+This should move the title to the upper left corner and give it some font styles.
 
-Now move the address and hours to the lower right corner. It will ne easier if these elements share a common parent. 
+Now move the address and hours to the lower right corner. It will ne easier if these elements share a common parent.
 
-> [info]
-> 
-> Edit `POPOSSpace.js`: 
-> 
+> [action]
+>
+> Edit `POPOSSpace.js`:
+>
 ```JS
 ...
 function POPOSSpace(props) {
@@ -173,21 +169,21 @@ function POPOSSpace(props) {
   )
 }
 ```
+
+
+Now with a a parent element and a class name we can apply styles to the parent and it's children.
+
+> [action]
 >
-
-Now with a a parent element and a class name we can apply styles to the parent and it's children. 
-
-> [info] 
-> 
-> Edit `POPOSSpace.css` and add thw following. 
-> 
+> Edit `POPOSSpace.css` and add thw following.
+>
 ```CSS
 .POPOSSpace .POPOSSpace-info {
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	text-align: right;
-} 
+}
 >
 .POPOSSpace .POPOSSpace-info div {
 	display: inline-block;
@@ -195,9 +191,8 @@ Now with a a parent element and a class name we can apply styles to the parent a
 	background-color: rgba(255, 255, 255, 0.9);
 }
 ```
->
 
-Here the container `.POPOSSpace-info` is declared position absolute This way we can place it where we want. In this case I put it at right 0 and bottom 0 which make it hug the lower right corner. I also aligned the text to the right. 
+
+Here the container `.POPOSSpace-info` is declared position absolute This way we can place it where we want. In this case I put it at right 0 and bottom 0 which make it hug the lower right corner. I also aligned the text to the right.
 
 The `.POPOSSpace .POPOSSpace-info div` selector applies to the two child divs. Here I added some padding and a background color.
-
