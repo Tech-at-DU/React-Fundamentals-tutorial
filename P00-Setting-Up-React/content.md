@@ -88,17 +88,16 @@ yarn start
 
 Alternatively, you can use: `npm start`. If you don't have `yarn` installed, make sure to do so: `npm install -g yarn`
 
-> [info] **Note!** If you see this error message: 
+> [info] **Note!** If you see this error message:
 >
 > If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
 That will permanently disable this message but you might encounter other issues.
 >
-> If you see this you may have a different version of of something than something is recommended. You can get around this by: 
-> 
+> If you see this you may have a different version of of something than something is recommended. You can get around this by:
+>
 > - Add a new file named `.env`
 > - Add `SKIP_PREFLIGHT_CHECK=true` to the file and save
 > - Run `yarn start` or `npm start`
->
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
@@ -176,7 +175,7 @@ You can see `index.js` also imports `./index.css` to include the CSS with this f
 import './index.css'
 ```
 
-Notice that `App` is imported into `index.js`. You'll that `App` is used later in the file here: 
+Notice that `App` is imported into `index.js`. You'll that `App` is used later in the file here:
 
 `ReactDOM.render(<App />, document.getElementById('root'));`
 
@@ -198,7 +197,7 @@ import './App.css';
 
 These import the react library, the logo image, and App.css code. Each from the files named.
 
-**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`. 
+**Important!** The paths to local files: `'./logo.svg'` and `'./App.css'` begin with a `./`, while the path `'react'` doesn't have the `./`.
 
 Files you create, that are stored locally will always begin with `./`. Files that are imported from a dependency, these are files that are stored in the `node_modules` folder do not begin with a `./`.
 
