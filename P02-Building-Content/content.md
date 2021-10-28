@@ -1,7 +1,4 @@
----
-title: "Building Content"
-slug: building-content
----
+## Building Content
 
 So far you have just been practicing with React to learn its work flow, structure, and syntax. Now you will use these ideas to put together a website.
 
@@ -9,8 +6,7 @@ Before making a site you should have an idea of what you are making. **The goal 
 
 Here is what the city says:
 
->
-> POPOS are publicly accessible spaces in forms of plazas, terraces, atriums, small parks, and even snippets which are provided and maintained by private developers. In San Francisco, POPOS mostly appear in the Downtown office district area.
+POPOS are publicly accessible spaces in forms of plazas, terraces, atriums, small parks, and even snippets which are provided and maintained by private developers. In San Francisco, POPOS mostly appear in the Downtown office district area.
 
 These public spaces are nice places to visit, eat your lunch, meet with friends, or do some work outside the office. The problem is many of these spaces are hard to find or people don't know they exist. This new site is going to solve this problem by showing an image of the space, the name and address of the space, and more information such as the hours the space is open, a description and facilities available these would be things like coffee, bathroom, art, indoors or outdoors etc.
 
@@ -30,17 +26,15 @@ One Component will display a POPOS location with a picture, name, address, etc. 
 
 The other component will display a list of spaces. Let's call this: `POPOSList`. This component will display a list of spaces.
 
-Build the list first.
+### Build the List
 
-> [action]
->
-> Make a new file: `src/POPOSList.js` and add the following code to it:
->
+Make a new file: `src/POPOSList.js` and add the following code to it:
+
 ```js
 // src/POPOSList.js
->
+
 import React from 'react';
->
+
 function POPOSList() {
   return (
     <div>
@@ -48,7 +42,7 @@ function POPOSList() {
     </div>
   )
 }
->
+
 export default POPOSList
 ```
 
@@ -56,17 +50,15 @@ Test out your list.
 
 Import this file and use the new Component in `App.js`
 
-> [action]
->
-> Add the following to the top of `src/App.js`, then use the new Component:
->
+Add the following to the top of `src/App.js`, then use the new Component:
+
 ```js
 // src/App.js
->
+
 import POPOSList from './POPOSList';
->
+
 ...
->
+
 function App() {
   return (
     <div className="App">
@@ -93,16 +85,14 @@ For now, imagine each project has the following elements:
 
 Let's make a component to show a project.
 
-> [action]
->
-> Make a new file: `src/POPOSSpace.js` and add the following code to it:
->
+Make a new file: `src/POPOSSpace.js` and add the following code to it:
+
 ```js
 // src/Project.js
->
+
 import React from 'react'
 import logo from './logo.svg'
->
+
 function POPOSSpace() {
   return (
     <div>
@@ -112,7 +102,7 @@ function POPOSSpace() {
     </div>
   )
 }
->
+
 export default POPOSSpace
 ```
 
@@ -120,17 +110,15 @@ There are a few things missing here but you will revisit this shortly and pick u
 
 For now import `POPOSSpace` into to your `POPOSList`.
 
-> [action]
->
-> In `src/POPOSList.js` add an import for `POPOSSpace.js`, then add a few Projects:
->
+In `src/POPOSList.js` add an import for `POPOSSpace.js`, then add a few Projects:
+
 ```js
 // src/POPOSList.js
->
+
 import POPOSSpace from './POPOSSpace';
->
+
 ...
->
+
 function POPOSList() {
   return (
     <div>
@@ -141,7 +129,7 @@ function POPOSList() {
     </div>
   )
 }
->
+
 ...
 ```
 
@@ -164,28 +152,21 @@ If you imagine your project as tree structure you can see that you have componen
 
 This would look a lot better with some images.
 
-> [action]
->
-> Download the images here: [SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
+Download the images here: [SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
 
 The code you write is not run directly. Instead the code you wrote is converted into vanilla JS and project is served from the public directory.
 
 **Images and other static files that your project will use will often be referenced with the `public` directory as the root.**
 
-> [action]
->
-> Unzip the SFPOPOS-images.zip and move the images folder into the public directory of this project.
->
+Unzip the SFPOPOS-images.zip and move the images folder into the public directory of this project.
 
 Now edit `POPOSSpace.js`.
 
-> [action]
->
 ```js
 // src/POPOSSpace.js
->
+
 ...
->
+
 function POPOSSpace() {
   return (
     <div>
@@ -199,9 +180,8 @@ function POPOSSpace() {
     </div>
   )
 }
->
+
 ...
->
 ```
 
 Note! Here you set the path to an image by combing a variable and a string. This is a JavaScript expression and must be enclosed in `{...}`.
@@ -210,9 +190,7 @@ Your website should now look something similar to the following:
 
 ![Screen Shot](assets/Screen-shot-1.png)
 
-> [info]
->
-> Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is processed and the resulting bundle is run from the `public` folder.
+> **NOTE** - Static files must either be imported into a component or stored in the `public` folder. **The code you write in the `src` folder is not used directly.** It is processed and the resulting bundle is run from the `public` folder.
 
 Take a close look at the `img` tag.
 
@@ -263,15 +241,14 @@ In the case of the `POPOSSpace` Component there are three things that need to be
 - image URL
 - address
 
-> [action]
->
-> Start by defining `props`. Props is passed as a parameter to a component.
->
+
+Start by defining `props`. Props is passed as a parameter to a component.
+
 ```js
 // src/POPOSSpace.js
->
+
 ...
->
+
 function POPOSSpace(props) { // Add props here!
   ...
 }
@@ -283,10 +260,8 @@ Props is alway an object. Objects have properties you can access using the dot. 
 - props.image
 - props.address
 
-> [action]
->
-> Add the following line to `function POPOSSpace(props)` in `src/POPOSSpace.js`:
->
+Add the following line to `function POPOSSpace(props)` in `src/POPOSSpace.js`:
+
 ```js
 function POPOSSpace(props) {
   const { name, image, address } = props
@@ -307,15 +282,13 @@ function POPOSSpace(props) {
 
 Testing at this point will not show anything since the values for: name, image, and address have not been defined yet. You'll define values for props where the component instance is created. This happens in `POPOSList.js`.
 
-> [action]
->
-> Edit your `POPOSList` function in `src/POPOSList.js` to the following:
->
+Edit your `POPOSList` function in `src/POPOSList.js` to the following:
+
 ```js
 // src/POPOSList.js
->
+
 ...
->
+
 function POPOSList() {
   return (
     <div className="POPOSList">
@@ -332,15 +305,13 @@ function POPOSList() {
     </div>
   )
 }
->
+
 ...
 ```
 
 The values for props are defined as attributes. The names here must match the names used within the component! Earlier you used: name, image, and address. These are the names that must be used here.
 
 Compare the two components:
-
-
 
 ```js
 // In POPOSList.js
@@ -358,7 +329,6 @@ function POPOSSpace(props) {
   ...
 }
 ```
-
 
 ### Props and Components
 
@@ -383,60 +353,56 @@ function MyComp(props) {
 
 JS expression inside JSX must be placed in the `{}`. For example: `<PI value={22/7} />`
 
-> [action]
->
-> Set the props: name, image, and address for the other components in `src/POPOSList.js`. The name, and address can be anything you like for now. For image, be sure to use the file name of one of the images in the images folder.
+Set the props: name, image, and address for the other components in `src/POPOSList.js`. The name, and address can be anything you like for now. For image, be sure to use the file name of one of the images in the images folder.
 
 **Attempt the challenge before viewing the solution below!** You'll gain a lot more from typing the code yourself rather than just copy/pasting. Give it a try first!
 
+<details>
+<summary>View Solution</summary>
+  When completed your component might look like this:
 
-> [solution]
->
-> When completed your component might look like this:
->
-```js
-function POPOSList() {
-  return (
-    <div className="POPOSList">
-      <POPOSSpace
-        name="50 California Street"
-        address="50 California St."
-        image="50-california-st.jpg"
-      />
-      <POPOSSpace
-        name="100 Pine Street"
-        address="100 Pine St."
-        image="100-pine.jpg"
-      />
-      <POPOSSpace
-        name="101 California Street"
-        address="101 California"
-        image="101-california.jpg"
-      />
-      <POPOSSpace
-        name="343 Sansome Roof Garden"
-        address="343 Sansome St."
-        image="343-sansome-roof-garden.jpg"
-      />
-      <POPOSSpace
-        name="525 Market Street Plaza"
-        address="525 Market St."
-        image="525-market-street-plaza.jpg"
-      />
-      <POPOSSpace
-        name="Citigroup Center"
-        address="1 Sansome St."
-        image="citigroup-center.jpg"
-      />
-    </div>
-  )
-}
-```
-
+  ```js
+  function POPOSList() {
+    return (
+      <div className="POPOSList">
+        <POPOSSpace
+          name="50 California Street"
+          address="50 California St."
+          image="50-california-st.jpg"
+        />
+        <POPOSSpace
+          name="100 Pine Street"
+          address="100 Pine St."
+          image="100-pine.jpg"
+        />
+        <POPOSSpace
+          name="101 California Street"
+          address="101 California"
+          image="101-california.jpg"
+        />
+        <POPOSSpace
+          name="343 Sansome Roof Garden"
+          address="343 Sansome St."
+          image="343-sansome-roof-garden.jpg"
+        />
+        <POPOSSpace
+          name="525 Market Street Plaza"
+          address="525 Market St."
+          image="525-market-street-plaza.jpg"
+        />
+        <POPOSSpace
+          name="Citigroup Center"
+          address="1 Sansome St."
+          image="citigroup-center.jpg"
+        />
+      </div>
+    )
+  }
+  ```
+</details>
+    
 # Now Commit
 
->[action]
->
 ```bash
 $ git add .
 $ git commit -m 'content component built'
