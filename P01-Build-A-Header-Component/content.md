@@ -1,8 +1,3 @@
----
-title: "Build A Header Component"
-slug: build-a-header-component
----
-
 ## Making Components
 
 React projects are built with Components. To build web applications with React you need to think in Components.
@@ -46,15 +41,13 @@ The best way to understand Components is to make one for yourself!
 
 In this step, you'll make a Component that displays a title. Let's call that Component `Title`.
 
-> [action]
->
-> Create a new file, `src/Title.js`, and add the following:
->
+Create a new file, `src/Title.js`, and add the following:
+
 ```js
 // src/Title.js
->
+
 import React from 'react'
->
+
 function Title() {
   return (
     <div>
@@ -62,7 +55,7 @@ function Title() {
     </div>
   )
 }
->
+
 export default Title
 ```
 
@@ -154,41 +147,36 @@ Any file/module may have a **single** `default` export. Use the default export f
 
 Let's use the Title Component in `App.js`.
 
-> [action]
->
-> In `App.js` import Title at the top of the page:
->
+In `App.js` import Title at the top of the page:
+
 ```js
 // src/App.js
->
+
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 [bold]import Title from './Title';[/bold]
 ```
->
 
 Here you are importing the default export from `Title.js`.
 
 The `.js` file extension is optional when using import.
 
-> [info]
-> The `.js` file extension is optional when using import. `import Title from './Title.js'` would also work here.
+
+The `.js` file extension is optional when using import. `import Title from './Title.js'` would also work here.
 
 <!-- -->
 
-> [action]
->
-> Now use the `Title` Component inside the `App` Component. In `App.js`, rewrite the existing component to look like:
->
+Now use the `Title` Component inside the `App` Component. In `App.js`, rewrite the existing component to look like:
+
 ```js
 // src/App.js
->
+
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Title from './Title';
->
+
 function App() {
   return (
     <div className="App">
@@ -196,7 +184,7 @@ function App() {
     </div>
   );
 }
->
+
 export default App;
 ```
 
@@ -233,10 +221,8 @@ Add some styles to the header! CSS styles are applied to React components in the
 
 The Create React boilerplate project allows styles to be imported into a Component. This allows you to create a separate file that contain the styles for each component.
 
-> [action]
->
-> Add a new File: `src/Title.css`, and then add the following CSS styles to it:
->
+Add a new File: `src/Title.css`, and then add the following CSS styles to it:
+
 ```css
 /*  src/Title.css  */
 .Title {
@@ -254,28 +240,25 @@ The Create React boilerplate project allows styles to be imported into a Compone
 
 In the Component `Title.js`, import the CSS file and use the class name `Title`.
 
-> [action]
->
-> Import the CSS file at the top of `src/Title.js`:
->
+
+Import the CSS file at the top of `src/Title.js`:
+
 ```js
 import './Title.css';
 ```
 
 When assigning a class name to a JSX tag use `className` in place of `class`.
 
-> [action]
->
-> Your `Title` component might look like the following:
->
+Your `Title` component might look like the following:
+
 ```js
 // src/Title.js
->
+
 ...
->
+
 import React from 'react'
 import './Title.css';
->
+
 function Title() {
   return (
     <div className="Title">
@@ -284,7 +267,7 @@ function Title() {
     </div>
   )
 }
->
+
 export default Title
 ```
 
@@ -294,18 +277,16 @@ Great work! You should now have a header for your page:
 
 ## Stretch Challenges
 
-> [challenge]
->
-> Try these stretch challenges to test your knowledge.
->
-> 1. Add a subtitle to the Title component. The subtitle will appear as smaller text below the title.
->   - You'll do this work inside `Title.js`
->   - Add a new `div` tag below the existing `h1` with the text: "San Francisco Privately Owned Public Open Spaces".
-> 2. Style the subtitle.
->   - Add a class name to the new tag: `className="Title-Subtitle"`
->   - Open the `Title.css` file and add some styles.
->   - Styles are up to you. I tried something subtle:
->
+Try these stretch challenges to test your knowledge.
+
+1. Add a subtitle to the Title component. The subtitle will appear as smaller text below the title.
+  - You'll do this work inside `Title.js`
+  - Add a new `div` tag below the existing `h1` with the text: "San Francisco Privately Owned Public Open Spaces".
+2. Style the subtitle.
+  - Add a class name to the new tag: `className="Title-Subtitle"`
+  - Open the `Title.css` file and add some styles.
+  - Styles are up to you. I tried something subtle:
+
 ```CSS
 .Title-Subtitle {
   color: rgba(255, 255, 255, 0.75);
@@ -314,8 +295,6 @@ Great work! You should now have a header for your page:
 
 # Now Commit
 
->[action]
->
 ```bash
 $ git add .
 $ git commit -m 'header component built'
