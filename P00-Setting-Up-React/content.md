@@ -1,8 +1,3 @@
----
-title: "Setting Up React"
-slug: setting-up-react
----
-
 ## Introduction
 
 The goal of this tutorial is to learn the foundational concepts of React by building a web site using React. This tutorial will keep things simple and focus on only a few core concepts. Future lessons will build on these concepts.
@@ -43,10 +38,8 @@ You'll need to
 
 Let's get started by creating a new React App! Here you are installing the react starter project from the React team at Facebook.
 
-> [action]
->
-> Navigate to a location on your computer where you want the project to live and replace `<name>` below with the name of your project.
->
+Navigate to a location on your computer where you want the project to live and replace `<name>` below with the name of your project.
+
 ```bash
 npx create-react-app <name>
 ```
@@ -59,8 +52,6 @@ npx create-react-app sfpopos
 
 While you can install React manually, the boilerplate code installed by `create-react-app` is comprehensive and up to date. Use this whenever possible.
 
-> [info]
->
 > **Note!** If you're having errors installing Create React App, it could be a problem with the version of Node.js that is installed. Try installing [nvm](https://github.com/nvm-sh/nvm#installation-and-update) (Node Version Manager).
 >
 > Use nvm to install a specific version of node: `nvm install <0.0.0>`
@@ -73,22 +64,21 @@ While you can install React manually, the boilerplate code installed by `create-
 
 Navigate to the project directory with:
 
-> [action]
-> Navigate to your project folder with:
->
+Navigate to your project folder with:
+
 ```bash
 cd sfpopos
 ```
->
-> Run your app with:
->
+
+Run your app with:
+
 ```bash
 yarn start
 ```
 
 Alternatively, you can use: `npm start`. If you don't have `yarn` installed, make sure to do so: `npm install -g yarn`
 
-> [info] **Note!** If you see this error message:
+> **Note!** If you see this error message:
 >
 > If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
 That will permanently disable this message but you might encounter other issues.
@@ -203,13 +193,10 @@ Files you create, that are stored locally will always begin with `./`. Files tha
 
 After the imports in `App.js`, you'll see a single function that returns a block of what appears to be HTML.
 
-Notice the HTML is not a string. This is **JSX**.
-
-> [info]
->
+> Notice the HTML is not a string. This is **JSX**.
 > JSX is an extension of the JS language. JSX is transpiled into plain JS before the App is run. This transpiling process is handled by Webpack and it is why you build and run the app from the command line.
 >
-JSX gives an alternative way to write our code that generates HTML.
+> JSX gives an alternative way to write our code that generates HTML.
 >
 
 ## Using Git/GitHub
@@ -220,9 +207,8 @@ Much like we've done in earlier tutorials, make sure you're committing your code
 
 Set up your repo!
 
->[action]
-> Make your first commit
->
+Make your first commit
+
 ```bash
 $ git init
 $ git add .
@@ -231,9 +217,8 @@ $ git commit -m 'project init'
 
 Now Go to GitHub and create a public repository called `REPO-NAME`, and now associate it as a remote for your local git project and then push to it.
 
->[action]
-> Push it!
->
+Push it!
+
 ```bash
 $ git remote add origin GITHUB-REPO-URL
 $ git push origin main -u
