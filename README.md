@@ -17,7 +17,7 @@ Read and complete these chapters in order.
 
 1. [Setting Up React](P00-Setting-Up-React/)
 1. [Building a Header Component](P01-Build-A-Header-Component/)
-1. [Building Content](P02-Building-Content/
+1. [Building Content](P02-Building-Content/)
 1. [Thinking in Components](P03-Thinking-In-Components/)
 1. [Dynamic Data](P04-Dynamic-Data/)
 1. [Adding a React Router](P05-Adding-React-Router/)
