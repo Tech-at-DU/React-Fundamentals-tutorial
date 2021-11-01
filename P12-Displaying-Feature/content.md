@@ -1,9 +1,4 @@
----
-title: "Displaying Features - details page"
-slug: displaying-features
----
-
-## Displaying Features - Detail page
+# Displaying Features - Details page
 
 Each of the spaces has a list of features. The features describe the location as indoors or outdoors, whether there is coffee, art, or a bathroom available.
 
@@ -42,16 +37,14 @@ Now we need to convert an array of words to an array of emoji. Array.map is the 
 
 Make a component that displays the emoji!
 
-> [action]
->
-> Make a new file: `POPOSFeature.js`.
->
-> Define a component:
->
+Make a new file: `POPOSFeature.js`.
+
+Define a component:
+
 ```JS
 import React from 'react'
 import './POPOSFeature.css'
->
+
 function getFeature(str) {
 	switch(str) {
 		case 'outdoors':
@@ -68,12 +61,12 @@ function getFeature(str) {
 			return '？'
 	}
 }
->
+
 function POPOSFeature(props) {
 	const emoji = getFeature(props.name)
 	return <div className="POPOSFeature">{emoji}</div>
 }
->
+
 export default POPOSFeature
 ```
 
@@ -89,18 +82,16 @@ The `switch` block is like an if else block. The switch tries to match the suppl
 
 Add a stylessheet.
 
-> [action]
->
-> Create a new file: `POPOSFeature.css`
->
-> Import this new stylesheet at the top `POPOSFeature.js`
->
+Create a new file: `POPOSFeature.css`
+
+Import this new stylesheet at the top `POPOSFeature.js`
+
 ```JS
 import './POPOSFeature.css'
 ```
->
-> Add the follow code at the top `POPOSFeature.css`:
->
+
+Add the follow code at the top `POPOSFeature.css`:
+
 ```CSS
 .POPOSFeature {
 	font-size: 2em;
@@ -111,7 +102,6 @@ import './POPOSFeature.css'
 }
 ```
 
-
 This sets the font size, adds some padding and marging, sets the border radius, and sets a background color.
 
 ## Feature list
@@ -120,27 +110,24 @@ The SFPOPOS data provides a list of 0 or more strings of features. This means we
 
 Time to make a component! This new component will take an array of strings and return an array of `POPOSFeature` components.
 
-> [action]
->
-> Create a new file: `POPOSFeatureList`.
->
-> Add the following code here to define the new component.
->
+Create a new file: `POPOSFeatureList`.
+
+Add the following code here to define the new component.
+
 ```JS
 import React from 'react'
 import POPOSFeature from './POPOSFeature'
 import './POPOSFeatureList.css'
->
+
 function POPOSFeatureList(props) {
 	const icons = props.features.map((feature) => {
     return <POPOSFeature key={feature} name={feature} />
   })
 	return <div className="POPOSFeatureList">{icons}</div>
 }
->
+
 export default POPOSFeatureList
 ```
-
 
 This component imports the `POPOSFeature` component.
 
@@ -150,24 +137,21 @@ The component maps the array of strings into an array `POPOSFeature` components 
 
 Add a style sheet.
 
-> [action]
->
-> Add a new file: `POPOSFeatureList.css`.
->
-> Import your styles in `POPOSFeatureList.js`:
->
+Add a new file: `POPOSFeatureList.css`.
+
+Import your styles in `POPOSFeatureList.js`:
+
 ```JS
 import './POPOSFeatureList.css'
 ```
->
-> Then add some styles.
->
+
+Then add some styles.
+
 ```CSS
 .POPOSFeatureList {
 	display: flex;
 }
 ```
-
 
 The only style here is flex which should line up all of the elements in a row.
 
@@ -191,14 +175,12 @@ To use the POPOSFeatureList component you need to include an array of strings as
 
 Put this to work in the details page.
 
-> [action]
->
-> Edit `POPOSFeatureList.js`
->
+Edit `POPOSFeatureList.js`
+
 ```JS
 ...
 import POPOSFeatureList from '../POPOSFeatures/POPOSFeatureList'
->
+
 function POPOSDetails(props) {
 	...
   return (
@@ -213,11 +195,15 @@ function POPOSDetails(props) {
   )
 }
 ```
->
-> Be sure to adjust the path to your `POPOSFeatureList` component, it may be in a different location than where I placed mine!
->
-> Be sure to remove the previous tag that displayed the features.
+
+Be sure to adjust the path to your `POPOSFeatureList` component, it may be in a different location than where I placed mine!
+
+Be sure to remove the previous tag that displayed the features.
 
 What happened here? First we imported the POPOSFeatureList component.
 
 Next, make an instance of `POPOSFeatureList` and set the feature proper to the array of feature strings that came from the data source.
+
+# Next
+
+Click [here](../P13-Publish-to-GitHub-Pages/content.md) to move onto the next section about publishing to GitHub pages.

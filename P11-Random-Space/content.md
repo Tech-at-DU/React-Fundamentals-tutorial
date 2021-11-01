@@ -1,7 +1,4 @@
----
-title: "Display a Random Space"
-slug: display-a-random-space
----
+# Display a Random Space
 
 ## Show a random public space
 
@@ -76,20 +73,18 @@ The method I chose was `history`. Using history will allow random searches to be
 
 Now we need a button or link to initiate the action. I added a button to the `Title` (😑) component. You could put this button anywhere. So our strategy will be to make a component that is just the button that loads a random space and then we can import that button where ever we might want to use it.
 
-> [action]
->
-> Make a new folder: `components/RandomSpace/`
->
-> Next make a new file: `RandomSpace/RandomSpace.js`
->
-> Now add the following to `RandomSpace.js`:
->
+Make a new folder: `components/RandomSpace/`
+
+Next make a new file: `RandomSpace/RandomSpace.js`
+
+Now add the following to `RandomSpace.js`:
+
 ```JS
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import './RandomSpace.css';
 import data from '../../sfpopos-data.json'
->
+
 function RandomSpace() {
 	const history = useHistory()
   return (
@@ -99,10 +94,9 @@ function RandomSpace() {
 		}}>Show me a random space</button>
   )
 }
->
+
 export default RandomSpace
 ```
->
 
 This creates a component that outputs a single button.
 
@@ -148,16 +142,14 @@ Use the new component like any other component.
 
 Lets add a RandomSpace button to the Title (😑).
 
-> [action]
->
-> Edit `Title.js`. Add the following at the top and adjust the path to fit your arrangement of files.
->
+Edit `Title.js`. Add the following at the top and adjust the path to fit your arrangement of files.
+
 ```JS
 import RandomSpace from '../RandomSpace/RandomSpace'
 ```
->
-> Inside the function that defines the component find a place to add the new button component:
->
+
+Inside the function that defines the component find a place to add the new button component:
+
 ```JS
 function Title() {
   return (
@@ -173,14 +165,17 @@ function Title() {
   )
 }
 ```
->
 
 I put the random space button after the list of NavLinks. You could put it anywhere.
 
-### Style the RandomSpace button 
+### Style the RandomSpace button
 
 Add a style sheet and style the RandomSpace button. You style the button. Follow these steps:
 
 - create a style sheet `RandomSpace.css`
 - import your style sheet into `RandomSpace.js`
 - add some styles...
+
+# Next
+
+Click [here](../P12-Displaying-Feature/content.md) to move onto the next section about displaying features.

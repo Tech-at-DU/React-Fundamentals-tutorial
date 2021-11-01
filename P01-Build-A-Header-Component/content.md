@@ -1,4 +1,4 @@
-## Making Components
+# Making Components
 
 React projects are built with Components. To build web applications with React you need to think in Components.
 
@@ -162,7 +162,6 @@ Here you are importing the default export from `Title.js`.
 
 The `.js` file extension is optional when using import.
 
-
 The `.js` file extension is optional when using import. `import Title from './Title.js'` would also work here.
 
 <!-- -->
@@ -240,7 +239,6 @@ Add a new File: `src/Title.css`, and then add the following CSS styles to it:
 
 In the Component `Title.js`, import the CSS file and use the class name `Title`.
 
-
 Import the CSS file at the top of `src/Title.js`:
 
 ```js
@@ -300,3 +298,7 @@ $ git add .
 $ git commit -m 'header component built'
 $ git push
 ```
+
+# Next
+
+Click [here](../P02-Building-Content/content.md) to move onto the next section about building some content.

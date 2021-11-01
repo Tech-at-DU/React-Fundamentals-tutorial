@@ -1,14 +1,7 @@
----
-title: "Style the Details Page"
-slug: style-the-details-page
----
-
-## Style the details page
+# Style the Details Page
 
 Follow the ideas from the presvious pages.
 
-> [info]
->
 > Create a new CSS file: `POPOSDetails.css`
 >
 > In `POPOSDetails.js` import your new stylesheet.
@@ -30,10 +23,8 @@ There are several pieces of information here:
 
 It would be nice to give each of these elements their own style. To do that you'll need to add some class names.
 
-> [action]
->
-> Edit `POPOSDetails.js`:
->
+Edit `POPOSDetails.js`:
+
 ```JS
 function POPOSDetails(props) {
   const { id } = props.match.params // Location index
@@ -54,14 +45,11 @@ function POPOSDetails(props) {
   )
 }
 ```
->
 
 Now add some styles for these elements.
 
-> [action]
->
-> Add the following to `POPOSDetails.css`
->
+Add the following to `POPOSDetails.css`
+
 ```css
 .POPOSDetails {
 	display: flex;
@@ -69,29 +57,33 @@ Now add some styles for these elements.
 	width: 960px;
 	margin: auto;
 }
->
+
 .POPOSDetails .POPOSDetails-info {
 	flex: 1;
 	text-align: left;
 	padding: 0 1em;
 }
->
+
 .POPOSDetails .POPOSDetails-title {
 	font-size: 2em;
 	margin: 0;
 }
->
+
 .POPOSDetails .POPOSDetails-image {
 	flex: 2;
 }
->
+
 .POPOSDetails .POPOSDetails-image img {
 	width: 100%;
 }
->
+
 .POPOSDetails .POPOSDetails-hours {
 	font-size: 1.5em;
 }
 ```
->
-> The main container was given row-reverse to move the information to the left and the picture to the right. Since the image came first in the html it would have been on the left otherwise. Margin auto here centers the section by making the margins equal on the left and right side.
+
+The main container was given row-reverse to move the information to the left and the picture to the right. Since the image came first in the html it would have been on the left otherwise. Margin auto here centers the section by making the margins equal on the left and right side.
+
+# Next
+
+Click [here](../P10-Search-Spaces/content.md) to move onto the next section about search spaces.

@@ -1,7 +1,4 @@
----
-title: "Styling the List"
-slug: styling-the-list
----
+# Styling the List
 
 ## The list could use some styles
 
@@ -11,21 +8,16 @@ This step will only cover styling the list. There may be a few issues with the w
 
 Create a CSS file.
 
-> [action]
->
-> If you haven't already create a new file: `POPOSList.css` it should be in the same folder as the `POPOSList.js` file.
->
+If you haven't already create a new file: `POPOSList.css` it should be in the same folder as the `POPOSList.js` file.
 
 Now import the CSS.
 
-> [action]
->
-> Next import the the new CSS file into the `POPOSList.js` add the following at the top.
->
-> `import './POPOSList.css'`
->
-> Now, in the `POPOSList` component add a class name:
->
+Next import the the new CSS file into the `POPOSList.js` add the following at the top.
+
+`import './POPOSList.css'`
+
+Now, in the `POPOSList` component add a class name:
+
 ```JS
 function POPOSList() {
   ...
@@ -36,23 +28,19 @@ function POPOSList() {
   )
 }
 ```
->
 
 Arranging the elements in a grid would be a good idea. Luckily CSS provides a `display: grid` property. This is similar to `display: flex`. Where flex is a one dimmensional arrangement grid is two dimmendsional. With flex everything would be arranged in a row or a column, with grid things are arranged in both rows and columns.
 
-> [action]
->
-> Add the following to `POPOSList.css`
->
+Add the following to `POPOSList.css`
+
 ```CSS
 .POPOSList {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 }
 ```
->
 
-The code above declare the parent element as display grid and defines three equal sized columns. The `1fr` is 1 fraction. the `fr` unit that is a fraction of the availble space. So `1fr 1fr 1fr` could considered the same as `33.333% 33.333% 33.333%` but it reads better and is more accurate.
+The code above declares the parent element as display grid and defines three equal sized columns. The `1fr` is 1 fraction. the `fr` unit that is a fraction of the availble space. So `1fr 1fr 1fr` could considered the same as `33.333% 33.333% 33.333%` but it reads better and is more accurate.
 
 Test this out and resize the page. There are a couple things missing.
 
@@ -60,10 +48,8 @@ Test this out and resize the page. There are a couple things missing.
 - When the page is really wide the columns are too far apart
 - When the page is too narrow the columns are too close together
 
-> [action]
->
-> Add the following to the `.POPSList` rule in `POPOSList.css`
->
+Add the following to the `.POPSList` rule in `POPOSList.css`
+
 ```CSS
 .POPOSList {
 	display: grid;
@@ -84,10 +70,8 @@ This looks better but there are some problems when the page is narrow. Add some 
 
 A media query is a rule that is only applied some times or under certain circumstances. You'll use media queries here to make adjustments for smaller screens, like tablets, and mobile devices.
 
-> [action]
->
-> Add the following to `POPOSList.css`
->
+Add the following to `POPOSList.css`
+
 ```CSS
 /* Smaller screens and tablets */
 @media only screen and (max-width: 960px) {
@@ -96,7 +80,6 @@ A media query is a rule that is only applied some times or under certain circums
 	}
 }
 ```
->
 
 Here the number of columns is changed to two equal columns when the screen is 960px or smaller.
 
@@ -104,10 +87,8 @@ Test your work. resizing the page should change the display to two columns when 
 
 Let's do that again.
 
-> [action]
->
-> Add the following to `POPOSList.css`
->
+Add the following to `POPOSList.css`
+
 ```CSS
 /* Small screens mobile */
 @media only screen and (max-width: 700px) {
@@ -116,12 +97,15 @@ Let's do that again.
 	}
 }
 ```
->
 
 Here the the layout switched to a single column when the screen is smaller than 700px.
 
-test your work. The screen should switch between 3, 2, and 1 column as the screen narrows.
+Test your work. The screen should switch between 3, 2, and 1 column as the screen narrows.
 
-Think of other things you might want to change as the screen changes size?
+Think of other things you might want to change as the screen changes size.
 
-Important! In the POPOSList stylesheet you're only concerned with the list of spaces. If the changes you want to make concern the Spaces (thats' the image and text) it should be applied to the POPOSSpace.css. See the section on styling these!
+**Important!** In the POPOSList stylesheet you're only concerned with the list of spaces. If the changes you want to make concern the Spaces (thats' the image and text) it should be applied to the POPOSSpace.css. See the section on styling these!
+
+# Next
+
+Click [here](../P08-Styling-Spaces/content.md) to move onto the next section about styling spaces.

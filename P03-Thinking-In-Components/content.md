@@ -1,7 +1,4 @@
----
-title: "Thinking in Components"
-slug: thinking-in-components
----
+# Thinking in Components
 
 Think of the page you created. It is built from Components. The Components are like Lego bricks, you can mix and match and reuse them to build a larger structure/system.
 
@@ -27,10 +24,8 @@ Be sure to give the top level element in that component a class name that matche
 
 Add a new stylesheet.
 
-> [action]
->
-> Add a new css file: `src/POPOSList.css`, and add the following code to it:
->
+Add a new css file: `src/POPOSList.css`, and add the following code to it:
+
 ```css
 /* src/POPOSList.css */
 >
@@ -47,24 +42,22 @@ Here you calculated the width of this element to 100% the width of the container
 
 To display the spaces in a grid, you defined the display as grid, and then gave the grid three template columns. Each column is 1fr. A `fr` is a unit that represent a fraction of the space available. Finally, you set the gap between columns to 40px.
 
-> [action]
->
-> Next, Import this stylesheet into `src/POPOSList.js`, then add the class name to `src/POPOSList.js`:
->
+Next, Import this stylesheet into `src/POPOSList.js`, then add the class name to `src/POPOSList.js`:
+
 ```js
 // src/POPOSList.js
->
+
 import './POPOSList.css';
->
+
 ...
->
+
 function POPOSList() {
   return (
     <div className="POPOSList"> // <- add the class name here!
       ...
   )
 }
->
+
 ...
 ```
 
@@ -80,14 +73,12 @@ Next style the Spaces by adding a stylesheet for the `POPOSSpace` component.
 
 Add a new stylesheet.
 
-> [action]
->
-> Follow these steps on your own.
->
-> - Make a new stylesheet: Create a new CSS file in the `src` directory named `POPOSSpace.css`
-> - Import the stylesheet: import the new CSS file into `POPOSSpace.js`
-> - Add some styles: add some styles to the stylesheet
-> - Add some class names: Add a class name to elements in the `POPOSSpace` component that you can target with your styles
+Follow these steps on your own.
+
+- Make a new stylesheet: Create a new CSS file in the `src` directory named `POPOSSpace.css`
+- Import the stylesheet: import the new CSS file into `POPOSSpace.js`
+- Add some styles: add some styles to the stylesheet
+- Add some class names: Add a class name to elements in the `POPOSSpace` component that you can target with your styles
 
 Using the same name for everything might seem odd at first. It keeps the spelling errors down and makes it easier to reason about your work since there are fewer names to remember.
 
@@ -119,31 +110,25 @@ The page should look something like this at this point, if you used our sample s
 
 This page needs a footer.
 
-> [action]
->
-> Add a Footer Component! Do this on your own following the steps used previously. Keep the footer simple for now. Keep the content simple in the footer for now. Imagine it only needs to display your name and copyright with the year. For example:
->
-> `Mitchell Hudson copyright 2019`
->
-> - Make a new file for the new Component in `src` called `Footer.js`
-> - Define the footer in this file. Remember to export the footer as default
-> - Import the Footer Component into `App.js` and render it
+Add a Footer Component! Do this on your own following the steps used previously. Keep the footer simple for now. Keep the content simple in the footer for now. Imagine it only needs to display your name and copyright with the year. For example:
+
+`Mitchell Hudson copyright 2019`
+
+- Make a new file for the new Component in `src` called `Footer.js`
+- Define the footer in this file. Remember to export the footer as default
+- Import the Footer Component into `App.js` and render it
 
 Next, let's style your Footer:
 
-> [action]
->
-> - Add a class name to elements in Footer
-> - Make a new file in `src` called `Footer.css`
-> - Add styles to this file and style elements in Footer
-> - Import the Footer Styles
+- Add a class name to elements in Footer
+- Make a new file in `src` called `Footer.css`
+- Add styles to this file and style elements in Footer
+- Import the Footer Styles
 
 Your site should look very similar to the finished product you saw in the first chapter.
 
 # Now Commit
 
->[action]
->
 ```bash
 $ git add .
 $ git commit -m 'dynamic content and footer'
@@ -156,8 +141,10 @@ $ git push
 
 Looking for more? Try these out:
 
-> [challenge]
->
-> - Display the year in the footer by getting the year via JS using the Date Object
-> - Add a Like Count to each project. This will be a prop that is a number.
-> - Display the Like count in the Project Component.
+- Display the year in the footer by getting the year via JS using the Date Object
+- Add a Like Count to each project. This will be a prop that is a number.
+- Display the Like count in the Project Component.
+
+# Next
+
+Click [here](../P04-Dynamic-Data/content.md) to move onto the next section about dynamic data.

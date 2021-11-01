@@ -1,7 +1,4 @@
----
-title: "Dynamic Data"
-slug: dynamic-data
----
+# Dynamic Data
 
 Currently your web site is static. The information is fixed and cannot change. Web sites can also be dynamic with data that changes over time. For example what new public spaces could be added to the site the new spaces would show up on the list. Or what if you could search for a public space by name or address and the list showed only results that matched your search.
 
@@ -46,9 +43,7 @@ This first element has the same properties as the others. The information here d
 
 ### Challenge!
 
-> [action]
->
-> Identify which values are strings, which are numbers, which are objects, and arrays in the `JSON` above.
+Identify which values are strings, which are numbers, which are objects, and arrays in the `JSON` above.
 
 ### Continue!
 
@@ -92,25 +87,20 @@ The easiest way to do this is with `Array.map()`. `Map` is used to transform an 
 
 The first step is to load the JSON data in your `POPOSList` component.
 
-> [action]
->
-> Download this [sfpopos-data.json file](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) and put it in your `src` directory
+Download this [sfpopos-data.json file](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) and put it in your `src` directory
 
 Now let's test out printing the JSON to console:
-> [action]
->
-> Add the Following at the top of `POPOSList.js`
->
+
+Add the Following at the top of `POPOSList.js`
+
 ```js
 import data from './sfpopos-data.json'
 ```
 
 Use the console to practice with `Array.map()`.
 
-> [action]
->
-> Add the code here to `POPOSList.js`, after the `POPOSList` function:
->
+Add the code here to `POPOSList.js`, after the `POPOSList` function:
+
 ```JS
 const titles = data.map((obj) => {
   return obj.title
@@ -139,19 +129,17 @@ const titles = data.map((obj) => {
 
 This time you made an array of Components (blocks of JSX). The text inside each `<h1>` is the title string.
 
-> [action]
->
-> In the `src/POPOSList.js` component make this change:
->
+In the `src/POPOSList.js` component make this change:
+
 ```JS
 ...
->
+
 import data from './sfpopos-data.json'
->
+
 const titles = data.map((obj) => {
   return <h1>{obj.title}</h1>
 })
->
+
 function POPOSList() {
   return (
     <div className="POPOSList">
@@ -165,26 +153,24 @@ Here you put an array of JSX/Components inside a block of JSX code. When React s
 
 **Your goal here is to turn the array of objects into an array of components.**
 
-> [action]
->
-> Remove the code from the last example, **but be sure to keep the the line that imports the JSON data:**
->
+Remove the code from the last example, **but be sure to keep the the line that imports the JSON data:**
+
 ```js
 import data from './sfpopos-data.json'
 ```
->
-> Edit `src/POPOSList.js` to look like this:
->
+
+Edit `src/POPOSList.js` to look like this:
+
 ```js
 // src/POPOSList.js
->
+
 import React from 'react';
 import POPOSSpace from './POPOSSpace';
 import './POPOSList.css';
 import data from './sfpopos-data.json'
->
+
 function POPOSList() {
->
+
   const spaces = data.map((obj) => {
     return (
       <POPOSSpace
@@ -194,14 +180,14 @@ function POPOSList() {
       />
     )
   })
->
+
   return (
     <div className="POPOSList">
       { spaces }
     </div>
   )
 }
->
+
 export default POPOSList
 ```
 
@@ -279,11 +265,9 @@ const spaces = data.map(( { title, address, images } ) => {
 
 This example deconstructs the object on the parameter to the callback.
 
-> [action]
->
-> Update your code with this deconstruction in `/src/POPOSList.js`
+Update your code with this deconstruction in `/src/POPOSList.js`
 
-### Keys and Lists
+## Keys and Lists
 
 After you have the list displaying in your browser open the console. You should see a warning that read something like:
 
@@ -312,9 +296,7 @@ const spaces = data.map(( { title, address, images } ) => {
 
 You can use the title for a key since all of the locations have a different title.
 
-> [action]
->
-> Add `key={title}` to the `POPOSSpace` in `src/POPOSList.js`
+Add `key={title}` to the `POPOSSpace` in `src/POPOSList.js`
 
 # Adding Times
 
@@ -330,20 +312,18 @@ You need to pass the hours to a prop when you make the list of `<POPOSSpaces>` c
 
 Then you will need to edit `POPOSSpace.js` and create a new element in the component that will display the hours passed as a prop.
 
-> [action]
->
-> Follow the guidance above to complete the challenge! Do your best, and try to work through it before viewing the solution below.
+Follow the guidance above to complete the challenge! Do your best, and try to work through it before viewing the solution below.
 
-## Solution
+<details>
+<summary>Solution</summary>
+<br>
 
-> [solution]
->
-> In `POPOSList.js` look for the section that maps your data to an array of Spaces. Add an `hours` property there:
->
+In `POPOSList.js` look for the section that maps your data to an array of Spaces. Add an `hours` property there:
+
 ```js
 // deconstruct hours here
 const spaces = data.map(({ title, address, images, hours }) => {
->
+
   return (
     <POPOSSpace
       key={title}
@@ -355,9 +335,9 @@ const spaces = data.map(({ title, address, images, hours }) => {
   )
 })
 ```
->
-> In `POPOSSpace.js` get the hours and display them. We also moved the name to be above the image
->
+
+In `POPOSSpace.js` get the hours and display them. We also moved the name to be above the image
+
 ```js
 function POPOSSpace(props) {
   // Get the
@@ -373,18 +353,20 @@ function POPOSSpace(props) {
 }
 ```
 
+</details>
+
 ## Stretch Challenge
 
-> [challenge]
->
-> Add some custom styles to the hours! Maybe make it italic, or use a different font or font size!
+Add some custom styles to the hours! Maybe make it italic, or use a different font or font size!
 
 # Now Commit
 
->[action]
->
 ```bash
 $ git add .
 $ git commit -m 'dynamic content and footer'
 $ git push
 ```
+
+# Next
+
+Click [here](../P05-Adding-React-Router/content.md) to move onto the next section about adding a react router.

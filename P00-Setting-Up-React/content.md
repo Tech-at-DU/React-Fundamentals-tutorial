@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 The goal of this tutorial is to learn the foundational concepts of React by building a web site using React. This tutorial will keep things simple and focus on only a few core concepts. Future lessons will build on these concepts.
 
@@ -223,3 +223,7 @@ Push it!
 $ git remote add origin GITHUB-REPO-URL
 $ git push origin main -u
 ```
+
+# Next
+
+Click [here](../P01-Build-A-Header-Component/content.md) to move onto the next section about building a header component.

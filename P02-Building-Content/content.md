@@ -1,4 +1,4 @@
-## Building Content
+# Building Content
 
 So far you have just been practicing with React to learn its work flow, structure, and syntax. Now you will use these ideas to put together a website.
 
@@ -140,11 +140,11 @@ What's important to understand here is that you can reuse a component as often a
 Also, notice how your project is structured.
 
 - App
-    - Title
-    - POPOSList
-      - POPOSSpace
-      - POPOSSpace
-      - POPOSSpace
+  - Title
+  - POPOSList
+    - POPOSSpace
+    - POPOSSpace
+    - POPOSSpace
 
 If you imagine your project as tree structure you can see that you have components nested within components similar to the HTML DOM.
 
@@ -321,6 +321,7 @@ Compare the two components:
   image="50-california-st.jpg"// image
 />
 ```
+
 ```js
 // In POPOSSpace.js
 function POPOSSpace(props) {
@@ -330,7 +331,7 @@ function POPOSSpace(props) {
 }
 ```
 
-### Props and Components
+## Props and Components
 
 You now have a single Component which you can use as often as needed, and each instance of the component can display a different name, image, and address, _this is the power of props_. Props are used to configure your components.
 
@@ -359,6 +360,8 @@ Set the props: name, image, and address for the other components in `src/POPOSLi
 
 <details>
 <summary>View Solution</summary>
+<br>
+
   When completed your component might look like this:
 
   ```js
@@ -399,8 +402,9 @@ Set the props: name, image, and address for the other components in `src/POPOSLi
     )
   }
   ```
+
 </details>
-    
+
 # Now Commit
 
 ```bash
@@ -408,3 +412,7 @@ $ git add .
 $ git commit -m 'content component built'
 $ git push
 ```
+
+# Next
+
+Click [here](../P03-Thinking-In-Components/content.md) to move onto the next section about thinking in components.

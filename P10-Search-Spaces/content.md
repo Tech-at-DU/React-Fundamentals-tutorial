@@ -1,9 +1,4 @@
----
-title: "Searching Spaces"
-slug: searching-spaces
----
-
-## Searching Spaces
+# Searching Spaces
 
 Imagine you wanted to search spaces by typing the address into a input and showing all spaces in our JSON file that matched.
 
@@ -19,23 +14,18 @@ Hooks and Classes
 
 This solution will work with hooks.
 
-> [action]
->
-> To use state you'll import a special function. Edit `POPOSList.js`. Update the import statement at the top to include `{ useState }`.
->
+To use state you'll import a special function. Edit `POPOSList.js`. Update the import statement at the top to include `{ useState }`.
+
 ```JS
 import React, { useState } from 'react'
 ```
->
 
 Create the input field for the search feature.
 
 When I did this I had already setup the grid and hadn't thought of the how the form would display with the grid.
 
-> [action]
->
-> Edit the `POPOSList` component in `POPOSList.js`
->
+Edit the `POPOSList` component in `POPOSList.js`
+
 ```JS
 function POPOSList() {
 	const [ query, setQuery ] = useState('')
@@ -55,7 +45,6 @@ function POPOSList() {
   )
 }
 ```
->
 
 If this is working you should be able to type in the field and see the value.
 
@@ -94,10 +83,8 @@ With this in mind what do we search? The data we have has a couple fields that m
 
 the description might be used but it contains a lot of text that might provide false positives and slow our searches.
 
-> [action]
->
-> Edit `POPOSList.js`.
->
+Edit `POPOSList.js`.
+
 ```JS
 function POPOSList() {
 	...
@@ -107,7 +94,6 @@ function POPOSList() {
 	...
 }
 ```
->
 
 That's pretty long and probably hard to grok. Let's take it apart.
 
@@ -180,7 +166,7 @@ const spaces = data.filter((obj) => {
 })
 ```
 
-### ids out sync
+## Ids out sync
 
 At this point the List page will show the search results. Filter is returning a new array with the spaces that match your search results **the index of these new items won't match the position of those items in the data array.**
 
@@ -202,22 +188,19 @@ In the example code above if we use the index from the filtered data the details
 
 To fix this let's add an id property to our data.
 
-> [action]
->
-> Add a new file: `sfpopos-data.js` put this in the same folder as `sfpopos-data.json`.
->
-> Add the following code to `sfpopos-data.js`:
->
+Add a new file: `sfpopos-data.js` put this in the same folder as `sfpopos-data.json`.
+
+Add the following code to `sfpopos-data.js`:
+
 ```JS
 import data from './sfpopos-data.json'
->
+
 data.forEach((obj, i) => {
 	obj.id = i
 })
->
+
 export default data
 ```
->
 
 What happened here? This file imports `./sfpopos-data.json`, loops over the data and adds a new id property to each object. Where the objects originally looked like this:
 
@@ -244,10 +227,8 @@ The objects now all look like this:
 
 The last line exports the data. Our other files can now import the data from this file. You'll need to edit any of the files that import `./sfpopos-data.json` and change the import to `./sfpopos-data.js` (notice the difference `.json` to `.js`.)
 
-> [action]
->
-> Edit the following follows changes in `components/RandomSpace.js`, `POPOSDetails.js`, and `POPOSList.js`:
->
+Edit the following follows changes in `components/RandomSpace.js`, `POPOSDetails.js`, and `POPOSList.js`:
+
 ```js
 // Change
 import data from '../../sfpopos-data.json'
@@ -255,14 +236,10 @@ import data from '../../sfpopos-data.json'
 import data from '../../sfpopos-data.js'
 ```
 
-<!--  -->
+Use the id from data rather than the index from map as the id for each space.
 
-> [action]
->
-> Use the id from data rather than the index from map as the id for each space.
->
-> Edit `./components/POPOSList.js`
->
+Edit `./components/POPOSList.js`
+
 ```JS
 const spaces = data.filter(({ features, title, address }) => {
 	...
@@ -282,7 +259,6 @@ const spaces = data.filter(({ features, title, address }) => {
 	})
 	...
 ```
->
 
 Here you replaced the index of the element in the array with the id of that element. Where the index might change when the array is filtered each object will always use the same value for the id.
 
@@ -292,32 +268,33 @@ Here are a few ideas to style the search field. What you do here depends on wher
 
 Here are the styles I added.
 
-> [action]
->
-> Edit `POPOSList.css` add the following:
->
+Edit `POPOSList.css` add the following:
+
 ```css
 .POPOSList form {
 	display: flex;
 	align-items: flex-start;
 }
->
+
 .POPOSList form input, .POPOSList form button {
 	padding: 0.5em;
 	margin: 0;
 	border: 1px solid;
 	font-size: 1;
 }
->
+
 .POPOSList form input {
 	flex: 1;
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
 }
->
+
 .POPOSList form button {
 	border-top-right-radius: 0.5em;
 	border-bottom-right-radius: 0.5em;
 }
 ```
->
+
+# Next
+
+Click [here](../P11-Random-Space/content.md) to move onto the next section about random spaces.
