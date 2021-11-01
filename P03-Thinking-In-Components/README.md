@@ -147,4 +147,4 @@ Looking for more? Try these out:
 
 # Next
 
-Click [here](../P04-Dynamic-Data/content.md) to move onto the next section about dynamic data.
+Click [here](../P04-Dynamic-Data/) to move onto the next section about dynamic data.

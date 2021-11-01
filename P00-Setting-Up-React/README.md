@@ -226,4 +226,4 @@ $ git push origin main -u
 
 # Next
 
-Click [here](../P01-Build-A-Header-Component/content.md) to move onto the next section about building a header component.
+Click [here](../P01-Build-A-Header-Component/) to move onto the next section about building a header component.

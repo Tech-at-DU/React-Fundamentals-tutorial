@@ -297,4 +297,4 @@ Edit `POPOSList.css` add the following:
 
 # Next
 
-Click [here](../P11-Random-Space/content.md) to move onto the next section about random spaces.
+Click [here](../P11-Random-Space/) to move onto the next section about random spaces.

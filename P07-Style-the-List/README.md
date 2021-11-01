@@ -108,4 +108,4 @@ Think of other things you might want to change as the screen changes size.
 
 # Next
 
-Click [here](../P08-Styling-Spaces/content.md) to move onto the next section about styling spaces.
+Click [here](../P08-Styling-Spaces/) to move onto the next section about styling spaces.

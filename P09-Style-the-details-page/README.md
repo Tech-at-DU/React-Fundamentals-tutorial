@@ -86,4 +86,4 @@ The main container was given row-reverse to move the information to the left and
 
 # Next
 
-Click [here](../P10-Search-Spaces/content.md) to move onto the next section about search spaces.
+Click [here](../P10-Search-Spaces/) to move onto the next section about search spaces.

@@ -175,4 +175,4 @@ The `.POPOSSpace .POPOSSpace-info div` selector applies to the two child divs. H
 
 # Next
 
-Click [here](../P09-Style-the-details-page/content.md) to move onto the next section about styling the details page.
+Click [here](../P09-Style-the-details-page/) to move onto the next section about styling the details page.

@@ -301,4 +301,4 @@ $ git push
 
 # Next
 
-Click [here](../P02-Building-Content/content.md) to move onto the next section about building some content.
+Click [here](../P02-Building-Content/) to move onto the next section about building some content.

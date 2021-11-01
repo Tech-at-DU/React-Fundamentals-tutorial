@@ -206,4 +206,4 @@ Next, make an instance of `POPOSFeatureList` and set the feature proper to the a
 
 # Next
 
-Click [here](../P13-Publish-to-GitHub-Pages/content.md) to move onto the next section about publishing to GitHub pages.
+Click [here](../P13-Publish-to-GitHub-Pages/) to move onto the next section about publishing to GitHub pages.

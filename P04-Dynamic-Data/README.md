@@ -369,4 +369,4 @@ $ git push
 
 # Next
 
-Click [here](../P05-Adding-React-Router/content.md) to move onto the next section about adding a react router.
+Click [here](../P05-Adding-React-Router/) to move onto the next section about adding a react router.

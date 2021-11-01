@@ -178,4 +178,4 @@ Add a style sheet and style the RandomSpace button. You style the button. Follow
 
 # Next
 
-Click [here](../P12-Displaying-Feature/content.md) to move onto the next section about displaying features.
+Click [here](../P12-Displaying-Feature/) to move onto the next section about displaying features.

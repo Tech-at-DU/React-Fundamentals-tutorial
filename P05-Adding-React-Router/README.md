@@ -517,4 +517,4 @@ The remaining chapters are optional, and meant for those who want some extra pra
 
 # Next
 
-Click [here](../P06-Organizing-Files/content.md) to move onto the next (optional) section about organizing files.
+Click [here](../P06-Organizing-Files/) to move onto the next (optional) section about organizing files.

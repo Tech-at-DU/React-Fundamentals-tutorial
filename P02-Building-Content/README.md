@@ -415,4 +415,4 @@ $ git push
 
 # Next
 
-Click [here](../P03-Thinking-In-Components/content.md) to move onto the next section about thinking in components.
+Click [here](../P03-Thinking-In-Components/) to move onto the next section about thinking in components.

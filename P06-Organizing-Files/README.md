@@ -153,4 +153,4 @@ Read thee error any error messages and these will usually tell you where a path 
 
 # Next
 
-Click [here](../P07-Style-the-List/content.md) to move onto the next section about styling the list.
+Click [here](../P07-Style-the-List/) to move onto the next section about styling the list.
