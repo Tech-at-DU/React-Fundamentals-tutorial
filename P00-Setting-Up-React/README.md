@@ -20,6 +20,10 @@ By the end of this tutorial, you should be able to:
 
 1. Understand how to set up a React project
 1. Create basic React components
+1. Use React to create web sites
+1. Build websites that load dynamic content
+1. Use React Router to create multi-page React sites
+1. Publish react projects to GitHub Pages
 
 ## Getting Started
 

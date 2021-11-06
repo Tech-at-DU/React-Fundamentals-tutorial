@@ -87,7 +87,7 @@ The easiest way to do this is with `Array.map()`. `Map` is used to transform an 
 
 The first step is to load the JSON data in your `POPOSList` component.
 
-Download this [sfpopos-data.json file](https://drive.google.com/open?id=18Prr0yHaAr6r1PH-b5bVYTkoxT9CKxX_) and put it in your `src` directory
+Download this [sfpopos-data.json file](https://drive.google.com/file/d/1MlCiboVPXyNP-KJpqK6EtZcJUV4Rb5yP/view?usp=sharing) and put it in your `src` directory
 
 Now let's test out printing the JSON to console:
 

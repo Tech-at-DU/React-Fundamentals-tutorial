@@ -152,7 +152,7 @@ If you imagine your project as tree structure you can see that you have componen
 
 This would look a lot better with some images.
 
-Download the images here: [SFPOPOS-images](https://drive.google.com/open?id=17RDk6ky2lTZl8XZtPQ-uwjeI7PXDivlu)
+Download the images here: [SFPOPOS-images](https://drive.google.com/file/d/1GUBZdIWndvcrwe_MHZLRU8hKDj2bQs0p/view?usp=sharing)
 
 The code you write is not run directly. Instead the code you wrote is converted into vanilla JS and project is served from the public directory.
 

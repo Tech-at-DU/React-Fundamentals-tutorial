@@ -1,15 +1,15 @@
 # React Fundamentals
 
-Learn react fundamentals for FEW 2.3
+Use this tutorial to learn React the most amazing front library available today. The tutorial creates a demo website using dynamic content. 
 
-Covers Basic React concepts including:
+## Learning Objectives 
 
-- Components
-- Props
-- Boostrapping a React app with Create React App
-- Routing with React Router
-
-The project outlined here creates a simple gallery with grid view and a detail view. It could be used for personal portfolios, online stores, and other types of projects.
+1. Create React Projects
+1. Create components
+1. Use JSON to create dynamic websites
+1. Use React Router to manage navigation
+1. Use GitHub to track your project with version control
+1. Publish your site with GitHub pages
 
 ## Instructions
 
