@@ -88,7 +88,7 @@ Let's make a component to show a project.
 Make a new file: `src/POPOSSpace.js` and add the following code to it:
 
 ```js
-// src/Project.js
+// src/POPOSSpace.js
 
 import React from 'react'
 import logo from './logo.svg'
