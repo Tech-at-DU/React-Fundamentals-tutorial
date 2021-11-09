@@ -155,7 +155,8 @@ In `App.js` import Title at the top of the page:
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-[bold]import Title from './Title';[/bold]
+
+import Title from './Title';
 ```
 
 Here you are importing the default export from `Title.js`.
