@@ -27,8 +27,10 @@ Edit `POPOSDetails.js`:
 
 ```JS
 function POPOSDetails(props) {
-  const { id } = props.match.params // Location index
+  const params = useParams()
+  const { id } = params // Location index
   const { images, title, desc, hours, features, geo } = data[id]
+  
   return (
     <div className="POPOSDetails">
       <div className="POPOSDetails-image">

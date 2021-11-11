@@ -85,6 +85,7 @@ Edit `POPOSSpace.css `, set the position property of the parent element to relat
 ```CSS
 .POPOSSpace {
 	position: relative;
+	...
 }
 ```
 
@@ -97,11 +98,13 @@ function POPOSSpace(props) {
   ...
   return (
     ...
+		<h1>
 			<Link
 				className="POPOSSpace-title" // add a class name!
 				to={`/details/${id}`}>
-				<h1>{name}</h1>
+				{name}
 			</Link>
+		</h1>
 			...
   )
 }
@@ -113,17 +116,19 @@ In `POPOSSpace.css` add some new style rules:
 
 ```CSS
 .POPOSSpace .POPOSSpace-title {
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
+  text-decoration: none;
+  color: #000;
 }
 
 .POPOSSpace h1 {
+  display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
 	margin: 0;
 	font-weight: lighter;
-	background-color: rgba(255, 255, 255, 0.9);
-	padding: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.75);
+	padding: 1rem;
 	text-align: left;
 }
 ```

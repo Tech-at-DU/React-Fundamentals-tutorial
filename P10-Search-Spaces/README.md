@@ -17,7 +17,7 @@ This solution will work with hooks.
 To use state you'll import a special function. Edit `POPOSList.js`. Update the import statement at the top to include `{ useState }`.
 
 ```JS
-import React, { useState } from 'react'
+import { useState } from 'react'
 ```
 
 Create the input field for the search feature.
@@ -88,8 +88,13 @@ Edit `POPOSList.js`.
 ```JS
 function POPOSList() {
 	...
-	const spaces = data.filter(obj => obj.title.includes(query) || obj.address.includes(query)).map((obj, i) => {
-		...
+	const spaces = data
+  .filter(obj => obj.title.includes(query) || obj.address.includes(query))
+  .map(({ title, address, images, hours }, i) => {
+	// const spaces = data.map(({ title, address, images, hours }, i) => {
+		return (
+			...
+		)
 	})
 	...
 }
@@ -277,10 +282,10 @@ Edit `POPOSList.css` add the following:
 }
 
 .POPOSList form input, .POPOSList form button {
-	padding: 0.5em;
+	padding: 1em;
 	margin: 0;
 	border: 1px solid;
-	font-size: 1;
+	font-size: 1rem;
 }
 
 .POPOSList form input {
