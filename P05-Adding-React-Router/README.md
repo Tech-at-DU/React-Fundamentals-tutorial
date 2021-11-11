@@ -10,11 +10,12 @@ You can use the React Router library to make your React apps function like multi
 
 # React Router
 
-**React Router** is a library that can create a multipage experience in React. It does this by selectively rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser.
+**React Router** is a library that can create a multipage experience in React. It does this by selectively rendering components. You'll define components that render at routes. A **route** is an address that appears in the address bar of the browser and is tied to a component. When the route in the address bar changes React Router renders a component to the page. 
 
 To work with React Router it helps to understand some terminology.
 
-- **Router** - A parent component that manages Routes
+- **Router** - Is the top level component that manages all routes and navigation
+- **Routes** - A parent component that manages Routes
 - **Route** - A component that displays another component
 
 Think of the Router as the manager, you only need one of these. The Router checks the URL in the address bar and passes this information to its descendant Routes.
@@ -22,9 +23,10 @@ Think of the Router as the manager, you only need one of these. The Router check
 Imagine a website with three pages built with React using React Router. The Router and Route components might be arranged like this:
 
 - Router
-  - Route - Home Page
-  - Route - About Page
-  - Route - Map Page
+  - Routes
+    - Route - Home Page
+    - Route - About Page
+    - Route - Map Page
 
 A Route is responsible for displaying components. Routes have a path property: when the path matches the URL in the address, the Route displays the appropriate component, otherwise not.
 
@@ -32,13 +34,16 @@ In code this might look like:
 
 ```js
 <Router>
-  <Route path='/home' ... />
-  <Route path='/about' ... />
-  <Route path='/home' ... />
+  <Routes>
+    <Route path="/" element={<App />}>
+      <Route path="list" element={<POPOSList />} />
+      <Route path="about" element={<About />} />
+    </Route>
+  </Routes>
 </Router>
 ```
 
-**Important!** The two names: Router and Route are different by only a single character, but they are very different in function and must be used correctly. Watch your spelling!
+**Important!** The names: `Router`, `Routes` and `Route` are different by only a single character, but they are very different in function and must be used correctly. Watch your spelling!
 
 # Getting started
 
@@ -66,87 +71,9 @@ Coming up, you'll import `HashRouter` into `App.js`. This is a component that ma
 >
 > Why use one or the other? In most cases they are interchangeable. Since we plan to publish the completed site to GitHub pages in the future, we're using HashRouter because GitHub pages doesn't work with BrowserRouter!
 
-## Setting up the Router
+## Make an About page
 
-Router manages routes. It should be a top level component. For this reason you'll define your Router in `App.js`.
-
-Open `App.js`. Import `HashRouter` and `Route` at the top.
-
-```js
-import { HashRouter as Router, Route } from 'react-router-dom'
-```
-
-Why `HashRouter as Router`? This is an alias. You're importing HashRouter but using it under the name `Router` instead. This will make it easier to make changes in the future if needed.
-
-Next, Wrap your entire App in the `<Router>` component.
-
-```JS
-function App() {
-  return (
-    <Router>
-
-      <div className="App">
-        <Title />
-        <POPOSList />
-      </div>
-
-    </Router>
-  );
-}
-```
-
-Notice how Router surrounds everything. Routes must be children of a Router!
-
-### Adding Routes
-
-A route displays a component as a path. You want the `POPOSList` to display at the `/` path.
-
-Update the `App` function in `App.js` to the following:
-
-```js
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Title />
-        <Route path="/" component={POPOSList}/>
-      </div>
-    </Router>
-  );
-}
-```
-
-Notice when you created the Route you used two props: `path` and `component`. Path defines the URL that will make the component display.
-
-The `/` route is the root route. So the list should display now at `http://localhost:3000/`. In your browser, add something to the end of the path in the address bar, and see what happens when you try to navigate to it. Try this as an example:
-
-`http://localhost:3000/#/about`
-
-The list should still display. This is because the `/` is contained in the route above.
-
-You can make the route an exact route. In this case the list would only display when the route matches exactly.
-
-Make this change to the `Route` in `App.js`:
-
-```html
-<Route exact path="/" component={POPOSList}/>
-```
-
-Now try these paths in the address bar of the browser:
-
-This should display the list:
-
-`http://localhost:3000/#/`
-
-Using this address should not display the list, It's not an exact match.
-
-`http://localhost:3000/#/about`
-
-Notice the `Title` Component is displayed every time. It's not managed by a Route so it's always displayed.
-
-## Adding another route
-
-Your site could use an About page. Let's create a new component!
+Your site could use an About page. Let's create a new component! Adding this new page will give our site something to navigate to. 
 
 Make a new file `src/About.js` with the following code:
 
@@ -172,40 +99,71 @@ export default About
 
 This component will display a heading and a paragraph of text. You can add some styles later, and maybe a picture and more info like a map. For now we are concerned with Routes.
 
-Back in `App.js` import the `About` Component at the top.
+## Setting up the Router
+
+In `index.js` you'll set up your `Router` and `Routes`. 
+
+```JS
+...
+import App from './App';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import About from './About'
+import POPOSList from './POPOSList'
+
+ReactDOM.render(
+  <Router>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path="/" element={<POPOSList />} />
+        <Route path="about" element={<About />} />
+      </Route>
+    </Routes>
+  </Router>,
+  document.getElementById('root')
+);
+...
+```
+
+Notice that all `Route` components appear inside the `Routes` component. 
+
+Also, notice that the `<Route path="/" element={<App />}>` contains the other routes! App contains the title/navbar and will appear on all pages. To make this work you're making the other routes children of this route. Notice the path is `/`. With this arrangement `POPOSList` and `About` components will appear inside `App`.
+
+Look at the `element="..."` prop. This is the component that will be displayed by this route. 
+
+Look at the `path="..."` prop for each route. This will determine what the address needs to be to display this component. Notice that both `App` and `POPOSList` are displayed at the `/` "root" route. 
+
+### Nesting Routes
+
+Above you nested the `POPOSList` and `About` inside the `/` route that displays the `App` component. To display those nested routes you need to add an outlet. 
 
 ```js
-import About from './About'
+import { Outlet } from 'react-router-dom'
+
+import './App.css';
+import Title from './Title';
+
+function App() {
+  return (
+    <div>
+      <Title />
+      <Outlet />
+    </div>
+  );
+}
+
+export default App;
+
 ```
 
-Inside the `Router`, add a new `Route`:
+Test your routes. We haven't added any navigation yet so at this point we need to test the routes manually by entering the routes in the address bar of the browser. 
 
-```html
-...
-<Router>
-  <div className="App">
+Try these addresses in your browser: 
 
-    <Title />
+http://localhost:3000/#/
 
-    <Route exact path="/" component={POPOSList}/>
-    <Route path="/about" component={About} />
+http://localhost:3001/#/about
 
-  </div>
-</Router>
-...
-```
-
-Notice the new route has a path of `/about` and renders the `About` component.
-
-Save your work and try it in the browser. Try these two paths in the address bar:
-
-Should display the list
-
-`http://localhost:3000/#/`
-
-Should display the about page
-
-`http://localhost:3000/#/about`
+The first should show the root page, and the second should show the about page. 
 
 # Linking to Routes
 
@@ -251,14 +209,14 @@ The `NavLink`s need some style. `NavLink` translates to a regular anchor `<a>` t
 In `src/Title.js`, give the NavLinks a class name:
 
 ```html
-<NavLink className="nav-link" to="/">List</NavLink>
-<NavLink className="nav-link" to="/about">About</NavLink>
+<NavLink to="/">List</NavLink>
+<NavLink to="/about">About</NavLink>
 ```
 
 Then, open `src/Title.css` and add some styles.
 
 ```CSS
-.Title .nav-link {
+.Title a {
   display: inline-block;
   padding: 0.5em 1em;
   color: rgba(255, 255, 255, 0.835);
@@ -269,23 +227,17 @@ Then, open `src/Title.css` and add some styles.
 
 This looks better, but you could do more! Currently the active link (the link that represents the current "page") doesn't stand out from the other links. It should, as this would help users understand where they are what they can do, thereby improving the UX (User eXperience).
 
-Luckily, `NavLink` has a prop for this! The `activeClassName` prop/attribute defines a class name that will be added to the element when that link is the current link.
-
-**The `activeClassName` is applied by matching the path in the address bar.** It follows the same rules used for Routes. This means that the `/` will match all paths that contain a `/`. Use `exact` to prevent this behavior.
+We can run a function to determine what class name should be applied to any link. React Router will pass an `isActive` prop. This is a Boolean. True when the link is active and False when not. 
 
 *Edit* your `NavLink`s in `src/Title.js` to be the following:
 
 ```js
-<NavLink
-  className="nav-link"
-  activeClassName="nav-link-active"
-  exact
-  to="/">List</NavLink>
-
-<NavLink
-  className="nav-link"
-  activeClassName="nav-link-active"
-  to="/about">About</NavLink>
+<NavLink 
+	className={({ isActive }) => isActive ? "nav-link-active" : "nav-link" }
+	to="/">List</NavLink>
+<NavLink 
+	className={({ isActive }) => isActive ? "nav-link-active" : "nav-link" }
+	to="/about">About</NavLink>
 ```
 
 With these options, the selected `NavLink` will have the class: `nav-link-active`. You should add a style for this!
