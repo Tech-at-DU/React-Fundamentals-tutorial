@@ -171,7 +171,7 @@ This is working but we can't ask people to navigate to pages by typing the URL, 
 
 React Router provides a `NavLink` component. The `NavLink` sets the address to navigate to in our browser's URL bar, and navigates the user to that address. It's like the `<a>` tag but specific to React Router.
 
-Add two links to the Title Component. Open `Title.js`. Add this to the top of the page:
+Add two links to the `Title` Component. Open `Title.js`. Add this to the top of the page:
 
 ```js
 import { NavLink } from 'react-router-dom'
@@ -277,17 +277,18 @@ Make a new file named: `src/POPOSDetails.js`, and add the following code to it:
 // src/POPOSDetails.js
 
 import React from 'react'
-
+import { useParams } from 'react-router'
 import data from './sfpopos-data.json'
 
 function POPOSDetails(props) {
-  const { id } = props.match.params // Location index
+  const params = useParams()
+  const { id } = params // Location index
   const { images, title, desc, hours, features, geo } = data[id]
 
   return (
     <div>
       <div>
-        <img src={`${process.env.PUBLIC_URL}images/${images[0]}`} />
+        <img src={`${process.env.PUBLIC_URL}images/${images[0]}`} alt={title} />
       </div>
 
       <div>
@@ -307,9 +308,13 @@ export default POPOSDetails
 
 The code above is just like the other components you've made. One small change is at the top you've imported `sfpopos-data.js`.
 
-Inside the function you defined a variable: `id` and set the value to `props.match.params`.
+Here you imported the `useParams` hook from `react-router-dom`. You'll use this method to access any params that are part of a route. A param is part of the url that isn't used in the path. Later we are going to add the id of public space to the url. It might look like this: 
 
-`const { id } = props.match.params // Location index`
+```
+http://localhost:3000/#/details/32
+```
+
+Imagine number `32` is the id of the public space we want to see on the details page. 
 
 On the next line you're using the `id` to get the data for the location at the index. Using deconstruction we can break object at that index down into: `images`, `title`, `desc`, `hours`, `features`, and `geo` coordinates.
 
@@ -317,7 +322,7 @@ The rest of the component is similar to the other components you wrote previousl
 
 ### Details Route
 
-Set up a Route to display the details component.
+Add a new Route to `index.js`. This new route will be displayed as a child of the `App` component so it will need to be nested in that route! 
 
 Open `App.js`, and add an import for `POPOSDetails.js` at the top:
 
@@ -325,27 +330,23 @@ Open `App.js`, and add an import for `POPOSDetails.js` at the top:
 import POPOSDetails from './POPOSDetails'
 ```
 
-Then in `App.js`, within the return block of the component, make a new Route below the existing Routes:
+Now add a new Route nested inside the `App` route:
 
-```html
-<Route path="/details/:id" component={POPOSDetails} />
+```js
+<Route path="/" element={<App />}>
+  <Route path="/" element={<POPOSList />} />
+  <Route path="about" element={<About />} />
+  <Route path="/details/:id" element={<POPOSDetails />} />
+</Route>
 ```
 
-Notice the path here is different. `path="/:id"` it contains a `:`. This is a parameter. The value following the `/` is now a variable and can be anything. For example:
+Notice the path in the new Route: `path="/details/:id"`. Here `id` defines a variable that will get it's value from the url: 
 
-`http://localhost:3000/#/0` `id` would be 0
+`http://localhost:3000/#/details/0` - `id` would be 0
 
 or
 
-`http://localhost:3000/#/42` `id` would be 42
-
-You have access to this value inside a Route with: `props.match.params.id`
-
-Take a look back at `src/POPOSDetails.js` somewhere around line 6 you should have:
-
-`const { id } = props.match.params`
-
-Here you get the value of id.
+`http://localhost:3000/#/details/42` - `id` would be 42
 
 You can test your work by trying these addresses in your browser:
 
@@ -355,11 +356,13 @@ You can test your work by trying these addresses in your browser:
 
 What's important here is your app can find a details page by entering a URL. A user now could go directly to a page by entering that address, they could also bookmark a page.
 
+The next step is to add some links that navigate to these routes. 
+
 ### Passing the id
 
 To be able to link to something with an id we need to have that id. Here in this step you'll pass the id to a `POPOSSpace` from `POPOSList`.
 
-Open `POPOSList.js`. Find the line where you mapped data to the `POPOSSpace` via the `spaces` const, and edit it to be the below code. Notice the small changes with `i` and `id`:
+Open `POPOSList.js`. Find the line where you mapped data to the `POPOSSpace` via the `spaces` const, and edit it to be the below code. **Notice the small changes with `i` in map() and the added `id` attribute**:
 
 ```JS
 const spaces = data.map(({ title, address, images, hours }, i) => {
@@ -380,7 +383,7 @@ On the first line there is a second parameter to:
 
 `map(obj, i)`, or
 
-`map({ ... }, i)`. here is the whole line as it is shown above:
+`map({ ... }, i)`. Here is the whole line as it is shown above:
 
 `const spaces = data.map(({ title, address, images, hours }, i) => {`
 
@@ -394,8 +397,6 @@ The second change is the added prop `id={i}` in the `POPOSSpace` component.
 ```
 
 When using `map()` this method provides the index of the element as a second parameter. This is useful in many cases, you're using it here as the index of the data from our JSON data.
-
-You can now access this index inside an instance of `POPOSSpace` as `props.id`.
 
 # Linking to Details
 
