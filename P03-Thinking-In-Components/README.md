@@ -28,7 +28,6 @@ Add a new css file: `src/POPOSList.css`, and add the following code to it:
 
 ```css
 /* src/POPOSList.css */
->
 .POPOSList {
   width: calc(100% - 80px);
   margin: auto;
