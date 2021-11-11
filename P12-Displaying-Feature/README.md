@@ -110,7 +110,7 @@ The SFPOPOS data provides a list of 0 or more strings of features. This means we
 
 Time to make a component! This new component will take an array of strings and return an array of `POPOSFeature` components.
 
-Create a new file: `POPOSFeatureList`.
+Create a new file: `POPOSFeatureList.js`.
 
 Add the following code here to define the new component.
 
@@ -175,7 +175,7 @@ To use the POPOSFeatureList component you need to include an array of strings as
 
 Put this to work in the details page.
 
-Edit `POPOSFeatureList.js`
+Edit `POPOSDetails.js`
 
 ```JS
 ...

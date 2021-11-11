@@ -232,7 +232,7 @@ The objects now all look like this:
 
 The last line exports the data. Our other files can now import the data from this file. You'll need to edit any of the files that import `./sfpopos-data.json` and change the import to `./sfpopos-data.js` (notice the difference `.json` to `.js`.)
 
-Edit the following follows changes in `components/RandomSpace.js`, `POPOSDetails.js`, and `POPOSList.js`:
+Edit the following follows changes in `POPOSDetails.js`, and `POPOSList.js`:
 
 ```js
 // Change

@@ -69,7 +69,7 @@ A quick aside, I'm regretting naming the the compoennt Title, when that componen
 
 Displaying a new random page requires we use React Router. Remember React Router manages the "Pages" in our Single Page Site.
 
-The method I chose was `history`. Using history will allow random searches to be tracked by the history and users will be able to use the back button in the browser to go back to the previous space they viewed.
+Sometimes you will want to programatically navigate to another route. React Router provides the `useNavigate` hook for this purpose. 
 
 Now we need a button or link to initiate the action. I added a button to the `Title` (😑) component. You could put this button anywhere. So our strategy will be to make a component that is just the button that loads a random space and then we can import that button where ever we might want to use it.
 
@@ -80,17 +80,18 @@ Next make a new file: `RandomSpace/RandomSpace.js`
 Now add the following to `RandomSpace.js`:
 
 ```JS
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './RandomSpace.css';
 import data from '../../sfpopos-data.json'
 
 function RandomSpace() {
-	const history = useHistory()
+	const navigate = useNavigate()
   return (
-		<button onClick={(e) => {
+		<button 
+    className="RandomSpace"
+    onClick={(e) => {
 			const id = Math.floor(Math.random() * data.length)
-			history.push(`/details/${id}`)
+			navigate(`/details/${id}`)
 		}}>Show me a random space</button>
   )
 }
@@ -100,7 +101,7 @@ export default RandomSpace
 
 This creates a component that outputs a single button.
 
-I imported `useHistory`. `useHistory` is a 'hook' that we can use with React Router to navigate to a new page. You'll call this method in your component function to get the history object.
+I imported `useNavigate`. This is a 'hook' that returns the navigation function. Call it to get the function. Then call the navigation function to navigate to a new route. 
 
 I also imported `sfpopos-data.json` as `data` since I'll need to know the length of the list.
 
@@ -130,7 +131,7 @@ Inside the onClick function the code gets a random number from 0 to the length -
 
 ```JS
 const id = Math.floor(Math.random() * data.length)
-history.push(`/details/${id}`)
+navigate(`/details/${id}`)
 ```
 
 ### Use the new RandomSpace component
@@ -154,14 +155,14 @@ Inside the function that defines the component find a place to add the new butto
 function Title() {
   return (
     <div className="Title">
-      <header>
-        ...
-        <div>
-          ...
-          <RandomSpace />
-        </div>
-      </header>
-    </div>
+      <h1>SFPOPOS</h1>
+			<small className="Title-Subtitle">San Francisco Privately Owned Public Open Spaces</small>
+			<div>
+				<NavLink ... >List</NavLink>
+				<NavLink ... >About</NavLink>
+				<RandomSpace />
+			</div>
+		</div>
   )
 }
 ```
