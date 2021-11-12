@@ -46,8 +46,6 @@ Create a new file, `src/Title.js`, and add the following:
 ```js
 // src/Title.js
 
-import React from 'react'
-
 function Title() {
   return (
     <div>
@@ -152,7 +150,6 @@ In `App.js` import Title at the top of the page:
 ```js
 // src/App.js
 
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -172,7 +169,6 @@ Now use the `Title` Component inside the `App` Component. In `App.js`, rewrite t
 ```js
 // src/App.js
 
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Title from './Title';

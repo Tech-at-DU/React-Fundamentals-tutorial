@@ -33,8 +33,6 @@ Make a new file: `src/POPOSList.js` and add the following code to it:
 ```js
 // src/POPOSList.js
 
-import React from 'react';
-
 function POPOSList() {
   return (
     <div>
@@ -90,7 +88,6 @@ Make a new file: `src/POPOSSpace.js` and add the following code to it:
 ```js
 // src/POPOSSpace.js
 
-import React from 'react'
 import logo from './logo.svg'
 
 function POPOSSpace() {

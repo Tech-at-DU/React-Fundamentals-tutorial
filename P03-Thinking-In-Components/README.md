@@ -141,8 +141,8 @@ $ git push
 Looking for more? Try these out:
 
 - Display the year in the footer by getting the year via JS using the Date Object
-- Add a Like Count to each project. This will be a prop that is a number.
-- Display the Like count in the Project Component.
+- Add a list of links in the footer. 
+- Change the design. Add your own CSS ideas to what was presented here. 
 
 # Next
 

@@ -456,11 +456,11 @@ Check your work! Clicking a link should take you to the detail page for that loc
 
 # Feedback and Review - 2 minutes
 
-If you found any technical issues or spelling errors, or just think of a good suggestions to improve the code shown in the tutorial post an issue to the GitHub repo: https://github.com/MakeSchool-Tutorials/React-Fundamentals
+If you found any technical issues or spelling errors, or just think of a good suggestions to improve the code shown in the tutorial post an issue to the GitHub repo: https://github.com/Tech-at-DU/React-Fundamentals-tutorial
 
 Give us general feedback on the tutorial, **we promise this won't take longer than 2 minutes!**
 
-Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/2yApCdKchE5WkNKD6)
+Please take a moment to rate your understanding of the learning outcomes from this tutorial, and how we can improve it via our tutorial. Post any suggestions or other feedback you might have as in issue to this repo. 
 
 This allows us to get feedback on how well the students are grasping the learning outcomes and tells us where we can improve the tutorial experience.
 
