@@ -167,7 +167,7 @@ Now edit `POPOSSpace.js`.
 function POPOSSpace() {
   return (
     <div>
-      <img src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`}     
+      <img src={`${process.env.PUBLIC_URL}/images/50-california-st.jpg`}     
         width="300"
         height="300"
         alt="50 Califonia St."
@@ -219,7 +219,7 @@ Last, put the variable inside `${}`:
 
 ```js
 <img
-  src={`${process.env.PUBLIC_URL}images/50-california-st.jpg`}
+  src={`${process.env.PUBLIC_URL}/images/50-california-st.jpg`}
   width="300"
   height="300"
   alt="Hello"
@@ -265,7 +265,7 @@ function POPOSSpace(props) {
   return (
     <div>
       <img
-        src={`${process.env.PUBLIC_URL}images/${image}`}
+        src={`${process.env.PUBLIC_URL}/images/${image}`}
         width="300"
         height="300"
         alt="Hello"
