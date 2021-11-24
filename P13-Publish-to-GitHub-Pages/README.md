@@ -10,13 +10,48 @@ React projects take a little more to publish. The React project source code does
 
 We can take this process one step further. Besides building the project we can build to a branch and publish that branch. This way your developer code that's in process can be worked on the master branch while code that's been published can be served from another branch.
 
-Luckily someone has made a library that automates the process.
+Luckily someone has made a library that automates the process. Follow these steps.
 
-Install the `gh-pages` package.
+Install the dependencies:
 
-`npm install --save-dev gh-pages`
+```
+npm install gh-pages --save-dev
+```
 
-Message your instructor for more details!
+We need to add the address of your github page. Every github repo can have a homepage at: 
+
+```
+http://<username>.github.io/<repo-name>
+```
+
+Here `<username>` you will replace this with your GitHub username and `<repo-name>` with the repo name. 
+
+Edit your `package.json` and add the address of your homepage. 
+
+```JSON
+"homepage": "http://<username>.github.io/<repo-name>"
+```
+
+Still in `package.json` add the following to scripts section:
+
+```JSON
+"scripts": {
+  //...
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+```
+
+To build and deploy your work run the following command in the terminal: 
+
+```
+npm run deploy
+```
+
+This builds your react project to a branch named `gh-pages` then commits and pushes that branch. 
+
+Visit yor new site at: `http://<username>.github.io/<repo-name>`.
+
 
 # Next
 
