@@ -77,21 +77,8 @@ cd sfpopos
 Run your app with:
 
 ```bash
-yarn start
+npm start
 ```
-
-Alternatively, you can use: `npm start`. If you don't have `yarn` installed, make sure to do so: `npm install -g yarn`
-
-> **Note!** If you see this error message:
->
-> If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
-That will permanently disable this message but you might encounter other issues.
->
-> If you see this you may have a different version of of something than something is recommended. You can get around this by:
->
-> - Add a new file named `.env`
-> - Add `SKIP_PREFLIGHT_CHECK=true` to the file and save
-> - Run `yarn start` or `npm start`
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
 
