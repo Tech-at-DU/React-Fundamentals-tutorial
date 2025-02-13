@@ -84,8 +84,8 @@ Edit `POPOSSpace.css `, set the position property of the parent element to relat
 
 ```CSS
 .POPOSSpace {
-	position: relative;
-	...
+  position: relative;
+  ...
 }
 ```
 
@@ -98,14 +98,14 @@ function POPOSSpace(props) {
   ...
   return (
     ...
-		<h1>
-			<Link
-				className="POPOSSpace-title" // add a class name!
-				to={`/details/${id}`}>
-				{name}
-			</Link>
-		</h1>
-			...
+    <h1>
+      <Link
+        className="POPOSSpace-title" // add a class name!
+        to={`/details/${id}`}>
+        {name}
+      </Link>
+    </h1>
+      ...
   )
 }
 ```
@@ -145,11 +145,11 @@ function POPOSSpace(props) {
   ...
   return (
     <div className="POPOSSpace">
-			...
-			<div className="POPOSSpace-info">
-				<div >{address}</div>
-				<div>{hours}</div>
-			</div>
+      ...
+      <div className="POPOSSpace-info">
+        <div >{address}</div>
+        <div>{hours}</div>
+      </div>
     </div>
   )
 }
@@ -161,16 +161,16 @@ Edit `POPOSSpace.css` and add thw following.
 
 ```CSS
 .POPOSSpace .POPOSSpace-info {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	text-align: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: right;
 }
 
 .POPOSSpace .POPOSSpace-info div {
-	display: inline-block;
-	padding: 0.25em 0.5em;
-	background-color: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 ```
 
