@@ -87,16 +87,16 @@ Edit `POPOSList.js`.
 
 ```JS
 function POPOSList() {
-	...
-	const spaces = data
+  ...
+  const spaces = data
   .filter(obj => obj.title.includes(query) || obj.address.includes(query))
   .map(({ title, address, images, hours }, i) => {
-	// const spaces = data.map(({ title, address, images, hours }, i) => {
-		return (
-			...
-		)
-	})
-	...
+  // const spaces = data.map(({ title, address, images, hours }, i) => {
+    return (
+      ...
+    )
+  })
+  ...
 }
 ```
 
@@ -118,8 +118,8 @@ Filter takes a callback that reecives an item from data.
 
 ```JS
 data.filter(obj => /* return true if obj.title includes query */).map((obj, i) => {
-		...
-	})
+    ...
+  })
 ```
 
 That's only half correct, we also need to check the address.
@@ -127,23 +127,23 @@ That's only half correct, we also need to check the address.
 ```JS
 data.filter(obj => /* return true if obj.title includes query
  or if obj.address includes query */).map((obj, i) => {
-		...
-	})
+    ...
+  })
 ```
 
 Let's break this function down into a longer form:
 
 ```JS
 data.filter((obj) => {
-	// true if query is in title
-	const inTitle = obj.title.includes(query)
-	// true if query is in address
-	const inAddress = obj.address.includes(query)
-	// return true if either is true
-	return inTitle || inAddress
+  // true if query is in title
+  const inTitle = obj.title.includes(query)
+  // true if query is in address
+  const inAddress = obj.address.includes(query)
+  // return true if either is true
+  return inTitle || inAddress
 }).map((obj, i) => {
-		...
-	})
+    ...
+  })
 ```
 
 The search should be working pretty good by now. You will notice that the search is case sensitive. For example:
@@ -160,14 +160,14 @@ One way to avoid case sensitive search would be to convert the search query and 
 
 ```JS
 const spaces = data.filter((obj) => {
-	// true if query is in title
-	const inTitle = obj.title.toLowerCase().includes(query.toLowerCase())
-	// true if query is in address
-	const inAddress = obj.address.toLowerCase().includes(query.toLowerCase())
-	// return true if either is true
-	return inTitle || inAddress
+  // true if query is in title
+  const inTitle = obj.title.toLowerCase().includes(query.toLowerCase())
+  // true if query is in address
+  const inAddress = obj.address.toLowerCase().includes(query.toLowerCase())
+  // return true if either is true
+  return inTitle || inAddress
 }).map((obj, i) => {
-	...
+  ...
 })
 ```
 
@@ -201,7 +201,7 @@ Add the following code to `sfpopos-data.js`:
 import data from './sfpopos-data.json'
 
 data.forEach((obj, i) => {
-	obj.id = i
+  obj.id = i
 })
 
 export default data
@@ -211,10 +211,10 @@ What happened here? This file imports `./sfpopos-data.json`, loops over the data
 
 ```JS
 {
-	title: 'Transamerica Redwood Park',
-	desc: 'Located in the shadow of the Transamerica Pyramid ...',
-	address: '600 Montgomery St San ...',
-	...
+  title: 'Transamerica Redwood Park',
+  desc: 'Located in the shadow of the Transamerica Pyramid ...',
+  address: '600 Montgomery St San ...',
+  ...
 }
 ```
 
@@ -222,11 +222,11 @@ The objects now all look like this:
 
 ```js
 {
-	id: 0, // NEW id added here matches the index of this element!
-	title: 'Transamerica Redwood Park',
-	desc: 'Located in the shadow of the Transamerica Pyramid ...',
-	address: '600 Montgomery St San ...',
-	...
+  id: 0, // NEW id added here matches the index of this element!
+  title: 'Transamerica Redwood Park',
+  desc: 'Located in the shadow of the Transamerica Pyramid ...',
+  address: '600 Montgomery St San ...',
+  ...
 }
 ```
 
@@ -247,21 +247,21 @@ Edit `./components/POPOSList.js`
 
 ```JS
 const spaces = data.filter(({ features, title, address }) => {
-	...
-	}).map((obj) => { // remove i here
-			// Add id here!
-			const { id, title, address, images, hours, features } = obj
-		return (
-			<POPOSSpace
-				id={id} // use id here
-				key={`${title}-${id}`} // use id here
+  ...
+  }).map((obj) => { // remove i here
+      // Add id here!
+      const { id, title, address, images, hours, features } = obj
+    return (
+      <POPOSSpace
+        id={id} // use id here
+        key={`${title}-${id}`} // use id here
         name={title}
         address={address}
-				image={images[0]}
-				hours={hours}
+        image={images[0]}
+        hours={hours}
       />
-		)
-	})
+    )
+  })
 	...
 ```
 
@@ -277,26 +277,26 @@ Edit `POPOSList.css` add the following:
 
 ```css
 .POPOSList form {
-	display: flex;
-	align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 .POPOSList form input, .POPOSList form button {
-	padding: 1em;
-	margin: 0;
-	border: 1px solid;
-	font-size: 1rem;
+  padding: 1em;
+  margin: 0;
+  border: 1px solid;
+  font-size: 1rem;
 }
 
 .POPOSList form input {
-	flex: 1;
-	border-top-left-radius: 0.5em;
-	border-bottom-left-radius: 0.5em;
+  flex: 1;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
 }
 
 .POPOSList form button {
-	border-top-right-radius: 0.5em;
-	border-bottom-right-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 ```
 
