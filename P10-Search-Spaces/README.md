@@ -28,19 +28,19 @@ Edit the `POPOSList` component in `POPOSList.js`
 
 ```JS
 function POPOSList() {
-	const [ query, setQuery ] = useState('')
-	...
+  const [ query, setQuery ] = useState('')
+  ...
   return (
     <div className="POPOSList">
-			<form>
-				<input
-					value={query}
-					placeholder="search"
-					onChange={(e) => setQuery(e.target.value)}
-				/>
-				<button type="submit">Submit</button>
-			</form>
-			{spaces}
+      <form>
+        <input
+          value={query}
+          placeholder="search"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {spaces}
     </div>
   )
 }
