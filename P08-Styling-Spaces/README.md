@@ -122,14 +122,14 @@ In `POPOSSpace.css` add some new style rules:
 
 .POPOSSpace h1 {
   display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
-	margin: 0;
-	font-weight: lighter;
-	background-color: rgba(255, 255, 255, 0.75);
-	padding: 1rem;
-	text-align: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  font-weight: lighter;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 1rem;
+  text-align: left;
 }
 ```
 
