@@ -29,8 +29,8 @@ Now you need to round the numbers off. JS supplies three choices for rounding:
 - `Math.floor()` - rounds down `Math.floor(3.9817693263500997) // 3`
 - `Math.ceil()` - rounds up `Math.floor(9.292188988843789) // 10`
 - `Math.round()` - rounds up/down
-	- `Math.floor(9.51050569288244) // 10`
-	- `Math.floor(9.292188988843789) // 9`
+- `Math.floor(9.51050569288244) // 10`
+- `Math.floor(9.292188988843789) // 9`
 
 The situation we are in provides us with an array of spaces and we need to select a random space from the array. The number of spaces in the array is provided by the length:
 
@@ -85,14 +85,15 @@ import './RandomSpace.css';
 import data from '../../sfpopos-data.json'
 
 function RandomSpace() {
-	const navigate = useNavigate()
+  const navigate = useNavigate()
   return (
-		<button 
-    className="RandomSpace"
-    onClick={(e) => {
-			const id = Math.floor(Math.random() * data.length)
-			navigate(`/details/${id}`)
-		}}>Show me a random space</button>
+    <button 
+      className="RandomSpace"
+      onClick={(e) => {
+        const id = Math.floor(Math.random() * data.length)
+        navigate(`/details/${id}`)
+      }}
+    >Show me a random space</button>
   )
 }
 
@@ -109,7 +110,7 @@ The code here handles a click on the button with `onClick`. Without all of the e
 
 ```JS
 <button onClick={() => {
-	// run some code here when the clicked
+  // run some code here when the clicked
 }}>Show me a random Space</button>
 ```
 
@@ -156,13 +157,13 @@ function Title() {
   return (
     <div className="Title">
       <h1>SFPOPOS</h1>
-			<small className="Title-Subtitle">San Francisco Privately Owned Public Open Spaces</small>
-			<div>
-				<NavLink ... >List</NavLink>
-				<NavLink ... >About</NavLink>
-				<RandomSpace />
-			</div>
-		</div>
+      <small className="Title-Subtitle">San Francisco Privately Owned Public Open Spaces</small>
+      <div>
+        <NavLink ... >List</NavLink>
+        <NavLink ... >About</NavLink>
+        <RandomSpace />
+      </div>
+    </div>
   )
 }
 ```
