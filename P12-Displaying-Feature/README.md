@@ -94,11 +94,11 @@ Add the follow code at the top `POPOSFeature.css`:
 
 ```CSS
 .POPOSFeature {
-	font-size: 2em;
-	padding: 0.25em;
-	margin: 0.125em;
-	border-radius: 0.25em;
-	background-color: #eee;
+  font-size: 2em;
+  padding: 0.25em;
+  margin: 0.125em;
+  border-radius: 0.25em;
+  background-color: #eee;
 }
 ```
 
@@ -120,10 +120,10 @@ import POPOSFeature from './POPOSFeature'
 import './POPOSFeatureList.css'
 
 function POPOSFeatureList(props) {
-	const icons = props.features.map((feature) => {
+  const icons = props.features.map((feature) => {
     return <POPOSFeature key={feature} name={feature} />
   })
-	return <div className="POPOSFeatureList">{icons}</div>
+  return <div className="POPOSFeatureList">{icons}</div>
 }
 
 export default POPOSFeatureList
@@ -149,7 +149,7 @@ Then add some styles.
 
 ```CSS
 .POPOSFeatureList {
-	display: flex;
+  display: flex;
 }
 ```
 
@@ -182,7 +182,7 @@ Edit `POPOSDetails.js`
 import POPOSFeatureList from '../POPOSFeatures/POPOSFeatureList'
 
 function POPOSDetails(props) {
-	...
+  ...
   return (
     <div className="POPOSDetails">
       ...
