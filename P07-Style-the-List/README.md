@@ -23,7 +23,7 @@ function POPOSList() {
   ...
   return (
     <div className="POPOSList">
-			...
+      ...
     </div>
   )
 }
@@ -35,8 +35,8 @@ Add the following to `POPOSList.css`
 
 ```CSS
 .POPOSList {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 ```
 
@@ -52,12 +52,12 @@ Add the following to the `.POPSList` rule in `POPOSList.css`
 
 ```CSS
 .POPOSList {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 2em;
-	max-width: 1200px;
-	margin: auto;
-	padding: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2em;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2em;
 }
 ```
 
@@ -75,9 +75,9 @@ Add the following to `POPOSList.css`
 ```CSS
 /* Smaller screens and tablets */
 @media only screen and (max-width: 960px) {
-	.POPOSList {
-		grid-template-columns: 1fr 1fr;
-	}
+  .POPOSList {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 ```
 
@@ -92,9 +92,9 @@ Add the following to `POPOSList.css`
 ```CSS
 /* Small screens mobile */
 @media only screen and (max-width: 700px) {
-	.POPOSList {
-		grid-template-columns: 1fr;
-	}
+  .POPOSList {
+    grid-template-columns: 1fr;
+  }
 }
 ```
 
