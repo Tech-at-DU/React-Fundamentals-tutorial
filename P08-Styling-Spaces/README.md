@@ -8,11 +8,11 @@ Styles have been divided between several style sheets. To keep these styles from
 
 ```CSS
 .POPOSSpace {
-	/* Styles for the root element */
+  /* Styles for the root element */
 }
 
 .POPOSSpace img {
-	/* Styles for img inside this component */
+  /* Styles for img inside this component */
 }
 ```
 
@@ -39,7 +39,7 @@ function POPOSSpace(props) {
   ...
   return (
     <div className="POPOSSpace">
-			...
+      ...
     </div>
   )
 }
@@ -53,8 +53,8 @@ Add the following to: `POPOSSpace.css`:
 
 ```CSS
 .POPOSSpace img {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 ```
 
