@@ -45,16 +45,9 @@ Let's get started by creating a new React App! Here you are installing the react
 Navigate to a location on your computer where you want the project to live and replace `<name>` below with the name of your project.
 
 ```bash
-npx create-react-app <name>
+npm create vite@latest
 ```
-
-Replace `<name>` with the name of your project. This name should be lowercase and not contain any spaces or special characters. For example:
-
-```bash
-npx create-react-app sfpopos
-```
-
-While you can install React manually, the boilerplate code installed by `create-react-app` is comprehensive and up to date. Use this whenever possible.
+Name your project something like: sfpopos.
 
 > **Note!** If you're having errors installing Create React App, it could be a problem with the version of Node.js that is installed. Try installing [nvm](https://github.com/nvm-sh/nvm#installation-and-update) (Node Version Manager).
 >
@@ -77,7 +70,7 @@ cd sfpopos
 Run your app with:
 
 ```bash
-npm start
+npm run dev
 ```
 
 After starting up your app should be running at [http://localhost:3000/](http://localhost:3000/)
