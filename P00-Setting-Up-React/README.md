@@ -47,7 +47,11 @@ Navigate to a location on your computer where you want the project to live and r
 ```bash
 npm create vite@latest
 ```
-Name your project something like: sfpopos.
+Name your project something like: **sfpopos**
+
+Choose: **Rect**
+
+And: **JavaScript**
 
 > **Note!** If you're having errors installing Create React App, it could be a problem with the version of Node.js that is installed. Try installing [nvm](https://github.com/nvm-sh/nvm#installation-and-update) (Node Version Manager).
 >
